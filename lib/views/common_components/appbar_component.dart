@@ -1,6 +1,7 @@
-import 'package:awesome_wallpapers/app_constants.dart';
+import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/extentions/string_extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -14,11 +15,11 @@ class AppBarComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: false,
       title: Text(
-        AppConstants.appName.toCapitalized(),
+        AppString.appName2.toCapitalized(),
         style: AppStyle.appBarTextStyle,
       ),
 

@@ -21,7 +21,7 @@ class AppStyle{
 
   static TextStyle appBarTitleTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
-    fontSize: 40.sp,
+    fontSize: 16.sp,
     color: AppColors.kWhiteColor,
   );
 
@@ -38,7 +38,7 @@ class AppStyle{
     ],
   );
 
-  static const BoxDecoration backgroundGradientContainerDecoration = BoxDecoration(
+  static  BoxDecoration backgroundGradientContainerDecoration =const BoxDecoration(
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -47,5 +47,6 @@ class AppStyle{
         Color(0xFF060507),
       ],
     ),
+    color: AppColors.kPrimaryColor,
   );
 }
