@@ -5,11 +5,11 @@ import 'package:sizer/sizer.dart';
 class AppStyle{
   static TextStyle headingTextStyle = TextStyle(
     fontWeight: FontWeight.w600,
-    fontSize: 30.sp,
+    fontSize: 14.sp,
     color: AppColors.kBlackColor,
   );
   static TextStyle normalTextStyle = TextStyle(
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.normal,
     fontSize: 12.sp,
     color: AppColors.kBlackLightColor,
   );
@@ -37,6 +37,16 @@ class AppStyle{
       ),
     ],
   );
+  static TextStyle tabsSelectedTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+  );static TextStyle tabsUnSelectedTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.normal,
+  );
+
 
   static  BoxDecoration backgroundGradientContainerDecoration =const BoxDecoration(
     gradient: LinearGradient(
@@ -49,4 +59,16 @@ class AppStyle{
     ),
     color: AppColors.kPrimaryColor,
   );
+  static  BoxDecoration drawerChildDecoration = BoxDecoration(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color(0xFF29234f),
+          Color(0xFF060507),
+        ],
+      ),
+      borderRadius: BorderRadius.circular(50),
+      border: Border.all(color: AppColors.kBlackLightColor, width: 5.w));
+
 }
