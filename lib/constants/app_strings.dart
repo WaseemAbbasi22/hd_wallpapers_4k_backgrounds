@@ -1,3 +1,4 @@
+import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class AppString {
@@ -9,6 +10,25 @@ class AppString {
   static String colors = 'Colors';
   static String popularCategories = 'Popular Categories';
   static List<String> tabsTextList = ["Home", "Categories"];
+
+  static List<CategoryModel> categoryList = [
+    CategoryModel(
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      name: 'Travel',
+    ), CategoryModel(
+      imageUrl: 'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
+      name: 'AI Wallpapers',
+    ), CategoryModel(
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      name: 'Food',
+    ), CategoryModel(
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      name: 'Magic Fluid',
+    ), CategoryModel(
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      name: 'Travel',
+    ),
+  ];
 
   static List<String> sliderImageUrl = [
     'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',

@@ -1,5 +1,9 @@
+import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/views/category_detail_view/category_detial_view.dart';
 import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,56 +26,41 @@ class PopularCategoriesTileSection extends StatelessWidget {
           shrinkWrap: true,
           getTransformMatrix: getTransformMatrix,
           itemBuilder: (context, index) {
+            CategoryModel category = AppString.categoryList[index];
             return Padding(
               padding:  EdgeInsets.only(bottom: 1.5.h),
               child: WallPaperCard(
                 index: index,
-                imageUrl:AppString.popularCatogoriesImageUrl[index],
+                imageUrl:category.imageUrl,
                 width: 100.w,
                 height: 10.h,
+                onCardTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoryDetailView(category: category)),
+                  );
+                },
+                child: Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  bottom: 0,
+                  child:  Center(
+                    child: Text(
+                      category.name??'',
+                      style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+                    ),
+                  ),
+                ),
               ),
             );
           },
-          itemCount: AppString.popularCatogoriesImageUrl.length,
+          itemCount: AppString.categoryList.length,
         ),
 
 
       ),
     );
-    //   Column(
-    //   children: [
-    //     SectionHeader(
-    //       leadingText: AppString.popularCategories,
-    //       showTrailing: false,
-    //     ),
-    //     Flexible(
-    //       fit: FlexFit.loose,
-    //       child: Container(
-    //         padding:
-    //             EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
-    //         child: TransformableListView.builder(
-    //           physics: const BouncingScrollPhysics(),
-    //           shrinkWrap: true,
-    //           getTransformMatrix: getTransformMatrix,
-    //           itemBuilder: (context, index) {
-    //             return Padding(
-    //               padding:  EdgeInsets.only(bottom: 1.5.h),
-    //               child: WallPaperCard(
-    //                 index: index,
-    //                 imageUrl:AppString.popularCatogoriesImageUrl[index],
-    //                 width: 100.w,
-    //                 height: 10.h,
-    //               ),
-    //             );
-    //           },
-    //           itemCount: AppString.popularCatogoriesImageUrl.length,
-    //         ),
-    //
-    //
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 
   Matrix4 getTransformMatrix(TransformableListItem item) {
