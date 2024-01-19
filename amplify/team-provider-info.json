@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-awesomewallpapers-dev-15004-authRole",
+      "UnauthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpapers-dev-15004-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpapers-dev-15004-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-awesomewallpapers-dev-15004-deployment",
+      "UnauthRoleName": "amplify-awesomewallpapers-dev-15004-unauthRole",
+      "StackName": "amplify-awesomewallpapers-dev-15004",
+      "StackId": "arn:aws:cloudformation:us-east-1:393430377193:stack/amplify-awesomewallpapers-dev-15004/1a19d820-b71d-11ee-bbea-0eaccf066ca9",
+      "AmplifyAppId": "d2t2b6p8tw6tay"
+    },
+    "categories": {
+      "auth": {
+        "awesomewallpapersd5d2d3e4": {}
+      },
+      "storage": {
+        "awesomewallpapersc042f3ae": {
+          "bucketName": "awesome4kwallgrounds96bd8542cdfe4b24bb2af635c5401630-dev",
+          "region": "us-east-1"
+        }
+      }
+    }
+  }
+}

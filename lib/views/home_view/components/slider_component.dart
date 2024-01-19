@@ -1,5 +1,4 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
-import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/styles/app_colors.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,8 @@
 import 'package:awesome_wallpapers/constants/app_constants.dart';
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
-import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/styles/app_colors.dart';
+import 'package:awesome_wallpapers/styles/app_styles.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
-import 'package:awesome_wallpapers/views/common_components/appbar_component.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +45,7 @@ class _MainViewState extends State<MainView> {
           return Container(
             key: ValueKey<bool>(value.visible),
             decoration: AppStyle.backgroundGradientContainerDecoration.copyWith(
-              borderRadius: BorderRadius.circular(
-                  _advancedDrawerController.value.visible ? 50 : 0),
+              borderRadius: BorderRadius.circular(_advancedDrawerController.value.visible ? 50 : 0),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -70,9 +68,7 @@ class _MainViewState extends State<MainView> {
                       valueListenable: _tabIndex,
                       builder: (context, currentIndex, _) {
                         ///select the page here....
-                        return currentIndex == 0
-                            ? const HomeView()
-                            : const CategoryView();
+                        return currentIndex == 0 ? const HomeView() : const CategoryView();
                       },
                     )),
               ],
