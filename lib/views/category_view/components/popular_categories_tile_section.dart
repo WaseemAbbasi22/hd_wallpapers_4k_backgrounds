@@ -22,7 +22,7 @@ class PopularCategoriesTileSection extends StatelessWidget {
         padding:
         EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
         child: TransformableListView.builder(
-          physics: const BouncingScrollPhysics(),
+          // physics: const (),
           shrinkWrap: true,
           getTransformMatrix: getTransformMatrix,
           itemBuilder: (context, index) {

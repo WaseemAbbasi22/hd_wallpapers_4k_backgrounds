@@ -6,6 +6,7 @@ import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/common_components/appbar_component.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
+import 'package:awesome_wallpapers/views/search_view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
@@ -48,6 +49,9 @@ class _MainViewState extends State<MainView> {
             decoration: AppStyle.backgroundGradientContainerDecoration.copyWith(
               borderRadius: BorderRadius.circular(
                   _advancedDrawerController.value.visible ? 50 : 0),
+              // image: DecorationImage(image: AssetImage(
+              //   AppAssets.homeContainerBg
+              // )),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -146,6 +150,12 @@ class _MainViewState extends State<MainView> {
             ],
           ),
           GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SearchView()),
+              );
+            },
             child: Icon(
               Icons.search,
               size: 3.h,

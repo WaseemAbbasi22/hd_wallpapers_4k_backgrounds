@@ -10,19 +10,21 @@ class WallPaperCard extends StatelessWidget {
   final VoidCallback? onCardTap;
   final Widget? child;
   final double? width;
-  final double?height;
-  final Color?borderColor;
-  final double?borderWidth;
+  final double? height;
+  final Color? borderColor;
+   bool? hasTopRadiusOnly=false;
+  final double? borderWidth;
 
-  const WallPaperCard(
+   WallPaperCard(
       {required this.index,
       this.imageUrl,
-        this.height,
-        this.borderColor,
+      this.height,
+      this.borderColor,
       this.onCardTap,
-        this.borderWidth,
+      this.borderWidth,
       this.child,
-        this.width,
+      this.hasTopRadiusOnly = false,
+      this.width,
       super.key});
 
   @override
@@ -33,17 +35,22 @@ class WallPaperCard extends StatelessWidget {
         GestureDetector(
           onTap: onCardTap,
           child: Container(
-            width:width?? 60.w,
-            height: height??100.h,
+            width: width ?? 60.w,
+            height: height ?? 100.h,
             decoration: BoxDecoration(
               border: Border.all(
-                color: borderColor??AppColors.kGreyColor,
-                width:borderWidth?? 2.0,
+                color: borderColor ?? AppColors.kGreyColor,
+                width: borderWidth ?? 2.0,
               ),
-              borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
+              borderRadius: hasTopRadiusOnly!
+                  ? BorderRadius.only(
+                      topLeft: Radius.circular(AppConstants.sliderCardRadius),
+                      topRight: Radius.circular(AppConstants.sliderCardRadius))
+                  : BorderRadius.circular(AppConstants.sliderCardRadius),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
+              borderRadius:
+                  BorderRadius.circular(AppConstants.sliderCardRadius),
               child: CachedNetworkImage(
                 imageUrl: imageUrl ?? '',
                 fit: BoxFit.cover,
@@ -62,7 +69,7 @@ class WallPaperCard extends StatelessWidget {
             ),
           ),
         ),
-         child??const SizedBox(),
+        child ?? const SizedBox(),
       ],
     );
   }

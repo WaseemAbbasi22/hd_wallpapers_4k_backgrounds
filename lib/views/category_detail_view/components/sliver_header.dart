@@ -6,6 +6,8 @@ import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../common_components/back_button_component.dart';
+
 class SliverHeader extends StatelessWidget {
   final CategoryModel category;
 
@@ -17,36 +19,33 @@ class SliverHeader extends StatelessWidget {
       backgroundColor: AppColors.kPrimaryColor,
       expandedHeight: 35.h,
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(15),
+        preferredSize: const Size.fromHeight(20),
         child: Container(
-          height: 2.h,
+          height: 0.8.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(AppConstants.sliderCardRadius),
               topLeft: Radius.circular(AppConstants.sliderCardRadius),
             ),
-            color: AppColors.kWhiteColor,
+            color: AppColors.kPrimaryColor,
           ),
         ),
       ),
       // expandedHeight: 200,
       pinned: true,
       elevation: 0,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.kWhiteColor,
-        ),
+      leading:const Padding(
+        padding:  EdgeInsets.all(8.0),
+        child:  BackButtonComponent(),
       ),
 
       flexibleSpace: FlexibleSpaceBar(
         background: WallPaperCard(
           index: 0,
           imageUrl: category.imageUrl,
+          hasTopRadiusOnly: true,
           width: 100.w,
+           borderWidth: 0,
            child: Positioned(
               top: 0,
               right: 0,

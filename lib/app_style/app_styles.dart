@@ -1,4 +1,5 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -6,12 +7,12 @@ class AppStyle{
   static TextStyle headingTextStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 14.sp,
-    color: AppColors.kBlackColor,
+    color: AppColors.kWhiteColor,
   );
   static TextStyle normalTextStyle = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 12.sp,
-    color: AppColors.kBlackLightColor,
+    color: AppColors.kWhiteColor,
   );
   static TextStyle appBarTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
@@ -21,6 +22,11 @@ class AppStyle{
 
   static TextStyle appBarTitleTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
+    fontSize: 16.sp,
+    color: AppColors.kWhiteColor,
+  );
+  static TextStyle buttonTextStyle = TextStyle(
+    fontWeight: FontWeight.w500,
     fontSize: 16.sp,
     color: AppColors.kWhiteColor,
   );
@@ -58,6 +64,23 @@ class AppStyle{
       ],
     ),
     color: AppColors.kPrimaryColor,
+  );
+  static  BoxDecoration bottomSheetDecoration =const BoxDecoration(
+    gradient:  LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        AppColors.kBottomSheetStartColor,
+        AppColors.kBottomSheetEndColor,
+      ],
+    ),
+    color: AppColors.kPrimaryColor,
+    borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+  );
+  static  BoxDecoration wallpaperActionContainerDecoration = BoxDecoration(
+    color: AppColors.kBottomSheetStartColor,
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: AppColors.kBlackColor, width: 0.3.w)
   );
   static  BoxDecoration drawerChildDecoration = BoxDecoration(
       gradient: const LinearGradient(
