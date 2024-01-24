@@ -8,10 +8,21 @@ import 'package:sizer/sizer.dart';
 
 import '../../common_components/back_button_component.dart';
 
-class SliverHeader extends StatelessWidget {
+class SliverHeader extends StatefulWidget {
   final CategoryModel category;
+  final ScrollController controller;
 
-  const SliverHeader({required this.category, super.key});
+  const SliverHeader({required this.category,required this.controller, super.key});
+
+  @override
+  State<SliverHeader> createState() => _SliverHeaderState();
+}
+
+class _SliverHeaderState extends State<SliverHeader> {
+  bool get isSliverAppBarExpanded {
+    return widget.controller.hasClients &&
+        widget.controller.offset > (200 - kToolbarHeight);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +51,13 @@ class SliverHeader extends StatelessWidget {
       ),
 
       flexibleSpace: FlexibleSpaceBar(
+        // title: Text(
+        //   category.name??'',
+        //   style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
+        // ),
         background: WallPaperCard(
           index: 0,
-          imageUrl: category.imageUrl,
+          imageUrl: widget.category.imageUrl,
           hasTopRadiusOnly: true,
           width: 100.w,
            borderWidth: 0,
@@ -53,8 +68,8 @@ class SliverHeader extends StatelessWidget {
               bottom: 0,
               child:  Center(
                 child: Text(
-                  category.name??'',
-                  style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+                  widget.category.name??'',
+                  style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                 ),
               ),
             )

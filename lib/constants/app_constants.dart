@@ -14,6 +14,11 @@ class AppAssets {
   static const  String favouriteIcon = 'assets/icons/favourite_icon.svg';
   static const  String setWallpaperIcon = 'assets/icons/set_wallpaper_icon.svg';
   static const  String shareIcon = 'assets/icons/share_icon.svg';
+  static const  String searchIcon = 'assets/icons/search_icon.svg';
+  static const  String rateAppIcon = 'assets/icons/rate_app_icon.svg';
+  static const  String downloadIcon = 'assets/icons/download_icon.svg';
+  static const  String homeIcon2 = 'assets/icons/home_icon2.svg';
+  static const  String categoryIcon = 'assets/icons/category_icon.svg';
   static const  String setLockWallpaperIcon = 'assets/icons/lock_icon.svg';
   static const  String setHomeWallpaperIcon = 'assets/icons/home_screen_icon.svg';
   static const  String setBothWallpaperIcon = 'assets/icons/both_screen_icon.svg';

@@ -9,6 +9,7 @@ import 'package:awesome_wallpapers/views/home_view/home_view.dart';
 import 'package:awesome_wallpapers/views/search_view/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:sizer/sizer.dart';
 
@@ -149,17 +150,20 @@ class _MainViewState extends State<MainView> {
               Text(AppString.appName2, style: AppStyle.appBarTitleTextStyle),
             ],
           ),
-          GestureDetector(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SearchView()),
-              );
-            },
-            child: Icon(
-              Icons.search,
-              size: 3.h,
-              color: AppColors.kWhiteColor,
+          Padding(
+            padding:  EdgeInsets.only(right: 3.w),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SearchView()),
+                );
+              },
+              child: SvgPicture.asset(
+               AppAssets.searchIcon,
+                height: 3.h,
+                color: AppColors.kWhiteColor,
+              ),
             ),
           ),
         ],

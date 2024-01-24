@@ -1,6 +1,4 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
-import 'package:awesome_wallpapers/views/home_view/home_view.dart';
-import 'package:awesome_wallpapers/views/main_view/main_view.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +18,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
+            fontFamily: 'Manrope',
             dividerColor: AppColors.kDividerColor),
         home: const SplashView(),
       );

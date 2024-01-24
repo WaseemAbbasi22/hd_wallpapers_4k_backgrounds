@@ -28,7 +28,7 @@ class SearchView extends StatelessWidget {
                 ),
                 Text(
                   AppString.searchViewHeading,
-                  style: AppStyle.headingTextStyle,
+                  style: AppStyle.appBarTitleTextStyle,
                 ),
                 SizedBox(
                   height: 3.h,

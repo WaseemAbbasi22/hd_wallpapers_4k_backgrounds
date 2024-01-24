@@ -4,11 +4,9 @@ import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/detail_sliver_grid.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/sliver_header.dart';
-import 'package:awesome_wallpapers/views/category_view/components/color_section.dart';
-import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../category_view/components/popular_categories_tile_section.dart';
+
 
 class CategoryDetailView extends StatefulWidget {
   final CategoryModel category;
@@ -18,13 +16,32 @@ class CategoryDetailView extends StatefulWidget {
   State<CategoryDetailView> createState() => _HomeViewState();
 }
 class _HomeViewState extends State<CategoryDetailView> {
+  late ScrollController scrollController;
+  bool isExpended =false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    scrollController = ScrollController() ..addListener(() {
+
+    });
+
+    super.initState();
+  }
+  bool get isSliverAppBarExpanded {
+    return scrollController.hasClients &&
+        scrollController.offset > (200 - kToolbarHeight);
+  }
   @override
   Widget build(BuildContext context) {
+    print('value i got is ${isSliverAppBarExpanded}');
     return Scaffold(
       backgroundColor: AppColors.kPrimaryColor,
-      body: CustomScrollView( slivers: [
+      body: CustomScrollView(
+        controller: scrollController,
+          slivers: [
         SliverHeader(
           category: widget.category,
+          controller: scrollController,
         ),
         DetailSliverGrid(categoryList: AppString.categoryList),
       ]),

@@ -48,7 +48,7 @@ class PopularCategoriesTileSection extends StatelessWidget {
                   child:  Center(
                     child: Text(
                       category.name??'',
-                      style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+                      style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                     ),
                   ),
                 ),

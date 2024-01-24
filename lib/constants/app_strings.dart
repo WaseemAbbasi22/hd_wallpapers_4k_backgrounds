@@ -164,6 +164,14 @@ class AppString {
     {'icon': AppAssets.setLockWallpaperIcon, 'label': 'Lock screen'},
     {'icon': AppAssets.setBothWallpaperIcon, 'label': 'Both screen'},
   ];
+  static List<Map<String, dynamic>> drawerItemList = [
+    {'icon': AppAssets.homeIcon2, 'label': 'Home'},
+    {'icon': AppAssets.categoryIcon, 'label': 'Categories'},
+    {'icon': AppAssets.favouriteIcon, 'label': 'Favorite'},
+    {'icon': AppAssets.downloadIcon, 'label': 'Downloads'},
+    {'icon': AppAssets.rateAppIcon, 'label': 'Rate App'},
+    {'icon': AppAssets.shareIcon, 'label': 'Share App'},
+  ];
 
 
 

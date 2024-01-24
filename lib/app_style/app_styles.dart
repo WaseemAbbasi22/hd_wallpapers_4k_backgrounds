@@ -11,12 +11,13 @@ class AppStyle{
   );
   static TextStyle normalTextStyle = TextStyle(
     fontWeight: FontWeight.normal,
-    fontSize: 12.sp,
+    fontSize: 13.sp,
+    fontFamily: 'Manrope',
     color: AppColors.kWhiteColor,
   );
   static TextStyle appBarTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
-    fontSize: 11.sp,
+    fontSize: 12.sp,
     color: AppColors.kWhiteColor,
   );
 
