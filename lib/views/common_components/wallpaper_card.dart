@@ -43,13 +43,12 @@ class WallPaperCard extends StatelessWidget {
                 width: borderWidth ?? 2.0,
               ),
               borderRadius: hasTopRadiusOnly!
-                  ? BorderRadius.only(
-                      topLeft: Radius.circular(AppConstants.sliderCardRadius),
-                      topRight: Radius.circular(AppConstants.sliderCardRadius))
+                  ? BorderRadius.zero
                   : BorderRadius.circular(AppConstants.sliderCardRadius),
             ),
             child: ClipRRect(
-              borderRadius:
+              borderRadius: hasTopRadiusOnly!
+                  ? BorderRadius.zero:
                   BorderRadius.circular(AppConstants.sliderCardRadius),
               child: CachedNetworkImage(
                 imageUrl: imageUrl ?? '',

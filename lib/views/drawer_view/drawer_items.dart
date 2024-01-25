@@ -2,6 +2,7 @@ import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/views/favourite_view/favourite_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
@@ -37,7 +38,7 @@ class DrawerWidgetItems extends StatelessWidget {
                     iconPath: AppString.drawerItemList[index]['icon'],
                     title: AppString.drawerItemList[index]['label'],
                     onTap: () {
-
+                      onItemTap(index: index,context: context);
                     }),
               ),
             ),
@@ -47,6 +48,15 @@ class DrawerWidgetItems extends StatelessWidget {
     );
   }
 
+  void onItemTap({required int index,required BuildContext context}){
+    switch(index){
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>const  FavouriteView()),
+        );
+    }
+  }
   Widget customTile(
       {required String iconPath,
       required String title,

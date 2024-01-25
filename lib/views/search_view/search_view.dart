@@ -1,4 +1,3 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';

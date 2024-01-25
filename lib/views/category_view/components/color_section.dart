@@ -2,6 +2,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/views/category_view/components/color_section_component.dart';
+import 'package:awesome_wallpapers/views/color_view/color_view.dart';
 import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +38,10 @@ class ColorSection extends StatelessWidget {
                   label:colorModel['label'],
                   gradientColors: colorModel['colors'], // Add your desired gradient colors
                   onTap: () {
-                    // Handle the onTap event
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  ColorView(colorModel: colorModel)),
+                    );
                   },
                 ),
               );

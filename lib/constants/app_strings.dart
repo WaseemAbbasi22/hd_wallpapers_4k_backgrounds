@@ -7,6 +7,7 @@ class AppString {
   static String appDescription =
       'Free Unlimited High Quality Wallpapers And Backgrounds';
   static String appName2 = '4K WallGrounds';
+  static String myFavourite = 'My Favourites';
   static String wallOfDay = 'Wall Of The Day 🔥';
   static String seeAll = 'See all';
   static String recommended = 'Recommended';

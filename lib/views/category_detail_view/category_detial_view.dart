@@ -16,24 +16,23 @@ class CategoryDetailView extends StatefulWidget {
   State<CategoryDetailView> createState() => _HomeViewState();
 }
 class _HomeViewState extends State<CategoryDetailView> {
-  late ScrollController scrollController;
-  bool isExpended =false;
+  final ScrollController scrollController = ScrollController();
+  double scrollPosition = 0.0;
   @override
   void initState() {
-    // TODO: implement initState
-    scrollController = ScrollController() ..addListener(() {
-
+    scrollController.addListener(() {
+      updatePositionOnScroll(scrollController.offset);
     });
 
     super.initState();
   }
-  bool get isSliverAppBarExpanded {
-    return scrollController.hasClients &&
-        scrollController.offset > (200 - kToolbarHeight);
+  void updatePositionOnScroll(double offset) {
+    setState(() {
+      scrollPosition = scrollController.position.pixels;
+    });
   }
   @override
   Widget build(BuildContext context) {
-    print('value i got is ${isSliverAppBarExpanded}');
     return Scaffold(
       backgroundColor: AppColors.kPrimaryColor,
       body: CustomScrollView(
@@ -41,7 +40,7 @@ class _HomeViewState extends State<CategoryDetailView> {
           slivers: [
         SliverHeader(
           category: widget.category,
-          controller: scrollController,
+          scrollPosition: scrollPosition,
         ),
         DetailSliverGrid(categoryList: AppString.categoryList),
       ]),

@@ -40,6 +40,9 @@ class SplashView extends StatelessWidget {
               AppString.appName,
               style: AppStyle.appBarTitleTextStyle,
             ),
+            SizedBox(
+              height: 1.h,
+            ),
             Text(
               AppString.appDescription,
               style: AppStyle.normalTextStyle
