@@ -3,6 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,6 +38,13 @@ class PopularCategoriesSection extends StatelessWidget {
                   child: WallPaperCard(
                       index: index,
                     imageUrl:category.imageUrl,
+                    onCardTap: (){
+                      Navigator.pushNamed(
+                        context,
+                        NamedRoute.categoryDetailView,
+                        arguments: {'categoryModel': category},
+                      );
+                    },
                     width: 40.w,
                     child: Positioned(
                       top: 0,

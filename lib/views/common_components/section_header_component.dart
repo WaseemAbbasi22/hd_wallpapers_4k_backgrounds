@@ -32,7 +32,7 @@ class SectionHeader extends StatelessWidget {
                   onTap: onTrailingTap,
                   child: Text(
                     trailingText??'',
-                    style: AppStyle.normalTextStyle.copyWith(color:AppColors.kGreyColor),
+                    style: AppStyle.normalTextStyle.copyWith(color:AppColors.kWhiteColor),
                   ),
                 )
               : const SizedBox(),

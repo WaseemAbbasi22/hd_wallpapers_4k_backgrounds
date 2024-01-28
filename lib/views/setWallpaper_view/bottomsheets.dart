@@ -6,7 +6,6 @@ import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/views/setWallpaper_view/action_item.dart';
 import 'package:awesome_wallpapers/views/setWallpaper_view/setWallpaper_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 class WallpaperControlsBottomSheet {

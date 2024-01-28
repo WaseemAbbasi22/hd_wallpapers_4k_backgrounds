@@ -1,8 +1,7 @@
-import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/views/favourite_view/favourite_view.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
@@ -50,11 +49,12 @@ class DrawerWidgetItems extends StatelessWidget {
 
   void onItemTap({required int index,required BuildContext context}){
     switch(index){
+      case 0:
+        Navigator.pushNamed(context, NamedRoute.mainView,arguments: {'tabIndex':0});
+        case 1:
+          Navigator.pushNamed(context, NamedRoute.mainView,arguments: {'tabIndex':1});
       case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>const  FavouriteView()),
-        );
+        Navigator.pushNamed(context, NamedRoute.favouriteView);
     }
   }
   Widget customTile(

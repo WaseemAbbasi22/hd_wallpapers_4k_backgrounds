@@ -1,4 +1,5 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: 'Manrope',
             dividerColor: AppColors.kDividerColor),
+          onGenerateRoute: AppRoutes.generateRoute,
         home: const SplashView(),
       );
     });

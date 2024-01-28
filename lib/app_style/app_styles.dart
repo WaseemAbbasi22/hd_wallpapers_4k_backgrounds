@@ -1,5 +1,4 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
-import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

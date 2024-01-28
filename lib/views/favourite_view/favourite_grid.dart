@@ -2,8 +2,8 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
-import 'package:awesome_wallpapers/views/setWallpaper_view/setWallpaper_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,7 +13,6 @@ class FavouriteGridComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-
       fit: FlexFit.loose,
       child: Container(
         padding: EdgeInsets.only(left: AppConstants.kHorizontalPadding),
@@ -25,7 +24,7 @@ class FavouriteGridComponent extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 3,
             crossAxisSpacing: 2,
-            childAspectRatio: 3/3,
+            childAspectRatio: 3 / 4,
           ),
           // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           //   crossAxisCount: 3,
@@ -40,11 +39,9 @@ class FavouriteGridComponent extends StatelessWidget {
               index: index,
               borderColor: Colors.transparent,
               imageUrl: category.imageUrl,
-              onCardTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  SetWallpaperView(category: category)),
-                );
+              onCardTap: () {
+                Navigator.pushNamed(context, NamedRoute.setWallpaperView,arguments:
+                {'categoryModel': category});
               },
               child: Positioned(
                 top: 8,

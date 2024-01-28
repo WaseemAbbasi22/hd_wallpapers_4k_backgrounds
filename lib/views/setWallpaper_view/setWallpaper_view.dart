@@ -1,7 +1,6 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/setWallpaper_view/bottomsheets.dart';
@@ -11,9 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class SetWallpaperView extends StatefulWidget {
-  final CategoryModel category;
-
-  const SetWallpaperView({super.key, required this.category});
+  final Map arguments;
+  const SetWallpaperView({super.key, required this.arguments});
 
   @override
   State<SetWallpaperView> createState() => _SetWallpaperViewState();
@@ -46,7 +44,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                         borderRadius: BorderRadius.circular(
                             AppConstants.sliderCardRadius),
                         child: CachedNetworkImage(
-                          imageUrl: widget.category.imageUrl ?? '',
+                          imageUrl: widget.arguments['categoryModel'].imageUrl ?? '',
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(
                             child: SizedBox(
@@ -93,10 +91,10 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
     switch (index) {
       case 0:
         WallpaperControlsBottomSheet.shareWallpaperBottomSheet(context,
-            category: widget.category);
+            category: widget.arguments['categoryModel']);
         case 1:
         WallpaperControlsBottomSheet.setWallpaperBottomSheet(context,
-            category: widget.category);
+            category: widget.arguments['categoryModel']);
 
     }
   }

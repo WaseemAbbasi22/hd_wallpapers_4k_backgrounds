@@ -10,9 +10,9 @@ class FavouriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.kPrimaryColor,
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: BackgroundContainer(
           horizontalPadding: 1.w,
           verticalPadding: 0,

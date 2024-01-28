@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ColorView extends StatelessWidget {
-  final Map<String, dynamic> colorModel;
+  final Map arguments;
 
-  const ColorView({required this.colorModel, super.key});
+  const ColorView({required this.arguments, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class ColorView extends StatelessWidget {
       body: SingleChildScrollView(
         child: BackgroundGradientContainer(
           horizontalPadding: 1.w,
-          startColor: colorModel['colors'][0],
-          endColor: colorModel['colors'][1],
-          verticalPadding: 0,
+          startColor:arguments['colorModel']['colors'][0],
+          endColor: arguments['colorModel']['colors'][1],
+          verticalPadding: 1.h,
           child: Column(
             children: [
               SizedBox(height: 3.h),
-               ColorAppBar(title: colorModel['label']),
-              SizedBox(height: 3.h),
+               ColorAppBar(title: arguments['colorModel']['label']),
+              SizedBox(height: 2.h),
                const ColorGridComponent(),
             ],
           ),

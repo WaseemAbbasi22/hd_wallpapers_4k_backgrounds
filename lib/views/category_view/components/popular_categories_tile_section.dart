@@ -3,8 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
-import 'package:awesome_wallpapers/views/category_detail_view/category_detial_view.dart';
-import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +15,11 @@ class PopularCategoriesTileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Flexible(
+    return Flexible(
       fit: FlexFit.loose,
       child: Container(
         padding:
-        EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
+            EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
         child: TransformableListView.builder(
           // physics: const (),
           shrinkWrap: true,
@@ -28,16 +27,17 @@ class PopularCategoriesTileSection extends StatelessWidget {
           itemBuilder: (context, index) {
             CategoryModel category = AppString.categoryList[index];
             return Padding(
-              padding:  EdgeInsets.only(bottom: 1.5.h),
+              padding: EdgeInsets.only(bottom: 1.5.h),
               child: WallPaperCard(
                 index: index,
-                imageUrl:category.imageUrl,
+                imageUrl: category.imageUrl,
                 width: 100.w,
                 height: 10.h,
-                onCardTap: (){
-                  Navigator.push(
+                onCardTap: () {
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(builder: (context) => CategoryDetailView(category: category)),
+                    NamedRoute.categoryDetailView,
+                    arguments: {'categoryModel': category},
                   );
                 },
                 child: Positioned(
@@ -45,10 +45,11 @@ class PopularCategoriesTileSection extends StatelessWidget {
                   right: 0,
                   left: 0,
                   bottom: 0,
-                  child:  Center(
+                  child: Center(
                     child: Text(
-                      category.name??'',
-                      style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
+                      category.name ?? '',
+                      style: AppStyle.headingTextStyle
+                          .copyWith(color: AppColors.kWhiteColor),
                     ),
                   ),
                 ),
@@ -57,8 +58,6 @@ class PopularCategoriesTileSection extends StatelessWidget {
           },
           itemCount: AppString.categoryList.length,
         ),
-
-
       ),
     );
   }
