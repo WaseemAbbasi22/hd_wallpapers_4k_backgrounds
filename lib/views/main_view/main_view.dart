@@ -1,17 +1,20 @@
 import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/styles/app_colors.dart';
-import 'package:awesome_wallpapers/styles/app_styles.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:sizer/sizer.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({super.key});
+  final Map arguments;
+  const MainView({required this.arguments,super.key});
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -19,7 +22,13 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   final _advancedDrawerController = AdvancedDrawerController();
-  final ValueNotifier<int> _tabIndex = ValueNotifier(0);
+  late final ValueNotifier<int> _tabIndex;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _tabIndex = ValueNotifier(widget.arguments['tabIndex']??0);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +41,7 @@ class _MainViewState extends State<MainView> {
       animationDuration: const Duration(milliseconds: 300),
       animateChildDecoration: true,
       rtlOpening: false,
-      disabledGestures: true,
+      disabledGestures: false,
       childDecoration: AppStyle.drawerChildDecoration,
       drawer: const DrawerWidgetItems(),
       child: drawerWidget(),
@@ -45,7 +54,11 @@ class _MainViewState extends State<MainView> {
           return Container(
             key: ValueKey<bool>(value.visible),
             decoration: AppStyle.backgroundGradientContainerDecoration.copyWith(
-              borderRadius: BorderRadius.circular(_advancedDrawerController.value.visible ? 50 : 0),
+              borderRadius: BorderRadius.circular(
+                  _advancedDrawerController.value.visible ? 50 : 0),
+              // image: DecorationImage(image: AssetImage(
+              //   AppAssets.homeContainerBg
+              // )),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +81,9 @@ class _MainViewState extends State<MainView> {
                       valueListenable: _tabIndex,
                       builder: (context, currentIndex, _) {
                         ///select the page here....
-                        return currentIndex == 0 ? const HomeView() : const CategoryView();
+                        return currentIndex == 0
+                            ? const HomeView()
+                            : const CategoryView();
                       },
                     )),
               ],
@@ -141,11 +156,17 @@ class _MainViewState extends State<MainView> {
               Text(AppString.appName2, style: AppStyle.appBarTitleTextStyle),
             ],
           ),
-          GestureDetector(
-            child: Icon(
-              Icons.search,
-              size: 3.h,
-              color: AppColors.kWhiteColor,
+          Padding(
+            padding:  EdgeInsets.only(right: 3.w),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, NamedRoute.searchView);
+              },
+              child: SvgPicture.asset(
+               AppAssets.searchIcon,
+                height: 3.h,
+                color: AppColors.kWhiteColor,
+              ),
             ),
           ),
         ],
