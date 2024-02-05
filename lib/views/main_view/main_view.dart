@@ -3,6 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
@@ -14,7 +15,8 @@ import 'package:sizer/sizer.dart';
 
 class MainView extends StatefulWidget {
   final Map arguments;
-  const MainView({required this.arguments,super.key});
+
+  const MainView({required this.arguments, super.key});
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -23,17 +25,18 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   final _advancedDrawerController = AdvancedDrawerController();
   late final ValueNotifier<int> _tabIndex;
+
   @override
   void initState() {
     // TODO: implement initState
-    _tabIndex = ValueNotifier(widget.arguments['tabIndex']??0);
+    _tabIndex = ValueNotifier(widget.arguments['tabIndex'] ?? 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
-      backdropColor: AppColors.kPrimaryColor,
+      backdropColor: context.theme.appColors.primary,
       controller: _advancedDrawerController,
       animationCurve: Curves.easeInOut,
       openRatio: 0.5,
@@ -42,7 +45,18 @@ class _MainViewState extends State<MainView> {
       animateChildDecoration: true,
       rtlOpening: false,
       disabledGestures: false,
-      childDecoration: AppStyle.drawerChildDecoration,
+      childDecoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              context.theme.appColors.onSecondary,
+              context.theme.appColors.onSecondary,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(
+              color: context.theme.appColors.onSecondary, width: 5.w)),
       drawer: const DrawerWidgetItems(),
       child: drawerWidget(),
     );
@@ -53,12 +67,18 @@ class _MainViewState extends State<MainView> {
         builder: (_, value, __) {
           return Container(
             key: ValueKey<bool>(value.visible),
-            decoration: AppStyle.backgroundGradientContainerDecoration.copyWith(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  context.theme.appColors.primary,
+                  context.theme.appColors.primary,
+                ],
+              ),
+              color: AppColors.kPrimaryColor,
               borderRadius: BorderRadius.circular(
                   _advancedDrawerController.value.visible ? 50 : 0),
-              // image: DecorationImage(image: AssetImage(
-              //   AppAssets.homeContainerBg
-              // )),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -99,21 +119,23 @@ class _MainViewState extends State<MainView> {
             valueListenable: _tabIndex,
             builder: (context, currentIndex, _) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppConstants.kHorizontalPadding),
                 child: FlutterToggleTab(
                   // width in percent
                   width: 24.w,
                   borderRadius: 30,
                   height: 7.h,
                   selectedIndex: currentIndex,
-                  selectedBackgroundColors: const [
-                    AppColors.kPrimaryDarkColor,
+                  selectedBackgroundColors: [
+                    context.theme.appColors.primaryContainer,
                   ],
-                  unSelectedBackgroundColors: const [
-                    AppColors.kBlackLightColor,
+                  unSelectedBackgroundColors: [
+                    context.theme.appColors.onSecondary,
                   ],
                   selectedTextStyle: AppStyle.tabsSelectedTextStyle,
-                  unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle,
+                  unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
+                      .copyWith(color: context.theme.appColors.tertiary),
                   labels: AppString.tabsTextList,
                   icons: AppString.tabsIconList,
                   selectedLabelIndex: (index) {
@@ -145,7 +167,7 @@ class _MainViewState extends State<MainView> {
                       duration: const Duration(milliseconds: 250),
                       child: Icon(
                         value.visible ? Icons.clear : Icons.menu,
-                        color: AppColors.kWhiteColor,
+                        color: context.theme.appColors.tertiary,
                         size: 3.h,
                         key: ValueKey<bool>(value.visible),
                       ),
@@ -157,15 +179,15 @@ class _MainViewState extends State<MainView> {
             ],
           ),
           Padding(
-            padding:  EdgeInsets.only(right: 3.w),
+            padding: EdgeInsets.only(right: 3.w),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, NamedRoute.searchView);
               },
               child: SvgPicture.asset(
-               AppAssets.searchIcon,
+                AppAssets.searchIcon,
                 height: 3.h,
-                color: AppColors.kWhiteColor,
+                color: context.theme.appColors.tertiary,
               ),
             ),
           ),

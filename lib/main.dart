@@ -1,7 +1,10 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
+import 'package:awesome_wallpapers/theme/dark_theme.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -14,13 +17,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
+      return ChangeNotifierProvider(
+        // 1. Provide AppTheme above the MaterialApp, so it will be available on all pages.
+        create: (_) => AppTheme(),
+        builder: (context, _) => MaterialApp(
+          title: 'Flutter Demo',
+          // 2. Provide light theme.
+          theme: AppTheme.light,
+          // 3. Provide dark theme.
+          darkTheme: AppTheme.dark,
+          // 4. Watch AppTheme changes (ThemeMode).
+          themeMode: context.watch<AppTheme>().themeMode,
+            onGenerateRoute: AppRoutes.generateRoute,
+          debugShowCheckedModeBanner: false,
+          home: const SplashView(),
+        ),
+      );
       return MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-            fontFamily: 'Manrope',
-            dividerColor: AppColors.kDividerColor),
+        theme:  darkThem,
+          darkTheme: darkThem,
           onGenerateRoute: AppRoutes.generateRoute,
         home: const SplashView(),
       );

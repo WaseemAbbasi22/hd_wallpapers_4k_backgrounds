@@ -2,6 +2,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
@@ -35,6 +36,7 @@ class DrawerWidgetItems extends StatelessWidget {
                 AppString.drawerItemList.length,
                 (index) => customTile(
                     iconPath: AppString.drawerItemList[index]['icon'],
+                    context: context,
                     title: AppString.drawerItemList[index]['label'],
                     onTap: () {
                       onItemTap(index: index,context: context);
@@ -60,6 +62,7 @@ class DrawerWidgetItems extends StatelessWidget {
   Widget customTile(
       {required String iconPath,
       required String title,
+        required BuildContext context,
       required VoidCallback onTap}) {
     return InkWell(
       onTap: onTap,
@@ -69,9 +72,9 @@ class DrawerWidgetItems extends StatelessWidget {
           children: [
             SvgPicture.asset(iconPath,
                 height: 2.h,
-                colorFilter: const ColorFilter.mode(
+                colorFilter:  ColorFilter.mode(
 
-                    AppColors.kWhiteColor, BlendMode.srcIn)),
+                    context.theme.appColors.tertiary, BlendMode.srcIn)),
             SizedBox(
               width: 3.w,
             ),

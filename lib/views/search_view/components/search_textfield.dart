@@ -1,4 +1,5 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app_style/app_colors.dart';
@@ -24,7 +25,7 @@ class SearchTextField extends StatelessWidget {
           filled: true,
           contentPadding: const EdgeInsets.symmetric(
               vertical: 20, horizontal: 10),
-          fillColor: fillColor ?? AppColors.kGreyColor,
+          fillColor: fillColor ?? context.theme.appColors.onSecondary,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
             borderSide: BorderSide.none,
@@ -32,8 +33,8 @@ class SearchTextField extends StatelessWidget {
           suffix: showSuffix
               ? suffixChild ?? GestureDetector(
             onTap:onSearch,
-            child: const Icon(Icons.search,
-              color: AppColors.kWhiteColor,
+            child:  Icon(Icons.search,
+              color: context.theme.appColors.tertiaryContainer,
             ),
           )
               : null,
