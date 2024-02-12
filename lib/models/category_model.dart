@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CategoryModel {
-  int? id;
-  String? imageUrl;
-  String? name;
-  Color?borderColor;
+  int id;
+  int quantity;
+  String imageUrl;
+  String name;
+  Color borderColor;
 
-  CategoryModel(
-      {this.id,
-        this.imageUrl,
-        this.name,
-       this.borderColor
-      });
+  CategoryModel({
+    this.id = 0,
+    this.quantity = 0,
+    this.imageUrl = "",
+    this.name = "",
+    this.borderColor = Colors.transparent,
+  });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
@@ -20,12 +22,5 @@ class CategoryModel {
       name: json['name'],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "imageUrl": imageUrl,
-    "name": name,
-  };
-
 
 }

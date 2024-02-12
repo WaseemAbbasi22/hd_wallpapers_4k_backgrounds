@@ -4,8 +4,10 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GeneralUtilities {
-  static void launchURL(String _url) async {
-    if (!await launch(_url)) throw 'Could not launch $_url';
+  static void launchURL(String url) async {
+    if (!await launch(url)) {
+      throw 'Could not launch $url';
+    }
   }
 
   static void shareMyApp() async {
@@ -21,6 +23,6 @@ class GeneralUtilities {
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     var i = (log(bytes) / log(1024)).floor();
-    return ((bytes / pow(1024, i)).toStringAsFixed(0)) + ' ' + suffixes[i].toString();
+    return '${(bytes / pow(1024, i)).toStringAsFixed(0)} ${suffixes[i]}';
   }
 }

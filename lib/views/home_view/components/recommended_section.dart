@@ -1,9 +1,13 @@
-import 'package:awesome_wallpapers/styles/app_colors.dart';
+import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/section_header_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class RecommendedSection extends StatelessWidget {
@@ -11,6 +15,8 @@ class RecommendedSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeVM homeVM = context.watch<HomeVM>();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -20,6 +26,18 @@ class RecommendedSection extends StatelessWidget {
           showTrailing: true,
           onTrailingTap: () {
             //see all...
+
+            Navigator.pushNamed(
+              context,
+              NamedRoute.categoryDetailView,
+              arguments: {
+                'categoryModel': CategoryModel(
+                  name: AppString.recommended,
+                  imageUrl: context.read<HomeVM>().recommendedWallpapersList.first.imageUrl,
+                ),
+                "mainCategory": AppConstants.recommendedThumbnailsKey,
+              },
+            );
           },
         ),
         SizedBox(
@@ -37,17 +55,21 @@ class RecommendedSection extends StatelessWidget {
                 crossAxisCount: 3,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
-                childAspectRatio: 3/5,
+                childAspectRatio: 3 / 5,
               ),
-              itemCount: AppString.sliderImageUrl.length,
+              itemCount: homeVM.recommendedWallpapersList.length,
               itemBuilder: (BuildContext context, int index) => WallPaperCard(
                 index: index,
+                onCardTap: () {
+                  HomeVM homeVM = context.read<HomeVM>();
+                  homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey);
+                },
                 borderColor: Colors.transparent,
-                imageUrl: AppString.sliderImageUrl[index],
-               child: Positioned(
-                 top: 8,
-                 right: 8,
-                 child: GestureDetector(
+                imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,
+                child: Positioned(
+                  top: 8,
+                  right: 8,
+                  child: GestureDetector(
                     onTap: () {},
                     child: CircleAvatar(
                       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
@@ -61,7 +83,7 @@ class RecommendedSection extends StatelessWidget {
                       ),
                     ),
                   ),
-               ),
+                ),
               ),
             ),
           ),

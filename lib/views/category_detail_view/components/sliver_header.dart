@@ -1,25 +1,17 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/extensions/extensions.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../common_components/back_button_component.dart';
-
-class SliverHeader extends StatefulWidget {
+class SliverHeader extends StatelessWidget {
   final CategoryModel category;
   final double scrollPosition;
 
-  const SliverHeader(
-      {required this.category, required this.scrollPosition, super.key});
-
-  @override
-  State<SliverHeader> createState() => _SliverHeaderState();
-}
-
-class _SliverHeaderState extends State<SliverHeader> {
-  bool showTitle = false;
+  const SliverHeader({required this.category, required this.scrollPosition, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +22,7 @@ class _SliverHeaderState extends State<SliverHeader> {
       elevation: 0,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: widget.scrollPosition > 226
+        child: scrollPosition > 226
             ? IconButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -44,16 +36,15 @@ class _SliverHeaderState extends State<SliverHeader> {
       ),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        title: widget.scrollPosition >= 28.h
+        title: scrollPosition >= 28.h
             ? Text(
-                widget.category.name ?? '',
-                style: AppStyle.headingTextStyle
-                    .copyWith(color: AppColors.kWhiteColor),
+                category.name.toUpperCase() ?? '',
+                style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
               )
             : null,
         background: WallPaperCard(
             index: 0,
-            imageUrl: widget.category.imageUrl,
+            imageUrl: category.imageUrl,
             hasTopRadiusOnly: true,
             width: 100.w,
             borderWidth: 0,
@@ -62,13 +53,10 @@ class _SliverHeaderState extends State<SliverHeader> {
               right: 0,
               left: 0,
               bottom: 0,
-              child: Center(
-                child: Text(
-                  widget.category.name ?? '',
-                  style: AppStyle.headingTextStyle
-                      .copyWith(color: AppColors.kWhiteColor),
-                ),
-              ),
+              child: Text(
+                category.name.toUpperCase() ?? '',
+                style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor, fontSize: 22.sp),
+              ).toBackDropTextContainer(),
             )),
       ),
     );

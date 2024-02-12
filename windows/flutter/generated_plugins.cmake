@@ -5,6 +5,8 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   amplify_db_common
   connectivity_plus
+  firebase_auth
+  firebase_core
   share_plus
   url_launcher_windows
 )

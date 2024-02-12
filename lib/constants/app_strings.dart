@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppString {
   static String appName = 'HD Wallpaper - 4K Background';
-  static String appDescription =
-      'Free Unlimited High Quality Wallpapers And Backgrounds';
+  static String appDescription = 'Free Unlimited High Quality Wallpapers And Backgrounds';
   static String appName2 = '4K WallGrounds';
   static String myFavourite = 'My Favourites';
   static String wallOfDay = 'Wall Of The Day 🔥';
@@ -18,88 +17,72 @@ class AppString {
   static String privacyPolicyText1 = " By Continuing you agree to our ";
   static String privacyPolicyText2 = " privacy policy ";
   static String privacyPolicyText3 = " terms of use ";
-  static String searchViewHeading =
-      "Discover High Quality and Beautiful Wallpapers";
+  static String searchViewHeading = "Discover High Quality and Beautiful Wallpapers";
   static String popularSearches = "Popular Searches";
   static String popularCategories = 'Popular Categories';
   static List<String> tabsTextList = ["Home", "Categories"];
 
   static List<CategoryModel> categoryList = [
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
       name: 'AI Wallpapers',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Food',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Magic Fluid',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Magic Fluid',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Magic Fluid',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Magic Fluid',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
   ];
   static List<CategoryModel> popularCategoryList = [
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Travel',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
       name: 'AI Wallpapers',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
       name: 'Food',
     ),
     CategoryModel(
-      imageUrl:
-          'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
+      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
       name: 'Magic Fluid',
     ),
   ];
@@ -173,7 +156,4 @@ class AppString {
     {'icon': AppAssets.rateAppIcon, 'label': 'Rate App'},
     {'icon': AppAssets.shareIcon, 'label': 'Share App'},
   ];
-
-
-
 }

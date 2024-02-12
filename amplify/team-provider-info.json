@@ -1,25 +1,22 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-awesomewallpapers-dev-15004-authRole",
-      "UnauthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpapers-dev-15004-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpapers-dev-15004-authRole",
+      "AuthRoleName": "amplify-awesomewallpaperslat-dev-204044-authRole",
+      "UnauthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpaperslat-dev-204044-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::393430377193:role/amplify-awesomewallpaperslat-dev-204044-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-awesomewallpapers-dev-15004-deployment",
-      "UnauthRoleName": "amplify-awesomewallpapers-dev-15004-unauthRole",
-      "StackName": "amplify-awesomewallpapers-dev-15004",
-      "StackId": "arn:aws:cloudformation:us-east-1:393430377193:stack/amplify-awesomewallpapers-dev-15004/1a19d820-b71d-11ee-bbea-0eaccf066ca9",
-      "AmplifyAppId": "d2t2b6p8tw6tay"
+      "DeploymentBucketName": "amplify-awesomewallpaperslat-dev-204044-deployment",
+      "UnauthRoleName": "amplify-awesomewallpaperslat-dev-204044-unauthRole",
+      "StackName": "amplify-awesomewallpaperslat-dev-204044",
+      "StackId": "arn:aws:cloudformation:us-east-1:393430377193:stack/amplify-awesomewallpaperslat-dev-204044/5cfb8250-c772-11ee-8957-0e26f9e7020d",
+      "AmplifyAppId": "d3mtq1pjkmpvzj"
     },
     "categories": {
       "auth": {
-        "awesomewallpapersd5d2d3e4": {}
+        "awesomewallpaperslat596e7ca4": {}
       },
       "storage": {
-        "awesomewallpapersc042f3ae": {
-          "bucketName": "awesome4kwallgrounds96bd8542cdfe4b24bb2af635c5401630-dev",
-          "region": "us-east-1"
-        }
+        "s362556985": {}
       }
     }
   }

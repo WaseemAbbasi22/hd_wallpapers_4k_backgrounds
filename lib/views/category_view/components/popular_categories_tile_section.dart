@@ -1,12 +1,13 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
-import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:transformable_list_view/transformable_list_view.dart';
 
@@ -15,17 +16,18 @@ class PopularCategoriesTileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeVM homeVM = context.read<HomeVM>();
     return Flexible(
       fit: FlexFit.loose,
       child: Container(
-        padding:
-            EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
+        padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
         child: TransformableListView.builder(
           // physics: const (),
+          itemCount: homeVM.randomPopularList.length,
           shrinkWrap: true,
           getTransformMatrix: getTransformMatrix,
           itemBuilder: (context, index) {
-            CategoryModel category = AppString.categoryList[index];
+            CategoryModel category = homeVM.randomPopularList[index];
             return Padding(
               padding: EdgeInsets.only(bottom: 1.5.h),
               child: WallPaperCard(
@@ -33,11 +35,12 @@ class PopularCategoriesTileSection extends StatelessWidget {
                 imageUrl: category.imageUrl,
                 width: 100.w,
                 height: 10.h,
+                isFromNetwork: false,
                 onCardTap: () {
                   Navigator.pushNamed(
                     context,
                     NamedRoute.categoryDetailView,
-                    arguments: {'categoryModel': category},
+                    arguments: {'categoryModel': category, "mainCategory": AppConstants.popularThumbnailsKey},
                   );
                 },
                 child: Positioned(
@@ -48,15 +51,13 @@ class PopularCategoriesTileSection extends StatelessWidget {
                   child: Center(
                     child: Text(
                       category.name ?? '',
-                      style: AppStyle.headingTextStyle
-                          .copyWith(color: AppColors.kWhiteColor),
+                      style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                     ),
                   ),
                 ),
               ),
             );
           },
-          itemCount: AppString.categoryList.length,
         ),
       ),
     );

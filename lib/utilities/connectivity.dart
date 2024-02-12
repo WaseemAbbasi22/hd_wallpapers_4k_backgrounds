@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 
-class ConnectivityService {
+class ConnectivityUtil {
   static Future<bool> checkInternetConnectivity(BuildContext context) async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     //  TODO: HANDLE

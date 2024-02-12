@@ -5,7 +5,7 @@ import 'package:awesome_wallpapers/views/favourite_view/favourite_view.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
 import 'package:awesome_wallpapers/views/main_view/main_view.dart';
 import 'package:awesome_wallpapers/views/search_view/search_view.dart';
-import 'package:awesome_wallpapers/views/setWallpaper_view/setWallpaper_view.dart';
+import 'package:awesome_wallpapers/views/set_wallpaper_view/setWallpaper_view.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 

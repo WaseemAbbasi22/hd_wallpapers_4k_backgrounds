@@ -1,14 +1,15 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
-import 'package:awesome_wallpapers/models/category_model.dart';
-import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ImageSlider extends StatefulWidget {
   final double? height;
-  final List<String> imageList;
+  final List<WallpaperModel> imageList;
 
   const ImageSlider({
     Key? key,
@@ -43,7 +44,7 @@ class _ImageSliderState extends State<ImageSlider> {
           }),
       items: widget.imageList
           .map((item) => WallPaperCard(
-              imageUrl: item,
+              imageUrl: item.imageUrl,
               index: _currentIndex,
               child: Positioned(
                 top: 10,
@@ -65,11 +66,8 @@ class _ImageSliderState extends State<ImageSlider> {
               ),
               onCardTap: () {
                 ///Go to detail page.....
-                Navigator.pushNamed(
-                  context,
-                  NamedRoute.setWallpaperView,
-                  arguments: {'categoryModel': CategoryModel(imageUrl: item)},
-                );
+                HomeVM homeVM = context.read<HomeVM>();
+                homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: item.imageKey);
               }))
           .toList(),
     );

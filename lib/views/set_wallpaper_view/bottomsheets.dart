@@ -3,8 +3,8 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
-import 'package:awesome_wallpapers/views/setWallpaper_view/action_item.dart';
-import 'package:awesome_wallpapers/views/setWallpaper_view/setWallpaper_container.dart';
+import 'package:awesome_wallpapers/views/set_wallpaper_view/action_item.dart';
+import 'package:awesome_wallpapers/views/set_wallpaper_view/setWallpaper_container.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

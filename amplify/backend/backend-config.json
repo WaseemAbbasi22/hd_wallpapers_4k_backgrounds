@@ -1,6 +1,6 @@
 {
   "auth": {
-    "awesomewallpapersd5d2d3e4": {
+    "awesomewallpaperslat596e7ca4": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -18,7 +18,9 @@
         "socialProviders": [
           "GOOGLE"
         ],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "PHONE_NUMBER"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
@@ -27,30 +29,11 @@
       "service": "Cognito"
     }
   },
-  "parameters": {
-    "AMPLIFY_storage_awesomewallpapersc042f3ae_bucketName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "awesomewallpapersc042f3ae"
-        }
-      ]
-    },
-    "AMPLIFY_storage_awesomewallpapersc042f3ae_region": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "awesomewallpapersc042f3ae"
-        }
-      ]
-    }
-  },
   "storage": {
-    "awesomewallpapersc042f3ae": {
+    "s362556985": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
-      "service": "S3",
-      "serviceType": "imported"
+      "service": "S3"
     }
   }
 }
