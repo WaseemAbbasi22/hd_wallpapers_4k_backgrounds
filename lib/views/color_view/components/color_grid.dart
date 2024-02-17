@@ -1,14 +1,16 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
-import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/models/category_model.dart';
-import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ColorGridComponent extends StatelessWidget {
-  const ColorGridComponent({super.key});
+  final List<WallpaperModel> wallpaperList;
+
+  const ColorGridComponent({required this.wallpaperList, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +26,18 @@ class ColorGridComponent extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 3,
             crossAxisSpacing: 2,
-            childAspectRatio: 3/4,
+            childAspectRatio: 3 / 4,
           ),
-          itemCount: AppString.categoryList.length,
+          itemCount: wallpaperList.length,
           itemBuilder: (BuildContext context, int index) {
-            CategoryModel category = AppString.categoryList[index];
+            WallpaperModel wallpaperModel = wallpaperList[index];
             return WallPaperCard(
               index: index,
               borderColor: Colors.transparent,
-              imageUrl: category.imageUrl,
+              imageUrl: wallpaperModel.imageUrl,
               onCardTap: () {
-                Navigator.pushNamed(context, NamedRoute.setWallpaperView,arguments:
-                {'categoryModel': category});
-
+                HomeVM homeVM = context.read<HomeVM>();
+                homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: wallpaperModel.imageKey);
               },
               child: Positioned(
                 top: 8,

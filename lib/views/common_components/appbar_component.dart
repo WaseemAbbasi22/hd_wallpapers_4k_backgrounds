@@ -16,7 +16,7 @@ class AppBarComponent extends StatelessWidget {
       elevation: 0,
       centerTitle: false,
       title: Text(
-        AppString.appName2.toCapitalized(),
+        AppString.appName.toCapitalized(),
         style: AppStyle.appBarTextStyle,
       ),
 

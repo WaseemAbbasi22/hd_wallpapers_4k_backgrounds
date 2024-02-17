@@ -50,14 +50,12 @@ class HomeVM extends ChangeNotifier {
         for (var element in items) {
           StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
           final StorageGetUrlResult imageUrl = await urlOperation.result;
-          log("got this uri: ${imageUrl.url}");
           wallpapersListByCategory.add(WallpaperModel(
             imageKey: element.key,
             imageUrl: imageUrl.url.toString(),
             imageSize: GeneralUtilities.getFileSize(element.size),
           ));
         }
-        log('I am returning: ${wallpapersListByCategory.length}');
         wallpapersListByCategory.shuffle();
         updateLoadingFeed(false);
 
@@ -93,7 +91,6 @@ class HomeVM extends ChangeNotifier {
           // if (feedThumbnailList.length < 50) {
           StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
           final StorageGetUrlResult imageUrl = await urlOperation.result;
-          log("got this uri: ${imageUrl.url}");
           feedThumbnailList.add(
             WallpaperModel(
               imageKey: element.key,
@@ -127,7 +124,6 @@ class HomeVM extends ChangeNotifier {
         var subCategory = temp[1];
         var thumbnailNameNew = thumbnailName.replaceAll("${temp[0]}-${temp[1]}-", "");
         var mainImageKey = '$mainCategory/$subCategory/$thumbnailNameNew';
-        log('This is final : $mainImageKey');
 
         StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(
             key: mainImageKey,
@@ -135,13 +131,12 @@ class HomeVM extends ChangeNotifier {
               accessLevel: StorageAccessLevel.guest,
             ));
         final StorageGetUrlResult imageUrl = await urlOperation.result;
-        log("got this uri: ${imageUrl.url}");
 
         await Future.delayed(const Duration(seconds: 1)).whenComplete(
           () => Navigator.pushReplacementNamed(
             context,
             NamedRoute.setWallpaperView,
-            arguments: {'categoryModel': CategoryModel(imageUrl: imageUrl.url.toString())},
+            arguments: {'wallpaperModel': WallpaperModel(imageUrl: imageUrl.url.toString())},
           ),
         );
       } catch (e) {
@@ -157,10 +152,8 @@ class HomeVM extends ChangeNotifier {
 
   Future<void> getRecommendedWallpapersList(String fileKey, {bool isSeeAll = false}) async {
     recommendedWallpapersList.clear();
-    log('I am coming here with in getRecommendedWallpapersList: $fileKey');
     try {
       List items = await getAmplifyStorageList(path: fileKey);
-      log('Got items in getRecommendedWallpapersList: ${items.length}');
       if (items.isNotEmpty) {
         items.shuffle();
         List finalItems = items;
@@ -177,7 +170,6 @@ class HomeVM extends ChangeNotifier {
         for (var element in finalItems) {
           StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
           final StorageGetUrlResult imageUrl = await urlOperation.result;
-          log("got this uri in getRecommendedWallpapersList: ${imageUrl.url}");
           recommendedWallpapersList.add(WallpaperModel(
             imageKey: element.key,
             imageUrl: imageUrl.url.toString(),
@@ -201,7 +193,6 @@ class HomeVM extends ChangeNotifier {
         randomPopularList.add(listItem);
       }
     }
-    log('Here is my Final Length initializeRandomPopularList: $randomPopularList');
   }
 
   void initializeRandomRecommendedList() {
@@ -214,8 +205,6 @@ class HomeVM extends ChangeNotifier {
         randomRecommendedList.add(listItem);
       }
     }
-
-    log('Here is my Final Length initializeRandomRecommendedList: $randomRecommendedList');
   }
 
   bool isAlreadyPresentInList(List<CategoryModel> list, CategoryModel category) {

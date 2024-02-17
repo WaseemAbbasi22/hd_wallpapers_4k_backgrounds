@@ -1,8 +1,11 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/models/wallpaper_model.dart';
+import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
+import 'package:awesome_wallpapers/views/common_components/user_intimation_components.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/action_item.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/bottomsheets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,6 +24,7 @@ class SetWallpaperView extends StatefulWidget {
 class _SetWallpaperViewState extends State<SetWallpaperView> {
   @override
   Widget build(BuildContext context) {
+    WallpaperModel wallpaperModel = widget.arguments['wallpaperModel'];
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -44,7 +48,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
                         child: CachedNetworkImage(
-                          imageUrl: widget.arguments['categoryModel'].imageUrl ?? '',
+                          imageUrl: wallpaperModel.imageUrl ?? '',
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(
                             child: SizedBox(
@@ -72,8 +76,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                       label: AppString.wallpaperActionData[index]['label'],
                       iconPath: AppString.wallpaperActionData[index]['icon'],
                       onTap: () {
-                        onActionTap(index: index);
-                        print('index i got is $index');
+                        onActionTap(index: index, wallpaperModel: wallpaperModel);
                       },
                     ),
                   ),
@@ -86,12 +89,19 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
     );
   }
 
-  void onActionTap({required int index}) {
+  void onActionTap({required int index, required WallpaperModel wallpaperModel}) async {
     switch (index) {
       case 0:
-        WallpaperControlsBottomSheet.shareWallpaperBottomSheet(context, category: widget.arguments['categoryModel']);
+        await GeneralUtilities.shareWallpaper(url: wallpaperModel.imageUrl);
+      // WallpaperControlsBottomSheet.shareWallpaperBottomSheet(context, wallpaperModel: widget.arguments['wallpaperModel']);
       case 1:
-        WallpaperControlsBottomSheet.setWallpaperBottomSheet(context, category: widget.arguments['categoryModel']);
+        WallpaperControlsBottomSheet.setWallpaperBottomSheet(context, wallpaperModel: widget.arguments['wallpaperModel']);
+      case 3:
+      // Add Wallpaper To Favorites
+      case 4:
+        UserIntimationComponents.getLoader(context);
+        await GeneralUtilities.downloadImageFromLink(url: wallpaperModel.imageUrl, context: context);
+        Navigator.pop(context);
     }
   }
 }

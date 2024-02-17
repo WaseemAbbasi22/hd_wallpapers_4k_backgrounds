@@ -9,29 +9,34 @@ import 'package:sizer/sizer.dart';
 
 class ColorAppBar extends StatelessWidget {
   final String title;
-  const ColorAppBar({super.key,required this.title});
+
+  const ColorAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(width: 2.w,),
+            SizedBox(
+              width: 2.w,
+            ),
             BackButtonComponent(
               radius: 2.5.h,
             ),
-            SizedBox(width: 5.w,),
+            SizedBox(
+              width: 5.w,
+            ),
             Text(title, style: AppStyle.normalTextStyle),
           ],
         ),
         Padding(
-          padding:  EdgeInsets.only(right: 3.w),
+          padding: EdgeInsets.only(right: 3.w),
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, NamedRoute.searchView);
             },
             child: SvgPicture.asset(

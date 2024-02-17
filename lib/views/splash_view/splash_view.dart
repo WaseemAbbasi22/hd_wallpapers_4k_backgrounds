@@ -2,11 +2,11 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/dependency_injection/dependency_injection.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
-import 'package:awesome_wallpapers/services/authentication_service.dart';
+import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/button_component.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -81,9 +81,15 @@ class SplashView extends StatelessWidget {
                     style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
                     /*defining default style is optional */
                     children: <TextSpan>[
-                      TextSpan(text: AppString.privacyPolicyText2, style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
+                      TextSpan(
+                          text: AppString.privacyPolicyText2,
+                          recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),
+                          style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
                       TextSpan(text: ' and ', style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor)),
-                      TextSpan(text: AppString.privacyPolicyText3, style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
+                      TextSpan(
+                          text: AppString.privacyPolicyText3,
+                          recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),
+                          style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
                     ],
                   ),
                 ),

@@ -7,37 +7,32 @@ class BackgroundGradientContainer extends StatelessWidget {
   final Widget? child;
   final double? horizontalPadding;
   final Color startColor;
-  final Color  endColor;
+  final Color endColor;
   final double? verticalPadding;
 
   const BackgroundGradientContainer(
-      {this.child,
-        this.horizontalPadding,
-        this.verticalPadding,
-       required  this.startColor,
-        required this.endColor,
-        super.key});
+      {this.child, this.horizontalPadding, this.verticalPadding, required this.startColor, required this.endColor, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,
       height: 100.h,
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
           colors: [
-           startColor,
+            startColor.withOpacity(0.2),
+            startColor.withOpacity(0.2),
+            endColor.withOpacity(0.2),
             endColor,
           ],
         ),
         color: AppColors.kPrimaryColor,
       ),
-      padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding ?? AppConstants.kHorizontalPadding,
-          vertical: verticalPadding ?? 5.h),
-      child: child??const SizedBox(),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding ?? AppConstants.kHorizontalPadding, vertical: verticalPadding ?? 5.h),
+      child: child ?? const SizedBox(),
     );
   }
 }

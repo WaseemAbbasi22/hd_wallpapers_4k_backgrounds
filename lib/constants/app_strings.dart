@@ -3,9 +3,8 @@ import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class AppString {
-  static String appName = 'HD Wallpaper - 4K Background';
   static String appDescription = 'Free Unlimited High Quality Wallpapers And Backgrounds';
-  static String appName2 = '4K WallGrounds';
+  static String appName = 'HD Wallpaper - 4K Background';
   static String myFavourite = 'My Favourites';
   static String wallOfDay = 'Wall Of The Day 🔥';
   static String seeAll = 'See all';
@@ -21,6 +20,10 @@ class AppString {
   static String popularSearches = "Popular Searches";
   static String popularCategories = 'Popular Categories';
   static List<String> tabsTextList = ["Home", "Categories"];
+
+  static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
+  static const packageName = "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
+  static const playStoreLink = "https://play.google.com/store/apps/details?id=$packageName";
 
   static List<CategoryModel> categoryList = [
     CategoryModel(

@@ -165,7 +165,7 @@ class _MainViewState extends State<MainView> {
                   },
                 ),
               ),
-              Text(AppString.appName2, style: AppStyle.appBarTitleTextStyle),
+              Text(AppString.appName, style: AppStyle.appBarTitleTextStyle),
             ],
           ),
           Padding(

@@ -30,8 +30,7 @@ class ColorSection extends StatelessWidget {
             itemCount: AppString.gradientColorsList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              Map<String, dynamic> colorModel =
-                  AppString.gradientColorsList[index];
+              Map<String, dynamic> colorModel = AppString.gradientColorsList[index];
               return Padding(
                 padding: EdgeInsets.only(right: 5.w),
                 child: ColorSectionComponent(
@@ -40,7 +39,14 @@ class ColorSection extends StatelessWidget {
                   gradientColors: colorModel['colors'],
                   // Add your desired gradient colors
                   onTap: () {
-                    Navigator.pushNamed(context, NamedRoute.colorView,arguments: {'colorModel': colorModel});
+                    Navigator.pushNamed(
+                      context,
+                      NamedRoute.colorView,
+                      arguments: {
+                        'colorModel': colorModel,
+                        "mainCategory": AppConstants.colorsThumbnailsKey,
+                      },
+                    );
                   },
                 ),
               );
