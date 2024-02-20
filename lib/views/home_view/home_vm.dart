@@ -3,8 +3,10 @@ import 'dart:math' as math;
 
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/dependency_injection/dependency_injection.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/models/wallpaper_model.dart';
+import 'package:awesome_wallpapers/repositories/cache_repo.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/user_intimation_components.dart';
@@ -215,5 +217,79 @@ class HomeVM extends ChangeNotifier {
       }
     }
     return false;
+  }
+
+  Future<void> addWallpaperToFavourites({required WallpaperModel wallpaperModel, required bool isForDownloads}) async {
+    final cacheRepo = locator.get<CacheRepo>();
+    final resultEither = await cacheRepo.getFavoriteWallpapers(isForDownloads: isForDownloads);
+
+    if (resultEither.isRight()) {
+      String? allFavWallpapers = resultEither.getOrElse(() => "");
+      log("Here are :::$allFavWallpapers");
+      if (!isAlreadyThere(wallpaperUrl: wallpaperModel.imageUrl.trim(), allWallpapers: allFavWallpapers)) {
+        allFavWallpapers = allFavWallpapers + wallpaperModel.imageUrl.trim() + AppConstants.cacheSplitter;
+        await cacheRepo.addFavoriteWallpaper(imageUrl: allFavWallpapers, isForDownloads: isForDownloads);
+      }
+      UserIntimationComponents.showToast("Wallpaper has been added to My ${isForDownloads ? "Downloads" : "Favorites"}.");
+    }
+  }
+
+  bool isAlreadyThere({required String wallpaperUrl, required String allWallpapers}) {
+    bool isThere = false;
+    final list = allWallpapers.split(AppConstants.cacheSplitter);
+    int index = list.indexWhere((element) => element == wallpaperUrl);
+    if (index != -1) {
+      isThere = true;
+    }
+    return isThere;
+  }
+
+  final List<String> favoriteWallpapers = [];
+
+  void removeFavoriteWallpaper({required int index, required bool isForDownloads}) async {
+    final cacheRepo = locator.get<CacheRepo>();
+    final resultEither = await cacheRepo.addFavoriteWallpaper(imageUrl: "", isForDownloads: isForDownloads);
+    favoriteWallpapers.removeAt(index);
+    notifyListeners();
+    String wallpapersList = "";
+    if (resultEither.isRight()) {
+      for (var element in favoriteWallpapers) {
+        wallpapersList = wallpapersList + element + AppConstants.cacheSplitter;
+      }
+    }
+    log("final wallpapers list: $wallpapersList");
+    await cacheRepo.addFavoriteWallpaper(imageUrl: wallpapersList, isForDownloads: isForDownloads);
+  }
+
+  // Future<void> resetWallppaers() async {
+  //   final cacheRepo = locator.get<CacheRepo>();
+  //   final resultEither = await cacheRepo.addFavoriteWallpaper(imageUrl: "");
+  // }
+
+  Future<void> getFavoriteWallpapers({required bool isForDownloads}) async {
+    favoriteWallpapers.clear();
+    notifyListeners();
+    final cacheRepo = locator.get<CacheRepo>();
+    final resultEither = await cacheRepo.getFavoriteWallpapers(isForDownloads: isForDownloads);
+
+    if (resultEither.isRight()) {
+      String? allFavWallpapers = resultEither.getOrElse(() => "");
+
+      if (allFavWallpapers.isNotEmpty) {
+        final list = allFavWallpapers.split(AppConstants.cacheSplitter).toList();
+
+        list.removeWhere((element) => element == "");
+
+        favoriteWallpapers.addAll(list);
+        notifyListeners();
+      }
+    }
+  }
+
+  bool isFromDownloads = false;
+
+  void updateIsFromDownloads(var value) {
+    isFromDownloads = value;
+    notifyListeners();
   }
 }

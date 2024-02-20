@@ -1,17 +1,25 @@
+import 'dart:developer';
+
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
-import 'package:awesome_wallpapers/constants/app_strings.dart';
-import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class FavouriteGridComponent extends StatelessWidget {
-  const FavouriteGridComponent({super.key});
+  final List<String> wallpapers;
+  final bool isForDownloads;
+
+  const FavouriteGridComponent({super.key, required this.wallpapers, required this.isForDownloads});
 
   @override
   Widget build(BuildContext context) {
+    // log("wallpapers: ${wallpapers.length}");
     return Flexible(
       fit: FlexFit.loose,
       child: Container(
@@ -26,28 +34,34 @@ class FavouriteGridComponent extends StatelessWidget {
             crossAxisSpacing: 2,
             childAspectRatio: 3 / 4,
           ),
-          // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //   crossAxisCount: 3,
-          //   mainAxisSpacing: 10,
-          //   crossAxisSpacing: 5,
-          //   childAspectRatio: 3/5,
-          // ),
-          itemCount: AppString.categoryList.length,
+          itemCount: wallpapers.length,
           itemBuilder: (BuildContext context, int index) {
-            CategoryModel category = AppString.categoryList[index];
+            WallpaperModel wallpaperModel = WallpaperModel(imageUrl: wallpapers[index]);
+
+            if (wallpapers.isEmpty) {
+              return Text("There are no wallpapers in this category", style: AppStyle.normalTextStyle);
+            }
             return WallPaperCard(
               index: index,
               borderColor: Colors.transparent,
-              imageUrl: category.imageUrl,
+              imageUrl: wallpaperModel.imageUrl,
               onCardTap: () {
-                Navigator.pushNamed(context, NamedRoute.setWallpaperView,arguments:
-                {'categoryModel': category});
+                Navigator.pushNamed(
+                  context,
+                  NamedRoute.setWallpaperView,
+                  arguments: {
+                    'wallpaperModel': WallpaperModel(imageUrl: wallpaperModel.imageUrl.toString()),
+                    'isFromFavOrDownload': true,
+                  },
+                );
               },
               child: Positioned(
                 top: 8,
                 right: 8,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.read<HomeVM>().removeFavoriteWallpaper(index: index, isForDownloads: isForDownloads);
+                  },
                   child: CircleAvatar(
                     backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
                     radius: 2.h,

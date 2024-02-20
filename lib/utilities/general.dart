@@ -38,10 +38,9 @@ class GeneralUtilities {
     return '${(bytes / pow(1024, i)).toStringAsFixed(0)} ${suffixes[i]}';
   }
 
-  static downloadImageFromLink({required String url, required BuildContext context}) async {
+  static Future<bool> downloadImageFromLink({required String url, required BuildContext context}) async {
+    bool status = false;
     String? message;
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-
     int now = DateTime.now().millisecondsSinceEpoch;
     final fileName = now.toString();
 
@@ -53,7 +52,8 @@ class GeneralUtilities {
       final dir = await getDownloadsDirectory();
 
       if (dir == null) {
-        return;
+        status = false;
+        return false;
       }
       // Create an image name
       var filename = '${dir.path}/${fileName}_image.png';
@@ -68,15 +68,18 @@ class GeneralUtilities {
 
       if (finalPath != null) {
         message = 'Wallpaper Saved Successfully.';
+        status = true;
       }
     } catch (e) {
       dev.log("err: ${e.toString()}");
+      status = false;
       message = 'An error occurred while saving the image';
     }
 
     if (message != null) {
       UserIntimationComponents.showToast(message);
     }
+    return status;
   }
 
   static Future<void> setWallpaper({required String url, required int wallpaperLocation}) async {

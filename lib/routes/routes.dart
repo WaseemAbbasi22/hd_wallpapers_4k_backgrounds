@@ -9,7 +9,6 @@ import 'package:awesome_wallpapers/views/set_wallpaper_view/setWallpaper_view.da
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 
-
 class AppRoutes {
   AppRoutes._();
 
@@ -17,7 +16,7 @@ class AppRoutes {
     switch (settings.name) {
       case NamedRoute.mainView:
         return MaterialPageRoute<void>(
-          builder: (context) =>  MainView(arguments: settings.arguments as Map),
+          builder: (context) => MainView(arguments: settings.arguments as Map),
           settings: settings,
         );
       case NamedRoute.splashView:
@@ -27,25 +26,21 @@ class AppRoutes {
         );
       case NamedRoute.homeView:
         return MaterialPageRoute<void>(
-          builder: (context) =>
-             const HomeView(),
+          builder: (context) => const HomeView(),
         );
       case NamedRoute.categoryView:
         return MaterialPageRoute<void>(
-          builder: (context) =>
-              const CategoryView(), //idr kasa
+          builder: (context) => const CategoryView(), //idr kasa
           settings: settings,
         );
       case NamedRoute.categoryDetailView:
         return MaterialPageRoute<void>(
-          builder: (context) =>
-              CategoryDetailView(arguments: settings.arguments as Map), //idr kasa
+          builder: (context) => CategoryDetailView(arguments: settings.arguments as Map), //idr kasa
           settings: settings,
         );
       case NamedRoute.favouriteView:
         return MaterialPageRoute<void>(
-          builder: (context) => const FavouriteView(
-          ),
+          builder: (context) => FavouriteView(arguments: settings.arguments as Map),
           settings: settings,
         );
 
@@ -94,13 +89,11 @@ class NamedRoute {
 
   static const String splashView = '/splashView';
   static const String homeView = '/homeView';
-  static const String  mainView = '/mainView';
+  static const String mainView = '/mainView';
   static const String categoryView = '/categoryView';
   static const String categoryDetailView = '/categoryDetailView';
   static const String colorView = '/colorView';
   static const String favouriteView = '/favouriteView';
   static const String searchView = '/searchView';
   static const String setWallpaperView = '/setWallpaperView';
-
-
 }

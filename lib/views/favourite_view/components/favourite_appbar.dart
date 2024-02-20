@@ -9,29 +9,36 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 class FavouriteAppBar extends StatelessWidget {
-  const FavouriteAppBar({super.key});
+  final bool isForDownloads;
+
+  const FavouriteAppBar({super.key, required this.isForDownloads});
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(width: 2.w,),
-             BackButtonComponent(
+            SizedBox(
+              width: 2.w,
+            ),
+            BackButtonComponent(
               radius: 2.5.h,
             ),
-            SizedBox(width: 5.w,),
-            Text(AppString.myFavourite, style: AppStyle.normalTextStyle),
+            SizedBox(
+              width: 5.w,
+            ),
+            Text(isForDownloads ? AppString.myDownloads : AppString.myFavourite, style: AppStyle.normalTextStyle),
           ],
         ),
         Padding(
-          padding:  EdgeInsets.only(right: 3.w),
+          padding: EdgeInsets.only(right: 3.w),
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
+              // context.read<HomeVM>().resetWallppaers();
               Navigator.pushNamed(context, NamedRoute.searchView);
             },
             child: SvgPicture.asset(

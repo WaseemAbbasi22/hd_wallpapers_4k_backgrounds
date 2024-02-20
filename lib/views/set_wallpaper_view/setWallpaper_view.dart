@@ -6,10 +6,12 @@ import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/user_intimation_components.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/action_item.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/bottomsheets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class SetWallpaperView extends StatefulWidget {
@@ -96,11 +98,15 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
       // WallpaperControlsBottomSheet.shareWallpaperBottomSheet(context, wallpaperModel: widget.arguments['wallpaperModel']);
       case 1:
         WallpaperControlsBottomSheet.setWallpaperBottomSheet(context, wallpaperModel: widget.arguments['wallpaperModel']);
+      case 2:
+        final homeVM = context.read<HomeVM>();
+        homeVM.addWallpaperToFavourites(wallpaperModel: wallpaperModel, isForDownloads: homeVM.isFromDownloads);
       case 3:
-      // Add Wallpaper To Favorites
-      case 4:
         UserIntimationComponents.getLoader(context);
-        await GeneralUtilities.downloadImageFromLink(url: wallpaperModel.imageUrl, context: context);
+        bool status = await GeneralUtilities.downloadImageFromLink(url: wallpaperModel.imageUrl, context: context);
+        if (status) {
+          context.read<HomeVM>().addWallpaperToFavourites(wallpaperModel: wallpaperModel, isForDownloads: true);
+        }
         Navigator.pop(context);
     }
   }

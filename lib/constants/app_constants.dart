@@ -19,6 +19,7 @@ class AppConstants {
   static const String recommendedWallpapersKey = 'recommended_categories/';
   static const String colorsWallpapersKey = 'colors_categories/';
   static const String colorsThumbnailsKey = 'colors-thumbnails/';
+  static const String cacheSplitter = '/_mySplitter%_/';
 
   static List<CategoryModel> popularCategoryList = [
     CategoryModel(

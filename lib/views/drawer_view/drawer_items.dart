@@ -3,8 +3,10 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class DrawerWidgetItems extends StatelessWidget {
@@ -56,13 +58,13 @@ class DrawerWidgetItems extends StatelessWidget {
       case 1:
         Navigator.pushNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 1});
         break;
-
       case 2:
-        Navigator.pushNamed(context, NamedRoute.favouriteView);
+        context.read<HomeVM>().updateIsFromDownloads(false);
+        Navigator.pushNamed(context, NamedRoute.favouriteView, arguments: {'isDownloads': false});
         break;
-
       case 3:
-        Navigator.pushNamed(context, NamedRoute.favouriteView); // DOWNLOADS
+        context.read<HomeVM>().updateIsFromDownloads(true);
+        Navigator.pushNamed(context, NamedRoute.favouriteView, arguments: {'isDownloads': true}); // DOWNLOADS
         break;
       case 4:
         // RATE THIS APP
