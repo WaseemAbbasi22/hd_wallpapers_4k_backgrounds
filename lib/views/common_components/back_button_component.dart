@@ -1,4 +1,3 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 

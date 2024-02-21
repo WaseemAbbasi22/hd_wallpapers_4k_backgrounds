@@ -9,6 +9,8 @@ static double kVerticalPadding = 3.h;
 class AppAssets {
   //images...
   static const String homeIcon = "assets/icons/home_icon.svg";
+  static const String drawerIcon = "assets/icons/drawer_icon.svg";
+  static const String crossIcon = "assets/icons/cross_icon.svg";
   static const  String homeContainerBg = 'assets/images/home_container_bg.png';
   static const  String whiteContainerBg = 'assets/images/white_bg.png';
   static const  String downloadWallpaperIcon = 'assets/icons/download_icon.svg';

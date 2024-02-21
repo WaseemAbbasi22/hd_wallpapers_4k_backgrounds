@@ -49,7 +49,7 @@ class _SliverHeaderState extends State<SliverHeader> {
             ? Text(
                 widget.category.name ?? '',
                 style: AppStyle.headingTextStyle
-                    .copyWith(color: AppColors.kWhiteColor),
+                    .copyWith(color:context.theme.appColors.tertiary),
               )
             : null,
         background: WallPaperCard(

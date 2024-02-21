@@ -1,6 +1,5 @@
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -62,10 +61,10 @@ class MashGradientPainter extends CustomPainter {
     final Paint paint = Paint();
 
     // Top-right corner color
-    final Color color1 = Colors.blue;
+    const Color color1 = Colors.blue;
 
     // Bottom-left corner color
-    final Color color2 = Colors.green;
+    const Color color2 = Colors.green;
 
     // Diagonal path
     final Path path = Path()

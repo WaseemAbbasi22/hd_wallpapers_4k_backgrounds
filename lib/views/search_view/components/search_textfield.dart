@@ -2,8 +2,6 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app_style/app_colors.dart';
-
 class SearchTextField extends StatelessWidget {
   final Function(dynamic value) onChange;
   final TextEditingController? controller;

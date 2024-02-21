@@ -94,7 +94,9 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                toggleTabs(),
+                Expanded(
+                  flex: 1,
+                    child: toggleTabs()),
                 Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
@@ -115,31 +117,35 @@ class _MainViewState extends State<MainView> {
   Widget toggleTabs() => ValueListenableBuilder(
     valueListenable: _tabIndex,
     builder: (context, currentIndex, _) {
-      return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: AppConstants.kHorizontalPadding),
-        child: FlutterToggleTab(
-          // width in percent
-          width: 23.2.w,
-          borderRadius: 30,
-          height: 8.h,
-          selectedIndex: currentIndex,
-          selectedBackgroundColors: [
-            context.theme.appColors.primaryContainer,
-          ],
-          unSelectedBackgroundColors: [
-            context.theme.appColors.onSecondary,
-          ],
-          selectedTextStyle: AppStyle.tabsSelectedTextStyle,
-          unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
-              .copyWith(color: context.theme.appColors.tertiary),
-          labels: AppString.tabsTextList,
-          icons: AppString.tabsIconList,
-          selectedLabelIndex: (index) {
-            _tabIndex.value = index;
-          },
-          isScroll: false,
-        ),
+      return Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppConstants.kHorizontalPadding),
+            child: FlutterToggleTab(
+              // width in percent
+              width: 23.2.w,
+              borderRadius: 30,
+              height: 8.h,
+              selectedIndex: currentIndex,
+              selectedBackgroundColors: [
+                context.theme.appColors.primaryContainer,
+              ],
+              unSelectedBackgroundColors: [
+                context.theme.appColors.onSecondary,
+              ],
+              selectedTextStyle: AppStyle.tabsSelectedTextStyle,
+              unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
+                  .copyWith(color: context.theme.appColors.tertiary),
+              labels: AppString.tabsTextList,
+              icons: AppString.tabsIconList,
+              selectedLabelIndex: (index) {
+                _tabIndex.value = index;
+              },
+              isScroll: false,
+            ),
+          ),
+        ],
       );
     },
   );
@@ -160,12 +166,18 @@ class _MainViewState extends State<MainView> {
                   builder: (_, value, __) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
-                      child: Icon(
-                        value.visible ? Icons.clear : Icons.menu,
-                        color: context.theme.appColors.tertiary,
-                        size: 3.h,
-                        key: ValueKey<bool>(value.visible),
+                      child:SvgPicture.asset(
+                          key: ValueKey<bool>(value.visible),
+                          value.visible ? AppAssets.crossIcon : AppAssets.drawerIcon,
+                        colorFilter: ColorFilter.mode(context.theme.appColors.tertiary, BlendMode.srcIn),
+                        height: 3.h,
                       ),
+                      // Icon(
+                      //
+                      //   color: context.theme.appColors.tertiary,
+                      //   size: 3.h,
+                      //   key: ValueKey<bool>(value.visible),
+                      // ),
                     );
                   },
                 ),
