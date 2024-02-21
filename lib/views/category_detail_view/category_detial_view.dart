@@ -5,6 +5,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/detail_sliver_grid.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/sliver_header.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
@@ -74,8 +75,10 @@ class _HomeViewState extends State<CategoryDetailView> {
       category.imageUrl = homeVM.wallpapersListByCategory.last.imageUrl;
     }
     return Scaffold(
-      backgroundColor: AppColors.kGreyColor,
-      body: CustomScrollView(controller: scrollController, slivers: [
+      backgroundColor: context.theme.appColors.primary,
+      body: CustomScrollView(
+        controller: scrollController,
+          slivers: [
         SliverHeader(
           category: category,
           scrollPosition: scrollPosition,

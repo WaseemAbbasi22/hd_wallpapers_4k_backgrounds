@@ -1,6 +1,7 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 
@@ -56,7 +57,7 @@ class SearchTile extends StatelessWidget {
               child: Text(
                 category.name ?? '',
                 overflow: TextOverflow.ellipsis,
-                style: AppStyle.normalTextStyle,
+                style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
               ),
             ),
           ],

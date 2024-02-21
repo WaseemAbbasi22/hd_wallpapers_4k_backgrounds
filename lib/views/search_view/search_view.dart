@@ -1,6 +1,7 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/search_view/components/search_textfield.dart';
@@ -27,7 +28,7 @@ class SearchView extends StatelessWidget {
                 ),
                 Text(
                   AppString.searchViewHeading,
-                  style: AppStyle.appBarTitleTextStyle,
+                  style: AppStyle.appBarTitleTextStyle.copyWith(color:context.theme.appColors.outline),
                 ),
                 SizedBox(
                   height: 3.h,
@@ -45,10 +46,10 @@ class SearchView extends StatelessWidget {
                 ),
                 Text(
                   AppString.popularSearches,
-                  style: AppStyle.headingTextStyle,
+                  style: AppStyle.headingTextStyle.copyWith(color:context.theme.appColors.outline),
                 ),
                 SizedBox(
-                  height: 2.h,
+                  height: 3.h,
                 ),
                 ListView.builder(
                     padding: EdgeInsets.zero,

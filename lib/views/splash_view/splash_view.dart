@@ -4,6 +4,7 @@ import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/button_component.dart';
 import 'package:flutter/gestures.dart';
@@ -22,7 +23,7 @@ class SplashView extends StatelessWidget {
           children: [
             Text(
               AppString.appName,
-              style: AppStyle.appBarTitleTextStyle,
+              style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(
               height: 4.h,
@@ -40,14 +41,15 @@ class SplashView extends StatelessWidget {
             ),
             Text(
               AppString.appName,
-              style: AppStyle.appBarTitleTextStyle,
+              style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(
               height: 1.h,
             ),
             Text(
               AppString.appDescription,
-              style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+              style: AppStyle.normalTextStyle
+                  .copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(
               height: 5.h,
@@ -78,14 +80,20 @@ class SplashView extends StatelessWidget {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: AppString.privacyPolicyText1,
-                    style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+                    style: AppStyle.normalTextStyle
+                        .copyWith(color:context.theme.appColors.outline),
                     /*defining default style is optional */
                     children: <TextSpan>[
                       TextSpan(
                           text: AppString.privacyPolicyText2,
                           recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),
-                          style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
-                      TextSpan(text: ' and ', style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor)),
+
+                          style: AppStyle.normalTextStyle
+                              .copyWith(color: AppColors.kPrimaryLightColor)),
+                      TextSpan(
+                          text: ' and ',
+                          style: AppStyle.normalTextStyle
+                              .copyWith(color:context.theme.appColors.outline)),
                       TextSpan(
                           text: AppString.privacyPolicyText3,
                           recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),

@@ -8,6 +8,7 @@ import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sizer/sizer.dart';
 import 'package:transformable_list_view/transformable_list_view.dart';
 

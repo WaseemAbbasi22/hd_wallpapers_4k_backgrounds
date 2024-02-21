@@ -1,4 +1,4 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BackButtonComponent extends StatelessWidget {
@@ -10,14 +10,14 @@ class BackButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius??25,
-      backgroundColor: AppColors.kGreyColor,
+      backgroundColor: context.theme.appColors.onSecondary,
       child: IconButton(
         onPressed:onPressed?? () {
           Navigator.pop(context);
         },
-        icon: const Icon(
+        icon:  Icon(
           Icons.arrow_back,
-          color: AppColors.kWhiteColor,
+          color: context.theme.appColors.tertiary,
         ),
       ),
     );

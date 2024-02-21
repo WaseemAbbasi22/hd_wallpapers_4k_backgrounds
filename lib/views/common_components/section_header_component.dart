@@ -2,6 +2,7 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -26,14 +27,14 @@ class SectionHeader extends StatelessWidget {
         children: [
           Text(
             leadingText,
-            style: AppStyle.headingTextStyle.copyWith(color:AppColors.kWhiteColor),
+            style: AppStyle.headingTextStyle.copyWith(color: context.theme.appColors.outline),
           ),
           showTrailing!
               ? InkWell(
                   onTap: onTrailingTap,
                   child: Text(
                     trailingText??'',
-                    style: AppStyle.normalTextStyle.copyWith(color:AppColors.kWhiteColor),
+                    style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outlineVariant),
                   ),
                 )
               : const SizedBox(),

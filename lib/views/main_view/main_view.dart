@@ -5,6 +5,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
@@ -48,7 +49,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return AdvancedDrawer(
-      backdropColor: AppColors.kPrimaryColor,
+      backdropColor: context.theme.appColors.primary,
       controller: _advancedDrawerController,
       animationCurve: Curves.easeInOut,
       openRatio: 0.5,
@@ -57,7 +58,18 @@ class _MainViewState extends State<MainView> {
       animateChildDecoration: true,
       rtlOpening: false,
       disabledGestures: false,
-      childDecoration: AppStyle.drawerChildDecoration,
+      childDecoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              context.theme.appColors.onSecondary,
+              context.theme.appColors.onSecondary,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(
+              color: context.theme.appColors.onSecondary, width: 5.w)),
       drawer: const DrawerWidgetItems(),
       child: drawerWidget(),
     );
@@ -68,11 +80,18 @@ class _MainViewState extends State<MainView> {
         builder: (_, value, __) {
           return Container(
             key: ValueKey<bool>(value.visible),
-            decoration: AppStyle.backgroundGradientContainerDecoration.copyWith(
-              borderRadius: BorderRadius.circular(_advancedDrawerController.value.visible ? 50 : 0),
-              // image: DecorationImage(image: AssetImage(
-              //   AppAssets.homeContainerBg
-              // )),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  context.theme.appColors.primary,
+                  context.theme.appColors.primary,
+                ],
+              ),
+              color: AppColors.kPrimaryColor,
+              borderRadius: BorderRadius.circular(
+                  _advancedDrawerController.value.visible ? 50 : 0),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -88,7 +107,9 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                Expanded(flex: 1, child: toggleTabs()),
+                Expanded(
+                  flex: 1,
+                    child: toggleTabs()),
                 Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
@@ -104,40 +125,41 @@ class _MainViewState extends State<MainView> {
         },
       );
 
-  Widget toggleTabs() => Column(
+  Widget toggleTabs() => ValueListenableBuilder(
+    valueListenable: _tabIndex,
+    builder: (context, currentIndex, _) {
+      return Column(
         children: [
-          /// Basic Toggle Sample
-          ValueListenableBuilder(
-            valueListenable: _tabIndex,
-            builder: (context, currentIndex, _) {
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
-                child: FlutterToggleTab(
-                  // width in percent
-                  width: 24.w,
-                  borderRadius: 30,
-                  height: 7.h,
-                  selectedIndex: currentIndex,
-                  selectedBackgroundColors: const [
-                    AppColors.kPrimaryDarkColor,
-                  ],
-                  unSelectedBackgroundColors: const [
-                    AppColors.kBlackLightColor,
-                  ],
-                  selectedTextStyle: AppStyle.tabsSelectedTextStyle,
-                  unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle,
-                  labels: AppString.tabsTextList,
-                  icons: AppString.tabsIconList,
-                  selectedLabelIndex: (index) {
-                    _tabIndex.value = index;
-                  },
-                  isScroll: false,
-                ),
-              );
-            },
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppConstants.kHorizontalPadding),
+            child: FlutterToggleTab(
+              // width in percent
+              width: 23.2.w,
+              borderRadius: 30,
+              height: 8.h,
+              selectedIndex: currentIndex,
+              selectedBackgroundColors: [
+                context.theme.appColors.primaryContainer,
+              ],
+              unSelectedBackgroundColors: [
+                context.theme.appColors.onSecondary,
+              ],
+              selectedTextStyle: AppStyle.tabsSelectedTextStyle,
+              unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
+                  .copyWith(color: context.theme.appColors.tertiary),
+              labels: AppString.tabsTextList,
+              icons: AppString.tabsIconList,
+              selectedLabelIndex: (index) {
+                _tabIndex.value = index;
+              },
+              isScroll: false,
+            ),
           ),
         ],
       );
+    },
+  );
 
   Widget appBarWidget() => Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,17 +177,25 @@ class _MainViewState extends State<MainView> {
                   builder: (_, value, __) {
                     return AnimatedSwitcher(
                       duration: const Duration(milliseconds: 250),
-                      child: Icon(
-                        value.visible ? Icons.clear : Icons.menu,
-                        color: AppColors.kWhiteColor,
-                        size: 3.h,
-                        key: ValueKey<bool>(value.visible),
+                      child:SvgPicture.asset(
+                          key: ValueKey<bool>(value.visible),
+                          value.visible ? AppAssets.crossIcon : AppAssets.drawerIcon,
+                        colorFilter: ColorFilter.mode(context.theme.appColors.tertiary, BlendMode.srcIn),
+                        height: 3.h,
                       ),
+                      // Icon(
+                      //
+                      //   color: context.theme.appColors.tertiary,
+                      //   size: 3.h,
+                      //   key: ValueKey<bool>(value.visible),
+                      // ),
                     );
                   },
                 ),
               ),
-              Text(AppString.appName, style: AppStyle.appBarTitleTextStyle),
+              Text(AppString.appName2,
+                  style: AppStyle.appBarTitleTextStyle
+                      .copyWith(color: context.theme.appColors.outline)),
             ],
           ),
           Padding(
@@ -177,7 +207,7 @@ class _MainViewState extends State<MainView> {
               child: SvgPicture.asset(
                 AppAssets.searchIcon,
                 height: 3.h,
-                color: AppColors.kWhiteColor,
+                color: context.theme.appColors.tertiary,
               ),
             ),
           ),

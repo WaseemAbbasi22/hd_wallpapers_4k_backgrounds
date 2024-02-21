@@ -2,6 +2,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/extensions/extensions.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class SliverHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: AppColors.kPrimaryColor,
+      backgroundColor: context.theme.appColors.primary,
       expandedHeight: 35.h,
       pinned: true,
       elevation: 0,
@@ -27,9 +28,9 @@ class SliverHeader extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.arrow_back,
-                  color: AppColors.kWhiteColor,
+                  color: context.theme.appColors.outline,
                 ),
               )
             : const BackButtonComponent(),
@@ -38,8 +39,9 @@ class SliverHeader extends StatelessWidget {
         centerTitle: true,
         title: scrollPosition >= 28.h
             ? Text(
-                category.name.toUpperCase() ?? '',
-                style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
+                widget.category.name.toUpperCase() ?? '',
+                style: AppStyle.headingTextStyle
+                    .copyWith(color:context.theme.appColors.tertiary),
               )
             : null,
         background: WallPaperCard(

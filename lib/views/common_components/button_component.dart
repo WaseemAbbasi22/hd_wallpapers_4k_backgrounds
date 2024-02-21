@@ -1,5 +1,5 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
         height: height??9.h,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius ?? 25),
-            color:AppColors.kPrimaryDarkColor
+            color:context.theme.appColors.primaryContainer
         ),
         child: hasIcon!?Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,5 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -43,7 +43,8 @@ class ColorSectionComponent extends StatelessWidget {
           ),
           Text(
             label,
-            style: AppStyle.normalTextStyle.copyWith(color: AppColors.kWhiteColor),
+            style: AppStyle.normalTextStyle
+                .copyWith(color: context.theme.appColors.outline),
           ),
         ],
       ),
