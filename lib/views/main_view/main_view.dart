@@ -94,7 +94,7 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                Expanded(flex: 1, child: toggleTabs()),
+                toggleTabs(),
                 Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
@@ -112,42 +112,37 @@ class _MainViewState extends State<MainView> {
         },
       );
 
-  Widget toggleTabs() => Column(
-        children: [
-          /// Basic Toggle Sample
-          ValueListenableBuilder(
-            valueListenable: _tabIndex,
-            builder: (context, currentIndex, _) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.kHorizontalPadding),
-                child: FlutterToggleTab(
-                  // width in percent
-                  width: 24.w,
-                  borderRadius: 30,
-                  height: 7.h,
-                  selectedIndex: currentIndex,
-                  selectedBackgroundColors: [
-                    context.theme.appColors.primaryContainer,
-                  ],
-                  unSelectedBackgroundColors: [
-                    context.theme.appColors.onSecondary,
-                  ],
-                  selectedTextStyle: AppStyle.tabsSelectedTextStyle,
-                  unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
-                      .copyWith(color: context.theme.appColors.tertiary),
-                  labels: AppString.tabsTextList,
-                  icons: AppString.tabsIconList,
-                  selectedLabelIndex: (index) {
-                    _tabIndex.value = index;
-                  },
-                  isScroll: false,
-                ),
-              );
-            },
-          ),
-        ],
+  Widget toggleTabs() => ValueListenableBuilder(
+    valueListenable: _tabIndex,
+    builder: (context, currentIndex, _) {
+      return Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.kHorizontalPadding),
+        child: FlutterToggleTab(
+          // width in percent
+          width: 23.2.w,
+          borderRadius: 30,
+          height: 8.h,
+          selectedIndex: currentIndex,
+          selectedBackgroundColors: [
+            context.theme.appColors.primaryContainer,
+          ],
+          unSelectedBackgroundColors: [
+            context.theme.appColors.onSecondary,
+          ],
+          selectedTextStyle: AppStyle.tabsSelectedTextStyle,
+          unSelectedTextStyle: AppStyle.tabsUnSelectedTextStyle
+              .copyWith(color: context.theme.appColors.tertiary),
+          labels: AppString.tabsTextList,
+          icons: AppString.tabsIconList,
+          selectedLabelIndex: (index) {
+            _tabIndex.value = index;
+          },
+          isScroll: false,
+        ),
       );
+    },
+  );
 
   Widget appBarWidget() => Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,7 +170,9 @@ class _MainViewState extends State<MainView> {
                   },
                 ),
               ),
-              Text(AppString.appName2, style: AppStyle.appBarTitleTextStyle),
+              Text(AppString.appName2,
+                  style: AppStyle.appBarTitleTextStyle
+                      .copyWith(color: context.theme.appColors.outline)),
             ],
           ),
           Padding(

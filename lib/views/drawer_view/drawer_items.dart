@@ -25,7 +25,7 @@ class DrawerWidgetItems extends StatelessWidget {
             Text(
               AppString.appName2,
               style: AppStyle.normalTextStyle
-                  .copyWith(fontWeight: FontWeight.w500),
+                  .copyWith(fontWeight: FontWeight.w500,color:context.theme.appColors.outline),
             ),
             SizedBox(
               height: 4.h,
@@ -73,14 +73,13 @@ class DrawerWidgetItems extends StatelessWidget {
             SvgPicture.asset(iconPath,
                 height: 2.h,
                 colorFilter:  ColorFilter.mode(
-
                     context.theme.appColors.tertiary, BlendMode.srcIn)),
             SizedBox(
               width: 3.w,
             ),
             Text(
               title,
-              style: AppStyle.normalTextStyle,
+              style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
             )
           ],
         ),

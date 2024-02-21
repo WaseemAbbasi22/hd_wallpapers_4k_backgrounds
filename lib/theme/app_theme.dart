@@ -19,9 +19,10 @@ class AppTheme with ChangeNotifier {
     notifyListeners();
   }
 
-  //
-  // Light theme
-  //
+  bool isDarkModeEnabled(BuildContext context) {
+    return themeMode == ThemeMode.dark ||
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
+  }
 
   static final light = () {
     final defaultTheme = ThemeData.light();
@@ -54,6 +55,9 @@ class AppTheme with ChangeNotifier {
     onError: AppColors.kWhiteColor,
     tertiary: AppColors.kBlackColor,
     tertiaryContainer: AppColors.kLightIconColor,
+    outline:AppColors.kBlackColor,
+    outlineVariant:AppColors.kGreyColor,
+
 
   );
 
@@ -97,6 +101,8 @@ class AppTheme with ChangeNotifier {
     onError:AppColors.kBlackColor,
     tertiary:AppColors.kWhiteColor,
     tertiaryContainer:AppColors.kBlackColor,
+    outline:AppColors.kWhiteColor,
+    outlineVariant:AppColors.kLightGreyColor,
   );
 
   static final _darkTextTheme = SimpleAppTextThemeExtension(

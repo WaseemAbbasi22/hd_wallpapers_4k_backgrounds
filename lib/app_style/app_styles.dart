@@ -47,7 +47,8 @@ class AppStyle{
     color: Colors.white,
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
-  );static TextStyle tabsUnSelectedTextStyle = TextStyle(
+  );
+  static TextStyle tabsUnSelectedTextStyle = TextStyle(
     color: Colors.white,
     fontSize: 12.sp,
     fontWeight: FontWeight.normal,

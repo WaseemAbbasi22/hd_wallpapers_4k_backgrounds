@@ -1,5 +1,6 @@
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/detail_sliver_grid.dart';
 import 'package:awesome_wallpapers/views/category_detail_view/components/sliver_header.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class _HomeViewState extends State<CategoryDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kGreyColor,
+      backgroundColor: context.theme.appColors.primary,
       body: CustomScrollView(
         controller: scrollController,
           slivers: [

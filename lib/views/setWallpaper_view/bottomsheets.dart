@@ -3,6 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/setWallpaper_view/action_item.dart';
 import 'package:awesome_wallpapers/views/setWallpaper_view/setWallpaper_container.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,17 @@ class WallpaperControlsBottomSheet {
         isScrollControlled: true,
         useRootNavigator: true,
         builder: (context) => Container(
-          decoration: AppStyle.bottomSheetDecoration,
+          decoration:  BoxDecoration(
+            gradient:  LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                context.theme.appColors.surface,
+                context.theme.appColors.onSurface,
+              ],
+            ),
+            borderRadius:const  BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+          ),
           child: Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -37,10 +48,10 @@ class WallpaperControlsBottomSheet {
                 SizedBox(
                   height: 2.h,
                 ),
-                Text(AppString.share, style: AppStyle.headingTextStyle),
+                Text(AppString.share, style: AppStyle.headingTextStyle.copyWith(color:context.theme.appColors.outline)),
                 Divider(
                   height: 3.h,
-                  color: AppColors.kDividerColor,
+                  color: context.theme.appColors.surfaceVariant,
                   thickness: 2,
                 ),
                 SizedBox(
@@ -54,6 +65,7 @@ class WallpaperControlsBottomSheet {
                       label: AppString.shareBottomSheetActionData[index]['label'],
                       iconPath: AppString.shareBottomSheetActionData[index]['icon'],
                       radius: 30,
+                      isFromBottomSheet: true,
                       iconHeight: 4.h,
                       onTap: () {
                         onShareActionTap(index: index,category: category);
@@ -83,7 +95,17 @@ class WallpaperControlsBottomSheet {
         isScrollControlled: true,
         useRootNavigator: true,
         builder: (context) => Container(
-          decoration: AppStyle.bottomSheetDecoration,
+          decoration: BoxDecoration(
+            gradient:  LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                context.theme.appColors.surface,
+                context.theme.appColors.onSurface,
+              ],
+            ),
+            borderRadius:const  BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+          ),
           child: Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -97,10 +119,10 @@ class WallpaperControlsBottomSheet {
                 SizedBox(
                   height: 2.h,
                 ),
-                Text(AppString.setAs, style: AppStyle.headingTextStyle),
+                Text(AppString.setAs, style: AppStyle.headingTextStyle.copyWith(color:context.theme.appColors.outline)),
                 Divider(
                   height: 3.h,
-                  color: AppColors.kDividerColor,
+                  color:context.theme.appColors.surfaceVariant,
                   thickness: 2,
                 ),
                 SizedBox(

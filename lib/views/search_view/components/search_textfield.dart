@@ -38,7 +38,7 @@ class SearchTextField extends StatelessWidget {
             ),
           )
               : null,
-          hintStyle: AppStyle.normalTextStyle,
+          hintStyle: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outlineVariant),
           hintText: hintText ?? 'search',
         ));
   }

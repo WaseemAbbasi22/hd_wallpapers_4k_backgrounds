@@ -124,28 +124,29 @@ class AppString {
   static List<Map<String, dynamic>> gradientColorsList = [
     {
       'label': 'Yellow',
-      'colors': [Colors.yellowAccent, Colors.amber],
+      'colors': [const Color(0xFFFFEC01), const Color(0xFFFFA703)],
     },
     {
       'label': 'Pink',
-      'colors': [Colors.pinkAccent, Colors.pink],
+      'colors': [const Color(0xFFFF8FAF), const Color(0xFFFF3E7A)],
     },
     {
       'label': 'Red',
-      'colors': [Colors.redAccent, Colors.red],
+      'colors': [const Color(0xFFED213A), const Color(0xFF93291E)],
+
     },
     {
       'label': 'Green',
-      'colors': [Colors.lightGreenAccent, Colors.green],
+      'colors': [const Color(0xFFA8E063), const Color(0xFF56AB2F)],
     },
-    {
-      'label': 'Orange',
-      'colors': [Colors.orangeAccent, Colors.orange],
-    },
-    {
-      'label': 'Blue',
-      'colors': [Colors.lightBlueAccent, Colors.blue],
-    },
+    // {
+    //   'label': 'Orange',
+    //   'colors': [Colors.orangeAccent, Colors.orange],
+    // },
+    // {
+    //   'label': 'Blue',
+    //   'colors': [Colors.lightBlueAccent, Colors.blue],
+    // },
   ];
 
   static List<Map<String, dynamic>> wallpaperActionData = [

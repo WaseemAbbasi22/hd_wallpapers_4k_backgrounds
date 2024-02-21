@@ -2,6 +2,7 @@ import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,7 @@ class ColorAppBar extends StatelessWidget {
               radius: 2.5.h,
             ),
             SizedBox(width: 5.w,),
-            Text(title, style: AppStyle.normalTextStyle),
+            Text(title, style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline)),
           ],
         ),
         Padding(
@@ -37,7 +38,7 @@ class ColorAppBar extends StatelessWidget {
             child: SvgPicture.asset(
               AppAssets.searchIcon,
               height: 3.h,
-              color: AppColors.kWhiteColor,
+              colorFilter: ColorFilter.mode(context.theme.appColors.outline, BlendMode.srcIn),
             ),
           ),
         ),

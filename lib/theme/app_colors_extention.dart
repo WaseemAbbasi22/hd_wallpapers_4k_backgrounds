@@ -33,6 +33,9 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     required this.surfaceVariant,
     required this.tertiary,
     required this.tertiaryContainer,
+    required this.outline,
+    required this.outlineVariant,
+
   });
 
   final Color primary;
@@ -50,6 +53,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
   final Color surfaceVariant;
   final Color tertiary;
   final Color tertiaryContainer;
+  final Color outline;
+  final Color outlineVariant;
 
   @override
   ThemeExtension<AppColorsExtension> copyWith({
@@ -68,6 +73,7 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
     Color? surfaceVariant,
     Color? tertiary,
     Color? tertiaryContainer,
+    Color? outlineVariant,
 
   }) {
     return AppColorsExtension(
@@ -86,6 +92,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       surfaceVariant: surfaceVariant ?? this.surfaceVariant,
       tertiary: tertiary ?? this.tertiary,
       tertiaryContainer: tertiaryContainer ?? this.tertiaryContainer,
+      outline: outline,
+      outlineVariant: outlineVariant?? this.outlineVariant,
     );
   }
 
@@ -114,6 +122,8 @@ class AppColorsExtension extends ThemeExtension<AppColorsExtension> {
       surfaceVariant: Color.lerp(surfaceVariant, other.surfaceVariant, t)!,
       tertiary: Color.lerp(tertiary, other.tertiary, t)!,
       tertiaryContainer: Color.lerp(tertiaryContainer, other.tertiaryContainer, t)!,
+      outline: Color.lerp(outline, other.outline, t)!,
+      outlineVariant: Color.lerp(outlineVariant, other.outlineVariant, t)!,
     );
   }
 }
@@ -138,6 +148,8 @@ extension ColorSchemeBuilder on AppColorsExtension {
       surfaceVariant: surfaceVariant,
       tertiary: tertiary,
       tertiaryContainer: tertiaryContainer,
+      outline: outline,
+      outlineVariant: outlineVariant,
     );
   }
 }

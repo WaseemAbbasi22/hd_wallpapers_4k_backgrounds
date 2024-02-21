@@ -1,4 +1,5 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
@@ -23,7 +24,11 @@ class SetWallpaperContainer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: Container(
-          decoration:AppStyle.wallpaperActionContainerDecoration,
+          decoration: BoxDecoration(
+              color: context.theme.appColors.surface,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: context.theme.appColors.tertiaryContainer, width: 0.3.w)
+          ),
           padding: const EdgeInsets.all(20),
           width: 100.w,
           child: Row(
@@ -34,13 +39,14 @@ class SetWallpaperContainer extends StatelessWidget {
                 iconPath,
                 // color: AppColors.kWhiteColor,
                 height: iconHeight??2.8.h,
+                colorFilter: ColorFilter.mode(context.theme.appColors.outline, BlendMode.srcIn),
               ),
               SizedBox(
                 width: 5.w,
               ),
               Text(
                 label,
-                style: AppStyle.normalTextStyle,
+                style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
               )
             ],
           ),

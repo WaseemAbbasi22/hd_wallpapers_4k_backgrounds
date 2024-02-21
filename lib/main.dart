@@ -1,7 +1,5 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
-import 'package:awesome_wallpapers/theme/dark_theme.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,13 +30,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: const SplashView(),
         ),
-      );
-      return MaterialApp(
-        title: 'Flutter Demo',
-        theme:  darkThem,
-          darkTheme: darkThem,
-          onGenerateRoute: AppRoutes.generateRoute,
-        home: const SplashView(),
       );
     });
   }

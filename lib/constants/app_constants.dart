@@ -10,6 +10,7 @@ class AppAssets {
   //images...
   static const String homeIcon = "assets/icons/home_icon.svg";
   static const  String homeContainerBg = 'assets/images/home_container_bg.png';
+  static const  String whiteContainerBg = 'assets/images/white_bg.png';
   static const  String downloadWallpaperIcon = 'assets/icons/download_icon.svg';
   static const  String favouriteIcon = 'assets/icons/favourite_icon.svg';
   static const  String setWallpaperIcon = 'assets/icons/set_wallpaper_icon.svg';
