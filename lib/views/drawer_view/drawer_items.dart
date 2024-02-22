@@ -25,7 +25,7 @@ class DrawerWidgetItems extends StatelessWidget {
               height: 12.h,
             ),
             Text(
-              AppString.appName2,
+              AppString.appName,
               style: AppStyle.normalTextStyle
                   .copyWith(fontWeight: FontWeight.w500,color:context.theme.appColors.outline),
             ),

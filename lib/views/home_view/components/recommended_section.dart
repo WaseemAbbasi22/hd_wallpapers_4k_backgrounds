@@ -66,24 +66,24 @@ class RecommendedSection extends StatelessWidget {
                 },
                 borderColor: Colors.transparent,
                 imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,
-                child: Positioned(
-                  top: 8,
-                  right: 8,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: CircleAvatar(
-                      backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
-                      radius: 2.h,
-                      child: Center(
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: 2.3.h,
-                          color: AppColors.kWhiteColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // child: Positioned(
+                //   top: 8,
+                //   right: 8,
+                //   child: GestureDetector(
+                //     onTap: () {},
+                //     child: CircleAvatar(
+                //       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
+                //       radius: 2.h,
+                //       child: Center(
+                //         child: Icon(
+                //           Icons.favorite_border,
+                //           size: 2.3.h,
+                //           color: AppColors.kWhiteColor,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ),
             ),
           ),

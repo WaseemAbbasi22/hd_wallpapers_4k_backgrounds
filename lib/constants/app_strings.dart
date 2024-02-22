@@ -1,5 +1,4 @@
 import 'package:awesome_wallpapers/constants/app_constants.dart';
-import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class AppString {
@@ -19,77 +18,14 @@ class AppString {
   static String privacyPolicyText3 = " terms of use ";
   static String searchViewHeading = "Discover High Quality and Beautiful Wallpapers";
   static String popularSearches = "Popular Searches";
+  static String searchResults = "Search Results";
   static String popularCategories = 'Popular Categories';
+  static String searchInCategories = 'Search in 100+ trending categories';
   static List<String> tabsTextList = ["Home", "Categories"];
 
   static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
   static const packageName = "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
   static const playStoreLink = "https://play.google.com/store/apps/details?id=$packageName";
-
-  static List<CategoryModel> categoryList = [
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-      name: 'AI Wallpapers',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Food',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Magic Fluid',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Magic Fluid',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Magic Fluid',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Magic Fluid',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-  ];
-  static List<CategoryModel> popularCategoryList = [
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Travel',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-      name: 'AI Wallpapers',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-      name: 'Food',
-    ),
-    CategoryModel(
-      imageUrl: 'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-      name: 'Magic Fluid',
-    ),
-  ];
 
   static List<String> sliderImageUrl = [
     'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
@@ -120,7 +56,6 @@ class AppString {
     {
       'label': 'Red',
       'colors': [const Color(0xFFED213A), const Color(0xFF93291E)],
-
     },
     {
       'label': 'Green',

@@ -46,24 +46,24 @@ class _ImageSliderState extends State<ImageSlider> {
           .map((item) => WallPaperCard(
               imageUrl: item.imageUrl,
               index: _currentIndex,
-              child: Positioned(
-                top: 10,
-                right: 14,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
-                    radius: 2.5.h,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite_border,
-                        size: 3.h,
-                        color: AppColors.kWhiteColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // child: Positioned(
+              //   top: 10,
+              //   right: 14,
+              //   child: GestureDetector(
+              //     onTap: () {},
+              //     child: CircleAvatar(
+              //       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
+              //       radius: 2.5.h,
+              //       child: Center(
+              //         child: Icon(
+              //           Icons.favorite_border,
+              //           size: 3.h,
+              //           color: AppColors.kWhiteColor,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               onCardTap: () {
                 ///Go to detail page.....
                 HomeVM homeVM = context.read<HomeVM>();

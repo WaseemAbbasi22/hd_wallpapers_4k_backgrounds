@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^2.25.4
   firebase_crashlytics: ^3.4.14
   get_it: ^7.6.7
+  animated_list_item: ^1.0.0
 
   #Utilities
   shared_preferences: ^2.2.2

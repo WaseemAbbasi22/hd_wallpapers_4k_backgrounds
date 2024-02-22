@@ -3,6 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/wallpaper_model.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/action_item.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/setWallpaper_container.dart';
@@ -21,7 +22,17 @@ class WallpaperControlsBottomSheet {
         isScrollControlled: true,
         useRootNavigator: true,
         builder: (context) => Container(
-              decoration: AppStyle.bottomSheetDecoration,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    context.theme.appColors.surface,
+                    context.theme.appColors.onSurface,
+                  ],
+                ),
+                borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+              ),
               child: Padding(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom, left: AppConstants.kHorizontalPadding, right: AppConstants.kHorizontalPadding),
@@ -36,7 +47,7 @@ class WallpaperControlsBottomSheet {
                     Text(AppString.share, style: AppStyle.headingTextStyle),
                     Divider(
                       height: 3.h,
-                      color: AppColors.kDividerColor,
+                      color: context.theme.appColors.surfaceVariant,
                       thickness: 2,
                     ),
                     SizedBox(

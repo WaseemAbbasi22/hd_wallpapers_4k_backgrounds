@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/favourite_view/components/favourite_appbar.dart';
 import 'package:awesome_wallpapers/views/favourite_view/favourite_grid.dart';
@@ -40,7 +40,7 @@ class _FavouriteViewState extends State<FavouriteView> {
   Widget build(BuildContext context) {
     final homeVM = context.watch<HomeVM>();
     return Scaffold(
-      backgroundColor: AppColors.kPrimaryColor,
+      backgroundColor: context.theme.appColors.primary,
       body: SingleChildScrollView(
         child: BackgroundContainer(
           horizontalPadding: 1.w,

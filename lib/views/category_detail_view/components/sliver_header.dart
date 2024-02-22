@@ -39,7 +39,7 @@ class SliverHeader extends StatelessWidget {
         centerTitle: true,
         title: scrollPosition >= 28.h
             ? Text(
-                widget.category.name.toUpperCase() ?? '',
+                category.name.toUpperCase() ?? '',
                 style: AppStyle.headingTextStyle
                     .copyWith(color:context.theme.appColors.tertiary),
               )

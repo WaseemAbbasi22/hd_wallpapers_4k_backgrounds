@@ -18,6 +18,8 @@ class HomeVM extends ChangeNotifier {
   List<WallpaperModel> feedThumbnailList = [];
 
   List<CategoryModel> randomPopularList = [];
+  List<CategoryModel> popularSearchesList = [];
+  List<CategoryModel> searchResultCategories = [];
 
   List<CategoryModel> randomRecommendedList = [];
 
@@ -185,21 +187,50 @@ class HomeVM extends ChangeNotifier {
     }
   }
 
-  void initializeRandomPopularList() {
+  void onSearchUpdated({required String query}) {
+    if (query.isEmpty) {
+      searchResultCategories.clear();
+      notifyListeners();
+      return;
+    }
+    searchResultCategories =
+        (AppConstants.popularCategoryList.where((category) => category.name.toLowerCase().contains(query.toLowerCase())).toList());
+    log("length: ${searchResultCategories.length} with $query");
+    notifyListeners();
+  }
+
+  void initializePopularSearchList() {
+    popularSearchesList.clear();
     for (var value in AppConstants.popularCategoryList) {
-      if (randomPopularList.length >= 7) {
+      if (popularSearchesList.length >= 5) {
         break;
       }
-      var listItem = AppConstants.popularCategoryList[math.Random().nextInt(AppConstants.popularCategoryList.length)];
-      if (!isAlreadyPresentInList(randomPopularList, listItem)) {
-        randomPopularList.add(listItem);
+      var searchListItem = AppConstants.popularCategoryList[math.Random().nextInt(AppConstants.popularCategoryList.length)];
+      if (!isAlreadyPresentInList(popularSearchesList, searchListItem)) {
+        popularSearchesList.add(searchListItem);
       }
+      notifyListeners();
+    }
+  }
+
+  void initializeRandomPopularList() {
+    randomPopularList.clear();
+    notifyListeners();
+    for (var value in AppConstants.popularCategoryList) {
+      if (randomPopularList.length >= 10) {
+        break;
+      }
+      var popularListItem = AppConstants.popularCategoryList[math.Random().nextInt(AppConstants.popularCategoryList.length)];
+      if (!isAlreadyPresentInList(randomPopularList, popularListItem)) {
+        randomPopularList.add(popularListItem);
+      }
+      notifyListeners();
     }
   }
 
   void initializeRandomRecommendedList() {
     for (var value in AppConstants.recommendedCategoryList) {
-      if (randomRecommendedList.length >= 8) {
+      if (randomRecommendedList.length >= 10) {
         break;
       }
       var listItem = AppConstants.recommendedCategoryList[math.Random().nextInt(AppConstants.recommendedCategoryList.length)];
