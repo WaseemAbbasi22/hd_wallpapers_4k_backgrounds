@@ -13,13 +13,13 @@ import 'package:sizer/sizer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-    apiKey: "AIzaSyC8N5UJAFsfE9AZAkaKSxiR7GlVNpvHP2s",
-    appId: "1:70765643948:android:28f1a1ce2ee08a338e7709",
-    messagingSenderId: "70765643948",
-    projectId: "wallpapers4klatest",
-  ));
+  // await Firebase.initializeApp(
+  //     options: const FirebaseOptions(
+  //   apiKey: "AIzaSyC8N5UJAFsfE9AZAkaKSxiR7GlVNpvHP2s",
+  //   appId: "1:70765643948:android:28f1a1ce2ee08a338e7709",
+  //   messagingSenderId: "70765643948",
+  //   projectId: "wallpapers4klatest",
+  // ));
   await Future.delayed(const Duration(seconds: 1)).whenComplete(() async => await ConfigService.configureAmplify());
 
   runApp(MultiProvider(providers: [
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                 builder: EasyLoading.init(),
                 title: 'Flutter Demo',
                 // 2. Provide light theme.
-                theme: AppTheme.dark,
+                theme: AppTheme.light,
                 // 3. Provide dark theme.
                 darkTheme: AppTheme.dark,
                 // 4. Watch AppTheme changes (ThemeMode).

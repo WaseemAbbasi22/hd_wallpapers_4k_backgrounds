@@ -29,7 +29,7 @@ class _HomeViewState extends State<CategoryView> {
           leadingText: AppString.popularCategories,
           showTrailing: false,
         ),
-        PopularCategoriesTileSection(),
+        const PopularCategoriesTileSection(),
       ],
     );
   }

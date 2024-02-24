@@ -44,7 +44,8 @@ class FavouriteAppBar extends StatelessWidget {
             child: SvgPicture.asset(
               AppAssets.searchIcon,
               height: 3.h,
-              color: AppColors.kWhiteColor,
+              colorFilter:
+              const ColorFilter.mode(AppColors.kWhiteColor, BlendMode.srcIn),
             ),
           ),
         ),

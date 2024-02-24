@@ -6,7 +6,7 @@ import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/action_item.dart';
-import 'package:awesome_wallpapers/views/set_wallpaper_view/setWallpaper_container.dart';
+import 'package:awesome_wallpapers/views/set_wallpaper_view/set_wallpaper_container.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

@@ -50,7 +50,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
                         child: CachedNetworkImage(
-                          imageUrl: wallpaperModel.imageUrl ?? '',
+                          imageUrl: wallpaperModel.imageUrl,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(
                             child: SizedBox(

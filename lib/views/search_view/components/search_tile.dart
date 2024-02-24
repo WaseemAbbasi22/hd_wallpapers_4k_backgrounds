@@ -60,7 +60,7 @@ class SearchTile extends StatelessWidget {
             Flexible(
               // fit: FlexFit.loose,
               child: Text(
-                category.name.toUpperCase() ?? '',
+                category.name.toUpperCase(),
                 overflow: TextOverflow.ellipsis,
                 style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline),
               ),

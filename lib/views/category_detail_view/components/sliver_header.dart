@@ -39,7 +39,7 @@ class SliverHeader extends StatelessWidget {
         centerTitle: true,
         title: scrollPosition >= 28.h
             ? Text(
-                category.name.toUpperCase() ?? '',
+                category.name.toUpperCase(),
                 style: AppStyle.headingTextStyle
                     .copyWith(color:context.theme.appColors.tertiary),
               )
@@ -56,7 +56,7 @@ class SliverHeader extends StatelessWidget {
               left: 0,
               bottom: 0,
               child: Text(
-                category.name.toUpperCase() ?? '',
+                category.name.toUpperCase(),
                 style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor, fontSize: 22.sp),
               ).toBackDropTextContainer(),
             )),

@@ -24,7 +24,6 @@ class BackgroundContainer extends StatelessWidget {
     //       child: child??const SizedBox(),
     //   ) ,
     // );
-    print('selected theme i got is ${context.watch<AppTheme>().themeMode}');
     return Container(
       width: 100.w,
       height: 100.h,
@@ -78,10 +77,10 @@ class MashGradientPainter extends CustomPainter {
 
     // Fill each side with a different color
     canvas.drawRect(
-        Rect.fromPoints(Offset(0, 0), Offset(size.width, size.height)),
+        Rect.fromPoints(const Offset(0, 0), Offset(size.width, size.height)),
         paint..color = color1);
     canvas.drawRect(
-        Rect.fromPoints(Offset(0, 0), Offset(size.width, size.height)),
+        Rect.fromPoints(const Offset(0, 0), Offset(size.width, size.height)),
         paint..color = color2);
   }
 

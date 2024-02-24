@@ -309,7 +309,7 @@ class AppAssets {
   static const  String splashBg = 'assets/images/splash_bg.png';
   static const  String facebookIcon = 'assets/icons/facebook_icon.svg';
   static const  String whatsappIcon = 'assets/icons/whatsapp_icon.svg';
-  static const  String InstagramIcon = 'assets/icons/instagram_icon.svg';
+  static const  String instagramIcon = 'assets/icons/instagram_icon.svg';
   static const  String snapchatIcon = 'assets/icons/snapchat_icon.svg';
 
   // static const String homeContainerBg = 'assets/images/home_container_bg.png';

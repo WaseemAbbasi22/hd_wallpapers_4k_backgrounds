@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/views/color_view/components/background_gradient_container.dart';
-import 'package:awesome_wallpapers/views/color_view/components/color_appBar.dart';
+import 'package:awesome_wallpapers/views/color_view/components/color_app_bar.dart';
 import 'package:awesome_wallpapers/views/color_view/components/color_grid.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';

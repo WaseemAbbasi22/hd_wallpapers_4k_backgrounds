@@ -70,7 +70,7 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
                     bottom: 0,
                     child: Center(
                       child: Text(
-                        category.name.toUpperCase() ?? '',
+                        category.name.toUpperCase(),
                         style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                       ),
                     ),

@@ -23,7 +23,7 @@ class ColorSection extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(left: AppConstants.kHorizontalPadding),
-          height: 15.h,
+          height: 17.h,
           child: ListView.builder(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),

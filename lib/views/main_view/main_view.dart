@@ -199,7 +199,8 @@ class _MainViewState extends State<MainView> {
               child: SvgPicture.asset(
                 AppAssets.searchIcon,
                 height: 3.h,
-                color: context.theme.appColors.tertiary,
+                colorFilter:
+                const ColorFilter.mode(Colors.black, BlendMode.srcIn),
               ),
             ),
           ),

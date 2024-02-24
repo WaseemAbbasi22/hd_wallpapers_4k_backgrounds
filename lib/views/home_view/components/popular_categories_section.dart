@@ -62,7 +62,7 @@ class PopularCategoriesSection extends StatelessWidget {
                       left: 0,
                       bottom: 0,
                       child: Text(
-                        category.name.toUpperCase() ?? '',
+                        category.name.toUpperCase(),
                         style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                       ).toBackDropTextContainer(),
                     ),

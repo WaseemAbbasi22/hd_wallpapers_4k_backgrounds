@@ -4,6 +4,7 @@ import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class DrawerWidgetItems extends StatelessWidget {
                 (index) => customTile(
                     iconPath: AppString.drawerItemList[index]['icon'],
                     context: context,
+                    isThemeMode: index==4?true:false,
                     title: AppString.drawerItemList[index]['label'],
                     onTap: () {
                       onItemTap(index: index, context: context);
@@ -69,9 +71,13 @@ class DrawerWidgetItems extends StatelessWidget {
         Navigator.pushNamed(context, NamedRoute.favouriteView, arguments: {'isDownloads': true}); // DOWNLOADS
         break;
       case 4:
+       //change theme..
+
+        break;
+        case 5:
         // RATE THIS APP
         break;
-      case 5:
+      case 6:
         await GeneralUtilities.shareMyApp();
         break;
     }
@@ -80,27 +86,58 @@ class DrawerWidgetItems extends StatelessWidget {
       {required String iconPath,
       required String title,
         required BuildContext context,
+        bool?isThemeMode=false,
       required VoidCallback onTap}) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 0),
-        child: Row(
-          children: [
-            SvgPicture.asset(iconPath,
-                height: 2.h,
-                colorFilter:  ColorFilter.mode(
-                    context.theme.appColors.tertiary, BlendMode.srcIn)),
-            SizedBox(
-              width: 3.w,
+    return Consumer<AppTheme>(
+      builder: (context,appTheme, child) {
+        return InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 0),
+            child: Row(
+              children: [
+                SvgPicture.asset(iconPath,
+                    height: 2.h,
+                    colorFilter:  ColorFilter.mode(
+                        context.theme.appColors.tertiary, BlendMode.srcIn)),
+                SizedBox(
+                  width: 3.w,
+                ),
+                isThemeMode!?
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
+                    ),
+                    CupertinoSwitch(
+                      value: appTheme.isLightMode,
+                      onChanged: (value) {
+                        print('value i got is $value');
+                        appTheme.isLightMode = value;
+                        if(appTheme.isLightMode){
+                          context.read<AppTheme>().themeMode = ThemeMode.light;
+                        }else{
+                          context.read<AppTheme>().themeMode = ThemeMode.dark;
+                        }
+                        print('theme mode i got is ${context.read<AppTheme>().themeMode}');
+
+                      },
+                      activeColor: context.theme.appColors.outline,
+                    ),
+                  ],
+                ):
+                Text(
+                  title,
+                  style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
+                )
+              ],
             ),
-            Text(
-              title,
-              style: AppStyle.normalTextStyle.copyWith(color:context.theme.appColors.outline),
-            )
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
+
 }

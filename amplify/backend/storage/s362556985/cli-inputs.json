@@ -1,0 +1,17 @@
+{
+  "resourceName": "s362556985",
+  "policyUUID": "62556985",
+  "bucketName": "awesomewallpaperslatc63e22ecad1946778f0d6b2bd7b",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

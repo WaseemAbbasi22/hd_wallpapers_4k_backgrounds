@@ -25,6 +25,8 @@ class HomeVM extends ChangeNotifier {
 
   bool _isFeedLoading = true;
 
+
+
   get isFeedLoading => _isFeedLoading;
 
   updateLoadingFeed(bool value) {
