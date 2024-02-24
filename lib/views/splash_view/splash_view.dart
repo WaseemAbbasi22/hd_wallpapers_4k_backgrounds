@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
@@ -7,13 +9,33 @@ import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/button_component.dart';
+import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    onLoaded();
+    super.initState();
+  }
+
+  Future<void> onLoaded() async {
+    scheduleMicrotask(() {
+      context.read<HomeVM>().getCategoriesList();
+      context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey);
+      context.read<HomeVM>().getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

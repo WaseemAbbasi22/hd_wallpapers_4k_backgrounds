@@ -17,6 +17,8 @@ class HomeVM extends ChangeNotifier {
 
   List<WallpaperModel> feedThumbnailList = [];
 
+  List<CategoryModel> allCategoriesListBoxes = [];
+  List<CategoryModel> allCategoriesListTiles = [];
   List<CategoryModel> randomPopularList = [];
   List<CategoryModel> popularSearchesList = [];
   List<CategoryModel> searchResultCategories = [];
@@ -32,14 +34,76 @@ class HomeVM extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<WallpaperModel> recommendedImagesList = [];
-
   List<WallpaperModel> wallpapersListByCategory = [];
 
   Future<List<StorageItem>> getAmplifyStorageList({required String path}) async {
     final StorageListOperation<StorageListRequest, StorageListResult<StorageItem>> result = Amplify.Storage.list(path: path);
     final StorageListResult<StorageItem> itemsList = await result.result;
     return itemsList.items;
+  }
+
+  String getCategoryNameFromKey(String key) {
+    String name = key;
+
+    var element = key.split('/').last.replaceFirst(AppConstants.wallpaperCoversExtension, "");
+    if (element.contains("_box")) {
+      name = element.replaceFirst("_box", "");
+    } else {
+      name = element.replaceFirst("_tile", "");
+    }
+    return name;
+  }
+
+  Future<void> getCategoriesList() async {
+    allCategoriesListBoxes.clear();
+    allCategoriesListTiles.clear();
+    updateLoadingFeed(true);
+
+    try {
+      List items = await getAmplifyStorageList(path: AppConstants.wallpaperCovers);
+      if (items.isNotEmpty) {
+        for (var element in items) {
+          if (element.key != AppConstants.wallpaperCovers) {
+            StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
+            final StorageGetUrlResult imageUrl = await urlOperation.result;
+            log("here element: ${element.key}");
+            if (element.key.toString().contains("_box")) {
+              if (element.key.toString().contains("food_box")) {
+                log("urlll: ${imageUrl.url.toString()}");
+              }
+              allCategoriesListBoxes.add(CategoryModel(
+                key: element.key,
+                name: getCategoryNameFromKey(element.key),
+                imageUrl: imageUrl.url.toString(),
+              ));
+            } else {
+              allCategoriesListTiles.add(CategoryModel(
+                key: element.key,
+                name: getCategoryNameFromKey(element.key),
+                imageUrl: imageUrl.url.toString(),
+              ));
+            }
+          }
+        }
+        allCategoriesListBoxes.shuffle();
+        allCategoriesListTiles.shuffle();
+        initializeRandomPopularList();
+        updateLoadingFeed(false);
+        log('allCategoriesListBoxes : ${allCategoriesListBoxes.length}');
+        log('allCategoriesListTiles : ${allCategoriesListTiles.length}');
+
+        notifyListeners();
+      } else {
+        log('I got Empty Result');
+        updateLoadingFeed(false);
+      }
+    } on StorageException catch (e) {
+      log('StorageException Error listing items: $e');
+      updateLoadingFeed(false);
+    } catch (e) {
+      log('Error listing items: $e');
+      updateLoadingFeed(false);
+    }
   }
 
   Future<void> getWallpapersListByCategory(String category) async {
@@ -49,7 +113,7 @@ class HomeVM extends ChangeNotifier {
 
     try {
       List items = await getAmplifyStorageList(path: category);
-      log('Got items: ${items.length}');
+      log('Got items getWallpapersListByCategory: ${items.length}');
       if (items.isNotEmpty) {
         for (var element in items) {
           StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
@@ -83,7 +147,7 @@ class HomeVM extends ChangeNotifier {
     updateLoadingFeed(true);
     try {
       List items = await getAmplifyStorageList(path: fileKey);
-      log('Got items: ${items.length}');
+      log('Got items getFeedWallpapers: ${items.length}');
       if (items.isNotEmpty) {
         List finalItems = items;
 
@@ -169,7 +233,6 @@ class HomeVM extends ChangeNotifier {
           items.shuffle();
           finalItems = items.take(AppConstants.itemsToShowInRecommendedWallpapersSeeAll).toList();
         }
-        log('I am item info in getRecommendedWallpapersList: ${finalItems.first.key}');
 
         for (var element in finalItems) {
           StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
@@ -193,19 +256,18 @@ class HomeVM extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    searchResultCategories =
-        (AppConstants.popularCategoryList.where((category) => category.name.toLowerCase().contains(query.toLowerCase())).toList());
+    searchResultCategories = (allCategoriesListBoxes.where((category) => category.name.toLowerCase().contains(query.toLowerCase())).toList());
     log("length: ${searchResultCategories.length} with $query");
     notifyListeners();
   }
 
   void initializePopularSearchList() {
     popularSearchesList.clear();
-    for (var value in AppConstants.popularCategoryList) {
+    for (var value in allCategoriesListBoxes) {
       if (popularSearchesList.length >= 5) {
         break;
       }
-      var searchListItem = AppConstants.popularCategoryList[math.Random().nextInt(AppConstants.popularCategoryList.length)];
+      var searchListItem = allCategoriesListBoxes[math.Random().nextInt(allCategoriesListBoxes.length)];
       if (!isAlreadyPresentInList(popularSearchesList, searchListItem)) {
         popularSearchesList.add(searchListItem);
       }
@@ -216,33 +278,36 @@ class HomeVM extends ChangeNotifier {
   void initializeRandomPopularList() {
     randomPopularList.clear();
     notifyListeners();
-    for (var value in AppConstants.popularCategoryList) {
+    log("hey2: ${allCategoriesListBoxes.length}");
+
+    for (var value in allCategoriesListBoxes) {
       if (randomPopularList.length >= 10) {
         break;
       }
-      var popularListItem = AppConstants.popularCategoryList[math.Random().nextInt(AppConstants.popularCategoryList.length)];
+      var popularListItem = allCategoriesListBoxes[math.Random().nextInt(allCategoriesListBoxes.length)];
       if (!isAlreadyPresentInList(randomPopularList, popularListItem)) {
         randomPopularList.add(popularListItem);
       }
+      log("hey: ${allCategoriesListBoxes.length}");
       notifyListeners();
     }
   }
 
-  void initializeRandomRecommendedList() {
-    for (var value in AppConstants.recommendedCategoryList) {
-      if (randomRecommendedList.length >= 10) {
-        break;
-      }
-      var listItem = AppConstants.recommendedCategoryList[math.Random().nextInt(AppConstants.recommendedCategoryList.length)];
-      if (!isAlreadyPresentInList(randomRecommendedList, listItem)) {
-        randomRecommendedList.add(listItem);
-      }
-    }
-  }
+  // void initializeRandomRecommendedList() {
+  //   for (var value in AppConstants.recommendedCategoryList) {
+  //     if (randomRecommendedList.length >= 10) {
+  //       break;
+  //     }
+  //     var listItem = AppConstants.recommendedCategoryList[math.Random().nextInt(AppConstants.recommendedCategoryList.length)];
+  //     if (!isAlreadyPresentInList(randomRecommendedList, listItem)) {
+  //       randomRecommendedList.add(listItem);
+  //     }
+  //   }
+  // }
 
   bool isAlreadyPresentInList(List<CategoryModel> list, CategoryModel category) {
     for (var value in list) {
-      log('I am matching in : ${value.name} and ${category.name}');
+      // log('I am matching in : ${value.name} and ${category.name}');
       if (value.name == category.name) {
         return true;
       }

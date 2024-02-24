@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
 
   Future<void> onLoaded(BuildContext context) async {
     scheduleMicrotask(() {
-      context.read<HomeVM>().initializeRandomPopularList();
+      context.read<HomeVM>().getCategoriesList();
       context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey);
       context.read<HomeVM>().getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
     });

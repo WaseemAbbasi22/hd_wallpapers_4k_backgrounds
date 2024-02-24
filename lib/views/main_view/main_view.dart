@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
@@ -9,12 +7,10 @@ import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/drawer_view/drawer_items.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
-import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class MainView extends StatefulWidget {
@@ -33,18 +29,18 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     _tabIndex = ValueNotifier(widget.arguments['tabIndex'] ?? 0);
-    onLoaded();
+    // onLoaded();
 
     super.initState();
   }
 
-  Future<void> onLoaded() async {
-    scheduleMicrotask(() {
-      context.read<HomeVM>().initializeRandomPopularList();
-      context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey);
-      context.read<HomeVM>().getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
-    });
-  }
+  // Future<void> onLoaded() async {
+  //   scheduleMicrotask(() {
+  //     context.read<HomeVM>().initializeRandomPopularList();
+  //     context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey);
+  //     context.read<HomeVM>().getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
