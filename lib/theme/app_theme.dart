@@ -19,6 +19,17 @@ class AppTheme with ChangeNotifier {
     notifyListeners();
   }
 
+
+  bool _isLightMode = false;
+
+
+  bool get isLightMode => _isLightMode;
+
+  set isLightMode(bool value) {
+    _isLightMode = value;
+    notifyListeners();
+  }
+
   bool isDarkModeEnabled(BuildContext context) {
     return themeMode == ThemeMode.dark ||
         MediaQuery.of(context).platformBrightness == Brightness.dark;
