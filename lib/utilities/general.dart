@@ -15,11 +15,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 class GeneralUtilities {
   static void launchURL(String _url) async {
-    try {
-      await launchUrl(Uri.parse(_url));
-    } on PlatformException {
-      await launchUrl(Uri.parse(_url));
-    }
+    // try {
+    //   await launchUrl(Uri.parse(_url));
+    // } on PlatformException {
+    //   await launchUrl(Uri.parse(_url));
+    // }
   }
 
   static Future<void> shareMyApp() async {
