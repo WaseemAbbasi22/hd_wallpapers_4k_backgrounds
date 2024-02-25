@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/favourite_view/components/favourite_appbar.dart';
@@ -51,7 +52,10 @@ class _FavouriteViewState extends State<FavouriteView> {
               FavouriteAppBar(isForDownloads: isFromDownloads),
               SizedBox(height: 3.h),
               homeVM.favoriteWallpapers.isEmpty
-                  ? Text("There are no wallpapers in this category", style: AppStyle.normalTextStyle)
+                  ? Text(AppString.noWallpapersInCategory,
+                      style: AppStyle.normalTextStyle.copyWith(
+                        color: context.theme.appColors.outline,
+                      ))
                   : FavouriteGridComponent(
                       wallpapers: homeVM.favoriteWallpapers,
                       isForDownloads: isFromDownloads,
