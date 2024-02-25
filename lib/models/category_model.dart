@@ -5,6 +5,7 @@ class CategoryModel {
   int quantity;
   String imageUrl;
   String name;
+  String key;
   Color borderColor;
 
   CategoryModel({
@@ -12,15 +13,7 @@ class CategoryModel {
     this.quantity = 0,
     this.imageUrl = "",
     this.name = "",
+    this.key = "",
     this.borderColor = Colors.transparent,
   });
-
-  factory CategoryModel.fromJson(Map<String, dynamic> json) {
-    return CategoryModel(
-      id: json['id'],
-      imageUrl: json['imageUrl'],
-      name: json['name'],
-    );
-  }
-
 }
