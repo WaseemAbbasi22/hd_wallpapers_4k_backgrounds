@@ -46,10 +46,10 @@ class HomeVM extends ChangeNotifier {
     String name = key;
 
     var element = key.split('/').last.replaceFirst(AppConstants.wallpaperCoversExtension, "");
-    if (element.contains("_box")) {
-      name = element.replaceFirst("_box", "");
+    if (element.contains("-box")) {
+      name = element.replaceFirst("-box", "");
     } else {
-      name = element.replaceFirst("_tile", "");
+      name = element.replaceFirst("-tile", "");
     }
     return name;
   }
@@ -67,10 +67,7 @@ class HomeVM extends ChangeNotifier {
             StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
             final StorageGetUrlResult imageUrl = await urlOperation.result;
             log("here element: ${element.key}");
-            if (element.key.toString().contains("_box")) {
-              if (element.key.toString().contains("food_box")) {
-                log("urlll: ${imageUrl.url.toString()}");
-              }
+            if (element.key.toString().contains("-box")) {
               allCategoriesListBoxes.add(CategoryModel(
                 key: element.key,
                 name: getCategoryNameFromKey(element.key),
@@ -278,7 +275,6 @@ class HomeVM extends ChangeNotifier {
   void initializeRandomPopularList() {
     randomPopularList.clear();
     notifyListeners();
-    log("hey2: ${allCategoriesListBoxes.length}");
 
     for (var value in allCategoriesListBoxes) {
       if (randomPopularList.length >= 10) {

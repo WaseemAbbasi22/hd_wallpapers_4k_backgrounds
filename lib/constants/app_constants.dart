@@ -20,7 +20,7 @@ class AppConstants {
   static const String colorsWallpapersKey = 'colors_categories/';
   static const String colorsThumbnailsKey = 'colors-thumbnails/';
   static const String wallpaperCovers = 'wallpaper_covers/';
-  static const String wallpaperCoversExtension = '.svg';
+  static const String wallpaperCoversExtension = '.png';
   static const String cacheSplitter = '/_mySplitter%_/';
 
   static List<CategoryModel> popularCategoryList = [

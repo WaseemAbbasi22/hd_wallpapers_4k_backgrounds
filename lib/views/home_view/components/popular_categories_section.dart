@@ -42,13 +42,12 @@ class PopularCategoriesSection extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 CategoryModel category = homeVM.randomPopularList[index];
                 log("category.imageUrl: ${category.imageUrl}");
-
                 return Padding(
                   padding: EdgeInsets.only(right: 5.w),
                   child: WallPaperCard(
                     index: index,
                     isFromNetwork: true,
-                    isSvgNetwork: true,
+                    isWallpaperCover: true,
                     imageUrl: category.imageUrl,
                     onCardTap: () {
                       Navigator.pushNamed(
