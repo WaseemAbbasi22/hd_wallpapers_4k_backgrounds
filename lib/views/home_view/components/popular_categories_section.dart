@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
@@ -37,16 +35,14 @@ class PopularCategoriesSection extends StatelessWidget {
             child: ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              itemCount: homeVM.randomPopularList.length,
+              itemCount: homeVM.randomPopularListBoxes.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                CategoryModel category = homeVM.randomPopularList[index];
-                log("category.imageUrl: ${category.imageUrl}");
+                CategoryModel category = homeVM.randomPopularListBoxes[index];
                 return Padding(
                   padding: EdgeInsets.only(right: 5.w),
                   child: WallPaperCard(
                     index: index,
-                    isFromNetwork: true,
                     isWallpaperCover: true,
                     imageUrl: category.imageUrl,
                     onCardTap: () {

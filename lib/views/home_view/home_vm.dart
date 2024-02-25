@@ -19,7 +19,8 @@ class HomeVM extends ChangeNotifier {
 
   List<CategoryModel> allCategoriesListBoxes = [];
   List<CategoryModel> allCategoriesListTiles = [];
-  List<CategoryModel> randomPopularList = [];
+  List<CategoryModel> randomPopularListBoxes = [];
+  List<CategoryModel> randomPopularListTiles = [];
   List<CategoryModel> popularSearchesList = [];
   List<CategoryModel> searchResultCategories = [];
 
@@ -66,7 +67,6 @@ class HomeVM extends ChangeNotifier {
           if (element.key != AppConstants.wallpaperCovers) {
             StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(key: element.key);
             final StorageGetUrlResult imageUrl = await urlOperation.result;
-            log("here element: ${element.key}");
             if (element.key.toString().contains("-box")) {
               allCategoriesListBoxes.add(CategoryModel(
                 key: element.key,
@@ -86,8 +86,6 @@ class HomeVM extends ChangeNotifier {
         allCategoriesListTiles.shuffle();
         initializeRandomPopularList();
         updateLoadingFeed(false);
-        log('allCategoriesListBoxes : ${allCategoriesListBoxes.length}');
-        log('allCategoriesListTiles : ${allCategoriesListTiles.length}');
 
         notifyListeners();
       } else {
@@ -140,11 +138,9 @@ class HomeVM extends ChangeNotifier {
 
   Future<void> getFeedWallpapers(String fileKey, {bool isSeeAll = false}) async {
     feedThumbnailList.clear();
-    log('I am coming here with getFeedWallpapers: $fileKey');
     updateLoadingFeed(true);
     try {
       List items = await getAmplifyStorageList(path: fileKey);
-      log('Got items getFeedWallpapers: ${items.length}');
       if (items.isNotEmpty) {
         List finalItems = items;
 
@@ -272,19 +268,39 @@ class HomeVM extends ChangeNotifier {
     }
   }
 
+  String getTileUrl(CategoryModel categoryModel) {
+    int index = allCategoriesListTiles.indexWhere((element) => element.name == categoryModel.name);
+
+    if (index == -1) {
+      return "";
+    }
+
+    return allCategoriesListTiles[index].tileUrl;
+  }
+
   void initializeRandomPopularList() {
-    randomPopularList.clear();
+    randomPopularListBoxes.clear();
+    randomPopularListTiles.clear();
     notifyListeners();
 
     for (var value in allCategoriesListBoxes) {
-      if (randomPopularList.length >= 10) {
+      if (randomPopularListBoxes.length >= 10) {
         break;
       }
-      var popularListItem = allCategoriesListBoxes[math.Random().nextInt(allCategoriesListBoxes.length)];
-      if (!isAlreadyPresentInList(randomPopularList, popularListItem)) {
-        randomPopularList.add(popularListItem);
+      var popularListItemBox = allCategoriesListBoxes[math.Random().nextInt(allCategoriesListBoxes.length)];
+      if (!isAlreadyPresentInList(randomPopularListBoxes, popularListItemBox)) {
+        randomPopularListBoxes.add(popularListItemBox);
       }
-      log("hey: ${allCategoriesListBoxes.length}");
+      notifyListeners();
+    }
+    for (var value in allCategoriesListTiles) {
+      if (randomPopularListTiles.length >= 10) {
+        break;
+      }
+      var popularListItemTile = allCategoriesListTiles[math.Random().nextInt(allCategoriesListTiles.length)];
+      if (!isAlreadyPresentInList(randomPopularListTiles, popularListItemTile)) {
+        randomPopularListTiles.add(popularListItemTile);
+      }
       notifyListeners();
     }
   }
