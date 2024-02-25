@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                 builder: EasyLoading.init(),
                 title: 'Flutter Demo',
                 // 2. Provide light theme.
-                theme: AppTheme.dark,
+                theme: AppTheme.light,
                 // 3. Provide dark theme.
                 darkTheme: AppTheme.dark,
                 // 4. Watch AppTheme changes (ThemeMode).

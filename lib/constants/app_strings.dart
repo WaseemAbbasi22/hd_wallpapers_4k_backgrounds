@@ -61,14 +61,22 @@ class AppString {
       'label': 'Green',
       'colors': [const Color(0xFFA8E063), const Color(0xFF56AB2F)],
     },
-    // {
-    //   'label': 'Orange',
-    //   'colors': [Colors.orangeAccent, Colors.orange],
-    // },
-    // {
-    //   'label': 'Blue',
-    //   'colors': [Colors.lightBlueAccent, Colors.blue],
-    // },
+    {
+      'label': 'Orange',
+      'colors': [const Color(0xFFFFBE0B), const Color(0xFFF42B03)],
+    },{
+      'label': 'Purple',
+      'colors': [const Color(0xFF6633B6), const Color(0xFF310E68)],
+    },{
+      'label': 'Blue',
+      'colors': [const Color(0xFF20A4F3), const Color(0xFF335A79)],
+    },{
+      'label': 'Teal',
+      'colors': [const Color(0xFF34A798), const Color(0xFF036A6A)],
+    },{
+      'label': 'DarkGrey',
+      'colors': [const Color(0xFF9A9A9A), const Color(0xFF454545)],
+    },
   ];
 
   static List<Map<String, dynamic>> wallpaperActionData = [
@@ -93,6 +101,7 @@ class AppString {
     {'icon': AppAssets.categoryIcon, 'label': 'Categories'},
     {'icon': AppAssets.favouriteIcon, 'label': 'Favorite'},
     {'icon': AppAssets.downloadIcon, 'label': 'Downloads'},
+    {'icon': AppAssets.homeIcon2, 'label': 'Light Mode'},
     {'icon': AppAssets.rateAppIcon, 'label': 'Rate App'},
     {'icon': AppAssets.shareIcon, 'label': 'Share App'},
   ];
