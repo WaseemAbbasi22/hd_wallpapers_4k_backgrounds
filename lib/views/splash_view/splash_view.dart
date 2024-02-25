@@ -39,7 +39,7 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AppTheme>().themeMode = ThemeMode.dark;
+    // context.read<AppTheme>().themeMode = ThemeMode.dark;
     //TODO: REMOVE THIS LINE AFTER TESTING
 
     return Scaffold(
