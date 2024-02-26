@@ -21,25 +21,13 @@ class AppString {
   static String searchResults = "Search Results";
   static String popularCategories = 'Popular Categories';
   static String searchInCategories = 'Search in 100+ trending categories';
+  static String noWallpapersInCategory = 'There are no wallpapers in this category';
   static List<String> tabsTextList = ["Home", "Categories"];
 
   static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
   static const packageName = "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
   static const playStoreLink = "https://play.google.com/store/apps/details?id=$packageName";
 
-  static List<String> sliderImageUrl = [
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5'
-  ];
-  static List<String> popularCatogoriesImageUrl = [
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-  ];
   static List<IconData> tabsIconList = [
     Icons.home_filled,
     Icons.category,
@@ -64,16 +52,20 @@ class AppString {
     {
       'label': 'Orange',
       'colors': [const Color(0xFFFFBE0B), const Color(0xFFF42B03)],
-    },{
+    },
+    {
       'label': 'Purple',
       'colors': [const Color(0xFF6633B6), const Color(0xFF310E68)],
-    },{
+    },
+    {
       'label': 'Blue',
       'colors': [const Color(0xFF20A4F3), const Color(0xFF335A79)],
-    },{
+    },
+    {
       'label': 'Teal',
       'colors': [const Color(0xFF34A798), const Color(0xFF036A6A)],
-    },{
+    },
+    {
       'label': 'DarkGrey',
       'colors': [const Color(0xFF9A9A9A), const Color(0xFF454545)],
     },
@@ -101,7 +93,7 @@ class AppString {
     {'icon': AppAssets.categoryIcon, 'label': 'Categories'},
     {'icon': AppAssets.favouriteIcon, 'label': 'Favorite'},
     {'icon': AppAssets.downloadIcon, 'label': 'Downloads'},
-    {'icon': AppAssets.homeIcon2, 'label': 'Light Mode'},
+    {'icon': AppAssets.homeIcon2, 'label': 'Light'},
     {'icon': AppAssets.rateAppIcon, 'label': 'Rate App'},
     {'icon': AppAssets.shareIcon, 'label': 'Share App'},
   ];

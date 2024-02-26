@@ -51,53 +51,49 @@ class _SplashViewState extends State<SplashView> {
               AppString.appName,
               style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
             ),
-            SizedBox(
-              height: 4.h,
-            ),
+            SizedBox(height: 4.h),
             Expanded(
-                flex: 6,
-                child: SizedBox(
-                    width: 100.w,
-                    child: Image.asset(
-                      AppAssets.splashBg,
-                      fit: BoxFit.contain,
-                    ))),
-            SizedBox(
-              height: 4.h,
+              flex: 6,
+              child: SizedBox(
+                width: 100.w,
+                child: Image.asset(
+                  AppAssets.splashBg,
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
+            SizedBox(height: 4.h),
             Text(
               AppString.appName,
               style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
             ),
-            SizedBox(
-              height: 1.h,
-            ),
+            SizedBox(height: 1.h),
             Text(
               AppString.appDescription,
               style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline),
             ),
-            SizedBox(
-              height: 5.h,
-            ),
-            Center(
-              child: CustomButton(
-                onTap: () async {
-                  // await locator.get<AuthService>().doFirebaseAnonymousLogin();
-                  Navigator.pushReplacementNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 0});
-                },
-                label: AppString.letsStart,
-                hasIcon: true,
-                width: 80.w,
-                iconWidget: Icon(
-                  Icons.arrow_forward,
-                  color: AppColors.kWhiteColor,
-                  size: 4.h,
+            SizedBox(height: 3.h),
+            Consumer(builder: (BuildContext context, HomeVM homeVM, Widget? child) {
+              if (homeVM.isFeedLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return Center(
+                child: CustomButton(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 0});
+                  },
+                  label: AppString.letsStart,
+                  hasIcon: true,
+                  width: 80.w,
+                  iconWidget: Icon(
+                    Icons.arrow_forward,
+                    color: AppColors.kWhiteColor,
+                    size: 4.h,
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
+              );
+            }),
+            SizedBox(height: 2.h),
             Center(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6.w),

@@ -7,7 +7,7 @@ extension WidgetExtensions on Widget {
         alignment: Alignment.center,
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.7),
+          color: Colors.black.withOpacity(0.6),
           borderRadius: BorderRadius.circular(12),
         ),
         child: this,

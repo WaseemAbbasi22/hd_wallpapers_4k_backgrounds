@@ -1,3 +1,5 @@
+import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/dependency_injection/dependency_injection.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/services/config_service.dart';
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AppTheme(),
           builder: (context, _) => MaterialApp(
                 builder: EasyLoading.init(),
-                title: 'Flutter Demo',
+                title: AppString.appName,
                 // 2. Provide light theme.
                 theme: AppTheme.light,
                 // 3. Provide dark theme.
