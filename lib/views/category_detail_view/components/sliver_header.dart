@@ -58,7 +58,7 @@ class SliverHeader extends StatelessWidget {
               child: Text(
                 category.name.toUpperCase() ?? '',
                 style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor, fontSize: 22.sp),
-              ).toBackDropTextContainer(),
+              ).toBackDropTextContainer(hideRadius: true),
             )),
       ),
     );

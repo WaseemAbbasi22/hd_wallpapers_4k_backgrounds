@@ -6,6 +6,7 @@ class AppStyle {
   static TextStyle headingTextStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 14.sp,
+    fontFamily: 'Manrope',
     color: AppColors.kWhiteColor,
   );
   static TextStyle normalTextStyle = TextStyle(
@@ -17,17 +18,20 @@ class AppStyle {
   static TextStyle appBarTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 12.sp,
+    fontFamily: 'Manrope',
     color: AppColors.kWhiteColor,
   );
 
   static TextStyle appBarTitleTextStyle = TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 16.sp,
+    fontFamily: 'Manrope',
     color: AppColors.kWhiteColor,
   );
   static TextStyle buttonTextStyle = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 16.sp,
+    fontFamily: 'Manrope',
     color: AppColors.kWhiteColor,
   );
 
@@ -35,6 +39,7 @@ class AppStyle {
     fontSize: 15.sp,
     color: AppColors.kWhiteColor,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Manrope',
     shadows: const [
       Shadow(
         color: Colors.black26,
@@ -46,11 +51,13 @@ class AppStyle {
   static TextStyle tabsSelectedTextStyle = TextStyle(
     color: Colors.white,
     fontSize: 14.sp,
+    fontFamily: 'Manrope',
     fontWeight: FontWeight.bold,
   );
   static TextStyle tabsUnSelectedTextStyle = TextStyle(
     color: Colors.white,
     fontSize: 12.sp,
+    fontFamily: 'Manrope',
     fontWeight: FontWeight.normal,
   );
 

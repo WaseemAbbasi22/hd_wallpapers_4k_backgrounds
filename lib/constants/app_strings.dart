@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppString {
   static String appDescription = 'Free Unlimited High Quality Wallpapers And Backgrounds';
-  static String appName = 'HD Wallpaper - 4K Background';
+  static String appName = 'Wallpaper App';
   static String myFavourite = 'My Favourites';
   static String myDownloads = 'My Downloads';
   static String wallOfDay = 'Wall Of The Day 🔥';

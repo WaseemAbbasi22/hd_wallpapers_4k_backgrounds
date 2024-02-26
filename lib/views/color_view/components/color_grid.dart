@@ -39,24 +39,24 @@ class ColorGridComponent extends StatelessWidget {
                 HomeVM homeVM = context.read<HomeVM>();
                 homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: wallpaperModel.imageKey);
               },
-              child: Positioned(
-                top: 8,
-                right: 8,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
-                    radius: 2.h,
-                    child: Center(
-                      child: Icon(
-                        Icons.favorite_outline,
-                        size: 2.3.h,
-                        color: AppColors.kWhiteColor,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // child: Positioned(
+              //   top: 8,
+              //   right: 8,
+              //   child: GestureDetector(
+              //     onTap: () {},
+              //     child: CircleAvatar(
+              //       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
+              //       radius: 2.h,
+              //       child: Center(
+              //         child: Icon(
+              //           Icons.favorite_outline,
+              //           size: 2.3.h,
+              //           color: AppColors.kWhiteColor,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             );
           },
         ),

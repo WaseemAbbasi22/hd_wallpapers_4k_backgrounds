@@ -39,9 +39,6 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    // context.read<AppTheme>().themeMode = ThemeMode.dark;
-    //TODO: REMOVE THIS LINE AFTER TESTING
-
     return Scaffold(
       body: BackgroundContainer(
         child: Column(
@@ -75,7 +72,7 @@ class _SplashViewState extends State<SplashView> {
             SizedBox(height: 3.h),
             Consumer(builder: (BuildContext context, HomeVM homeVM, Widget? child) {
               if (homeVM.isFeedLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return  Center(child: CircularProgressIndicator(color: context.theme.appColors.outline));
               }
               return Center(
                 child: CustomButton(
@@ -84,6 +81,7 @@ class _SplashViewState extends State<SplashView> {
                   },
                   label: AppString.letsStart,
                   hasIcon: true,
+                  height: 7.h,
                   width: 80.w,
                   iconWidget: Icon(
                     Icons.arrow_forward,

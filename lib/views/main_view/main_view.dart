@@ -128,7 +128,7 @@ class _MainViewState extends State<MainView> {
                   // width in percent
                   width: 23.2.w,
                   borderRadius: 30,
-                  height: 8.h,
+                  height: 7.h,
                   selectedIndex: currentIndex,
                   selectedBackgroundColors: [
                     context.theme.appColors.primaryContainer,
