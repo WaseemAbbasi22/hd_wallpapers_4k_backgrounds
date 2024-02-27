@@ -312,4 +312,6 @@ class AppAssets {
   static const String whatsappIcon = 'assets/icons/whatsapp_icon.svg';
   static const String InstagramIcon = 'assets/icons/instagram_icon.svg';
   static const String snapchatIcon = 'assets/icons/snapchat_icon.svg';
+  static const String noInternetLight = 'assets/animations/no-internet-light.json';
+  static const String noInternetDark = 'assets/animations/no-internet-dark.json';
 }

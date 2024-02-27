@@ -39,9 +39,7 @@ dependencies:
   shared_preferences: ^2.2.2
   logger: ^1.1.0
   dartz: ^0.10.1
-
-
-
+  lottie: ^2.6.0
   connectivity_plus: ^5.0.2
   share_plus: ^7.2.1
   url_launcher:
@@ -71,6 +69,7 @@ flutter:
     - assets/images/
     - assets/categories_popular/
     - assets/categories_recommended/
+    - assets/animations/
 
 
 
