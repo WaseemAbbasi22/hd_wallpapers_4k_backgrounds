@@ -29,9 +29,9 @@ dependencies:
   amplify_flutter: ^1.6.1
   amplify_auth_cognito: ^1.6.1
   amplify_storage_s3: ^1.6.1
-  firebase_auth:
-  firebase_core:
-  firebase_crashlytics:
+#  firebase_auth:
+#  firebase_core:
+#  firebase_crashlytics:
   get_it: ^7.6.7
   animated_list_item: ^1.0.0
 

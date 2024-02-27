@@ -1,6 +1,7 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
+import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
@@ -23,32 +24,33 @@ class NoInternetConnection extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height:4.h,),
+              SizedBox(
+                height: 4.h,
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   BackButtonComponent(
                     radius: 2.5.h,
+                    onPressed: () {
+                      Navigator.of(context).pushNamedAndRemoveUntil(NamedRoute.splashView, (Route<dynamic> route) => false);
+                    },
                   ),
-                  const SizedBox(
-                  ),
+                  const SizedBox(),
                 ],
               ),
-              Spacer(),
-              Lottie.asset(themeProvider.isDarkModeEnabled(context)
-                  ? AppAssets.noInternetDark
-                  : AppAssets.noInternetLight),
+              const Spacer(),
+              Lottie.asset(themeProvider.isDarkModeEnabled(context) ? AppAssets.noInternetDark : AppAssets.noInternetLight),
               // SizedBox(height: 3.h,),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 3.w),
+                padding: EdgeInsets.symmetric(horizontal: 3.w),
                 child: Text(
-                  AppString.noInternetConnection,
-                  style: AppStyle.headingTextStyle
-                      .copyWith(color: context.theme.appColors.outline),
+                  AppString.noInternetConnectionTryAgain,
+                  style: AppStyle.headingTextStyle.copyWith(color: context.theme.appColors.outline),
                   textAlign: TextAlign.center,
                 ),
               ),
-              Spacer(flex: 3,),
+              const Spacer(flex: 3),
             ],
           ),
         ),

@@ -176,8 +176,6 @@ class DrawerWidgetItems extends StatelessWidget {
 
         break;
       case 5:
-
-        Navigator.pushNamed(context, NamedRoute.noInternetConnection);
         // RATE THIS APP
         break;
       case 6:

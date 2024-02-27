@@ -2,11 +2,10 @@ import 'dart:developer';
 
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:awesome_wallpapers/views/common_components/user_intimation_components.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/services.dart';
 
 abstract class AuthService {
-  Future<void> doFirebaseAnonymousLogin();
+  // Future<void> doFirebaseAnonymousLogin();
 
   Future<void> refreshAWSAuthSession();
 }
@@ -25,18 +24,18 @@ class AuthServiceImp implements AuthService {
     }
   }
 
-  @override
-  Future doFirebaseAnonymousLogin() async {
-    firebase.FirebaseAuth auth = firebase.FirebaseAuth.instance;
-
-    await auth.signInAnonymously().then((value) async {
-      log('This is token from sign in Result: ${await value.user!.getIdToken()}');
-      await socialSignIn(await value.user!.getIdToken() ?? "");
-      // await sendTokenToNative(await value.user!.getIdToken() ?? "").then((value) => {
-      //       log('I am result from Native: $value '),
-      //     });
-    });
-  }
+  // @override
+  // Future doFirebaseAnonymousLogin() async {
+  //   firebase.FirebaseAuth auth = firebase.FirebaseAuth.instance;
+  //
+  //   await auth.signInAnonymously().then((value) async {
+  //     log('This is token from sign in Result: ${await value.user!.getIdToken()}');
+  //     await socialSignIn(await value.user!.getIdToken() ?? "");
+  //     // await sendTokenToNative(await value.user!.getIdToken() ?? "").then((value) => {
+  //     //       log('I am result from Native: $value '),
+  //     //     });
+  //   });
+  // }
 
   Future<String> sendTokenToNative(String token) async {
     String value = '';

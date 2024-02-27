@@ -7,6 +7,8 @@ class AppConstants {
   static int itemsToShowInRecommendedWallpapers = 15;
   static int itemsToShowInRecommendedWallpapersSeeAll = 60;
   static int itemsToShowInHomeFeedWallpapers = 25;
+  static int noOfCategoriesToShow = 30;
+  static int totalCategories = 30;
 
   static const String bucketUrlPrefix = 'https://awesome4kwallgrounds96bd8542cdfe4b24bb2af635c5401630-dev.s3.amazonaws.com/public/';
 

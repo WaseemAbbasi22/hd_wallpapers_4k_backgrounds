@@ -21,13 +21,14 @@ class ConnectivityUtil {
 
   static late StreamSubscription<ConnectivityResult> networkSubscription;
 
-  static void subscribeToConnectivityChange({required Function() onNoInternetFound}) {
+  static void subscribeToConnectivityChange({required Function() onNoInternetFound}) async {
     bool isRenew = false;
+
+    await ConnectivityUtil.checkInternetConnectivity(onNoInternetFound: () => onNoInternetFound());
 
     networkSubscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
         isRenew = true;
-        UserIntimationComponents.showToast(AppString.noInternetConnection);
         onNoInternetFound();
       } else if ((result == ConnectivityResult.mobile || result == ConnectivityResult.wifi) && isRenew == true) {
         isRenew = false;

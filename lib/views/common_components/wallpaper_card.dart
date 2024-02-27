@@ -36,7 +36,7 @@ class WallPaperCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      key: ValueKey(index),
+      key: UniqueKey(),
       children: [
         GestureDetector(
           onTap: onCardTap,

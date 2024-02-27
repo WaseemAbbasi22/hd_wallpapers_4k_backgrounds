@@ -52,6 +52,7 @@ class PopularCategoriesSection extends StatelessWidget {
                         arguments: {
                           'categoryModel': category,
                           "mainCategory": AppConstants.popularThumbnailsKey,
+                          "coverImageUrl": category.imageUrl,
                         },
                       );
                     },

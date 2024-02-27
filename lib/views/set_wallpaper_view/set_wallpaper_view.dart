@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
@@ -24,9 +27,38 @@ class SetWallpaperView extends StatefulWidget {
 }
 
 class _SetWallpaperViewState extends State<SetWallpaperView> {
+  late WallpaperModel wallpaperModel;
+
+  @override
+  void initState() {
+    wallpaperModel = widget.arguments['wallpaperModel'];
+    getWallpaperStatus();
+    super.initState();
+  }
+
+  bool isFavorite = false;
+
+  getWallpaperStatus() {
+    log("URLLL: ${wallpaperModel.imageUrl}");
+    scheduleMicrotask(() async {
+      isFavorite = await context.read<HomeVM>().checkIfFavoriteWallpaper(imageUrl: wallpaperModel.imageUrl);
+      setState(() {});
+    });
+  }
+
+  //2a63850c88e20935ab73cde0ea3bdc527a70004a9b570537965bbd7e23c6160c
+
+  String getIconForFavorite(int index) {
+    if (index == 2) {
+      if (isFavorite) {
+        return AppAssets.rateAppIcon;
+      }
+    }
+    return AppString.wallpaperActionData[index]['icon'];
+  }
+
   @override
   Widget build(BuildContext context) {
-    WallpaperModel wallpaperModel = widget.arguments['wallpaperModel'];
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -36,9 +68,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 2.h,
-                ),
+                SizedBox(height: 2.h),
                 const BackButtonComponent(),
                 SizedBox(
                   height: 3.h,
@@ -50,7 +80,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
                         child: CachedNetworkImage(
-                          imageUrl: wallpaperModel.imageUrl ?? '',
+                          imageUrl: wallpaperModel.imageUrl,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Center(
                             child: SizedBox(
@@ -76,10 +106,8 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                     AppString.wallpaperActionData.length,
                     (index) => ActionItems(
                       label: AppString.wallpaperActionData[index]['label'],
-                      iconPath: AppString.wallpaperActionData[index]['icon'],
-                      onTap: () {
-                        onActionTap(index: index, wallpaperModel: wallpaperModel);
-                      },
+                      iconPath: getIconForFavorite(index),
+                      onTap: () => onActionTap(index: index, wallpaperModel: wallpaperModel, isFavorite: isFavorite),
                     ),
                   ),
                 )),
@@ -91,7 +119,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
     );
   }
 
-  void onActionTap({required int index, required WallpaperModel wallpaperModel}) async {
+  void onActionTap({required int index, required WallpaperModel wallpaperModel, required bool isFavorite}) async {
     switch (index) {
       case 0:
         await GeneralUtilities.shareWallpaper(url: wallpaperModel.imageUrl);
@@ -100,7 +128,12 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
         WallpaperControlsBottomSheet.setWallpaperBottomSheet(context, wallpaperModel: widget.arguments['wallpaperModel']);
       case 2:
         final homeVM = context.read<HomeVM>();
-        homeVM.addWallpaperToFavourites(wallpaperModel: wallpaperModel, isForDownloads: homeVM.isFromDownloads);
+        if (isFavorite) {
+          homeVM.removeFavoriteWallpaper(index: homeVM.getWallpaperListIndex(imageUrl: wallpaperModel.imageUrl), isForDownloads: false);
+        } else {
+          homeVM.addWallpaperToFavourites(wallpaperModel: wallpaperModel, isForDownloads: homeVM.isFromDownloads);
+        }
+        getWallpaperStatus();
       case 3:
         UserIntimationComponents.getLoader(context);
         bool status = await GeneralUtilities.downloadImageFromLink(url: wallpaperModel.imageUrl, context: context);

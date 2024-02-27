@@ -284,7 +284,7 @@ class HomeVM extends ChangeNotifier {
     notifyListeners();
 
     for (var value in allCategoriesListBoxes) {
-      if (randomPopularListBoxes.length >= 10) {
+      if (randomPopularListBoxes.length >= AppConstants.noOfCategoriesToShow) {
         break;
       }
       var popularListItemBox = allCategoriesListBoxes[math.Random().nextInt(allCategoriesListBoxes.length)];
@@ -294,7 +294,7 @@ class HomeVM extends ChangeNotifier {
       notifyListeners();
     }
     for (var value in allCategoriesListTiles) {
-      if (randomPopularListTiles.length >= 10) {
+      if (randomPopularListTiles.length >= AppConstants.noOfCategoriesToShow) {
         break;
       }
       var popularListItemTile = allCategoriesListTiles[math.Random().nextInt(allCategoriesListTiles.length)];
@@ -358,6 +358,7 @@ class HomeVM extends ChangeNotifier {
     final cacheRepo = locator.get<CacheRepo>();
     final resultEither = await cacheRepo.addFavoriteWallpaper(imageUrl: "", isForDownloads: isForDownloads);
     favoriteWallpapers.removeAt(index);
+
     notifyListeners();
     String wallpapersList = "";
     if (resultEither.isRight()) {
@@ -399,5 +400,18 @@ class HomeVM extends ChangeNotifier {
   void updateIsFromDownloads(var value) {
     isFromDownloads = value;
     notifyListeners();
+  }
+
+  Future<bool> checkIfFavoriteWallpaper({required String imageUrl}) async {
+    await getFavoriteWallpapers(isForDownloads: false);
+
+    int index = favoriteWallpapers.indexWhere((element) => element == imageUrl);
+
+    return index != -1;
+  }
+
+  int getWallpaperListIndex({required String imageUrl}) {
+    int index = favoriteWallpapers.indexWhere((element) => element == imageUrl);
+    return index;
   }
 }

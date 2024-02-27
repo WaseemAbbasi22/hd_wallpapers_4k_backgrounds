@@ -2,8 +2,7 @@ import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class AppString {
-  static String appDescription =
-      'Free Unlimited High Quality Wallpapers And Backgrounds';
+  static String appDescription = 'Free Unlimited High Quality Wallpapers And Backgrounds';
   static String appName = 'Wallpaper App';
   static String myFavourite = 'My Favourites';
   static String myDownloads = 'My Downloads';
@@ -17,8 +16,7 @@ class AppString {
   static String privacyPolicyText1 = " By Continuing you agree to our ";
   static String privacyPolicyText2 = " privacy policy ";
   static String privacyPolicyText3 = " terms of use ";
-  static String searchViewHeading =
-      "Discover High Quality and Beautiful Wallpapers";
+  static String searchViewHeading = "Discover High Quality and Beautiful Wallpapers";
   static String popularSearches = "Popular Searches";
   static String searchResults = "Search Results";
   static String popularCategories = 'Popular Categories';
@@ -26,18 +24,12 @@ class AppString {
   static String noWallpapersInCategory = 'There are no wallpapers in this category';
   static String noInternetConnection = 'No Internet Connection';
   static String internetRestored = 'Your internet was restored';
-  static String noWallpapersInCategory =
-      'There are no wallpapers in this category';
-  static String noInternetConnection =
-      'Something went wrong. Please check your internet connection and try again.';
+  static String noInternetConnectionTryAgain = 'Something went wrong. Please check your internet connection and try again.';
   static List<String> tabsTextList = ["Home", "Categories"];
 
-  static const privacyPolicyLink =
-      "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
-  static const packageName =
-      "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
-  static const playStoreLink =
-      "https://play.google.com/store/apps/details?id=$packageName";
+  static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
+  static const packageName = "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
+  static const playStoreLink = "https://play.google.com/store/apps/details?id=$packageName";
 
   static List<IconData> tabsIconList = [
     Icons.home_filled,
