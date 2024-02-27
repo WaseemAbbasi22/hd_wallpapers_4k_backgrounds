@@ -22,6 +22,8 @@ class AppString {
   static String popularCategories = 'Popular Categories';
   static String searchInCategories = 'Search in 100+ trending categories';
   static String noWallpapersInCategory = 'There are no wallpapers in this category';
+  static String noInternetConnection = 'No Internet Connection';
+  static String internetRestored = 'Your internet was restored';
   static List<String> tabsTextList = ["Home", "Categories"];
 
   static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";

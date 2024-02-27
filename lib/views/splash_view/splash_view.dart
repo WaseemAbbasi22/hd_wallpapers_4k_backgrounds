@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
@@ -6,6 +7,7 @@ import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
+import 'package:awesome_wallpapers/utilities/connectivity.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/button_component.dart';
@@ -25,7 +27,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    onLoaded();
+    ConnectivityUtil.subscribeToConnectivityChange(onNoInternetFound: () {
+      log("No Internet Fount Triggered!");
+    });
     super.initState();
   }
 
@@ -72,12 +76,16 @@ class _SplashViewState extends State<SplashView> {
             SizedBox(height: 3.h),
             Consumer(builder: (BuildContext context, HomeVM homeVM, Widget? child) {
               if (homeVM.isFeedLoading) {
-                return  Center(child: CircularProgressIndicator(color: context.theme.appColors.outline));
+                return Center(child: CircularProgressIndicator(color: context.theme.appColors.outline));
               }
               return Center(
                 child: CustomButton(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 0});
+                  onTap: () async {
+                    if (await ConnectivityUtil.checkInternetConnectivity(onNoInternetFound: () {
+                      log("NoINternetFound ON Splasj");
+                    })) {
+                      Navigator.pushReplacementNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 0});
+                    }
                   },
                   label: AppString.letsStart,
                   hasIcon: true,

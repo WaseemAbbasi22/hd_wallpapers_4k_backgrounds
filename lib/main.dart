@@ -1,4 +1,3 @@
-import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/dependency_injection/dependency_injection.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
