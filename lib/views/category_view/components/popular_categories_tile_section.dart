@@ -32,6 +32,11 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
     _animationController.forward();
   }
 
+@override
+  void dispose() {
+  _animationController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     HomeVM homeVM = context.read<HomeVM>();

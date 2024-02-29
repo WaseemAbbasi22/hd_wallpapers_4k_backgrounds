@@ -1,4 +1,5 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +32,9 @@ class ActionItems extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: radius ?? 25,
-            backgroundColor: isFromBottomSheet != null ? context.theme.appColors.primary : context.theme.appColors.secondaryContainer,
+            backgroundColor: isFromBottomSheet != null
+                ? context.theme.appColors.primary
+                : context.theme.appColors.secondaryContainer,
             child: isFromBottomSheet != null
                 ? SvgPicture.asset(
                     iconPath,
@@ -42,8 +45,13 @@ class ActionItems extends StatelessWidget {
                 : SvgPicture.asset(
                     iconPath,
                     // color: AppColors.kWhiteColor,
-                    colorFilter: ColorFilter.mode(context.theme.appColors.outline, BlendMode.srcIn),
-                    height: iconHeight ?? 2.8.h,
+                    colorFilter: iconPath != AppAssets.favouriteIconRed
+                        ? ColorFilter.mode(
+                            context.theme.appColors.outline, BlendMode.srcIn)
+                        : null,
+                    height: iconPath == AppAssets.favouriteIconRed
+                        ? 4.h
+                        : iconHeight ?? 2.8.h,
                   ),
           ),
           SizedBox(
@@ -51,7 +59,8 @@ class ActionItems extends StatelessWidget {
           ),
           Text(
             label,
-            style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline),
+            style: AppStyle.normalTextStyle
+                .copyWith(color: context.theme.appColors.outline),
           )
         ],
       ),

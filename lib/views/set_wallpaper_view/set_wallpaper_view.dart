@@ -39,7 +39,6 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
   bool isFavorite = false;
 
   getWallpaperStatus() {
-    log("URLLL: ${wallpaperModel.imageUrl}");
     scheduleMicrotask(() async {
       isFavorite = await context.read<HomeVM>().checkIfFavoriteWallpaper(imageUrl: wallpaperModel.imageUrl);
       setState(() {});
@@ -51,7 +50,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
   String getIconForFavorite(int index) {
     if (index == 2) {
       if (isFavorite) {
-        return AppAssets.rateAppIcon;
+        return AppAssets.favouriteIconRed;
       }
     }
     return AppString.wallpaperActionData[index]['icon'];

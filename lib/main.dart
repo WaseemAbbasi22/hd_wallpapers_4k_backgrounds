@@ -5,6 +5,8 @@ import 'package:awesome_wallpapers/services/config_service.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +24,18 @@ void main() async {
   //   messagingSenderId: "70765643948",
   //   projectId: "wallpapers4klatest",
   // ));
-  await Future.delayed(const Duration(seconds: 1)).whenComplete(() async => await ConfigService.configureAmplify());
-
+  await Future.delayed(const Duration(seconds: 1))
+      .whenComplete(() async => await ConfigService.configureAmplify());
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => HomeVM()),
   ], child: const MyApp()));
+
+  ///enable this for testing...
+  // runApp(DevicePreview(
+  //   enabled: !kReleaseMode,
+  //     builder: (context) => MultiProvider(providers: [
+  //           ChangeNotifierProvider(create: (context) => HomeVM()),
+  //         ], child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {

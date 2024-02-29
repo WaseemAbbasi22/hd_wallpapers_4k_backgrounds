@@ -298,6 +298,7 @@ class AppAssets {
   static const String whiteContainerBg = 'assets/images/white_bg.png';
   static const String downloadWallpaperIcon = 'assets/icons/download_icon.svg';
   static const String favouriteIcon = 'assets/icons/favourite_icon.svg';
+  static const String favouriteIconRed = 'assets/icons/favourite_icon_red.svg';
   static const String setWallpaperIcon = 'assets/icons/set_wallpaper_icon.svg';
   static const String shareIcon = 'assets/icons/share_icon.svg';
   static const String searchIcon = 'assets/icons/search_icon.svg';

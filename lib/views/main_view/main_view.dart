@@ -101,7 +101,12 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                Expanded(flex: 1, child: toggleTabs()),
+                Expanded(flex: 1, child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    toggleTabs(),
+                  ],
+                )),
                 Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
@@ -121,6 +126,7 @@ class _MainViewState extends State<MainView> {
         valueListenable: _tabIndex,
         builder: (context, currentIndex, _) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),

@@ -333,7 +333,6 @@ class HomeVM extends ChangeNotifier {
 
     if (resultEither.isRight()) {
       String? allFavWallpapers = resultEither.getOrElse(() => "");
-      log("Here are :::$allFavWallpapers");
       if (!isAlreadyThere(wallpaperUrl: wallpaperModel.imageUrl.trim(), allWallpapers: allFavWallpapers)) {
         allFavWallpapers = allFavWallpapers + wallpaperModel.imageUrl.trim() + AppConstants.cacheSplitter;
         await cacheRepo.addFavoriteWallpaper(imageUrl: allFavWallpapers, isForDownloads: isForDownloads);

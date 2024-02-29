@@ -9,7 +9,7 @@ class BackButtonComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius??25,
+      radius: radius??20,
       backgroundColor: context.theme.appColors.onSecondary,
       child: IconButton(
         onPressed:onPressed?? () {

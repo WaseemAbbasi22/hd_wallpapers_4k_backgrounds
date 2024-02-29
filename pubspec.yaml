@@ -50,6 +50,7 @@ dependencies:
   http: ^1.1.0
   flutter_file_dialog: ^3.0.2
   async_wallpaper: ^2.0.3
+  device_preview: ^1.1.0
 
 
 
@@ -67,8 +68,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/categories_popular/
-    - assets/categories_recommended/
     - assets/animations/
 
 
