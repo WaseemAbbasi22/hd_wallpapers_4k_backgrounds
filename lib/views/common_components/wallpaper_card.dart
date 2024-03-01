@@ -18,7 +18,7 @@ class WallPaperCard extends StatelessWidget {
   final double? borderWidth;
   final bool isFromNetwork;
   final bool isWallpaperCover;
-  final Function()? onLoadFailed;
+  final Function(int)? onLoadFailed;
 
   const WallPaperCard(
       {required this.index,
@@ -60,20 +60,21 @@ class WallPaperCard extends StatelessWidget {
                   ? CachedNetworkImage(
                       imageUrl: imageUrl ?? '',
                       fit: BoxFit.cover,
+                      memCacheWidth: (250 * MediaQuery.of(context).devicePixelRatio).round(),
                       placeholder: (context, url) => Center(
-                            child: SizedBox(
-                              height: 3.h,
-                              width: 6.w,
-                              child: const CircularProgressIndicator(
-                                color: AppColors.kWhiteColor,
-                                strokeWidth: 1,
-                              ),
-                            ),
+                        child: SizedBox(
+                          height: 3.h,
+                          width: 6.w,
+                          child: const CircularProgressIndicator(
+                            color: AppColors.kWhiteColor,
+                            strokeWidth: 1,
                           ),
+                        ),
+                      ),
                       errorWidget: (context, url, error) {
                         if (onLoadFailed != null) {
                           log("OnLoadFailedCalled!!");
-                          onLoadFailed!();
+                          onLoadFailed!(index);
                         }
                         return Center(
                           child: SizedBox(
@@ -85,7 +86,8 @@ class WallPaperCard extends StatelessWidget {
                             ),
                           ),
                         );
-                      })
+                      },
+                    )
                   : Image.asset(
                       imageUrl ?? '',
                       fit: BoxFit.cover,

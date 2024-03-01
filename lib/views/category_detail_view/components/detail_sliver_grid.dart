@@ -19,12 +19,16 @@ class DetailSliverGrid extends StatelessWidget {
             index: index,
             borderColor: Colors.transparent,
             imageUrl: wallpaperModel.imageUrl,
-            onLoadFailed: () {
+            onLoadFailed: (index) {
               wallpaperList.removeAt(index);
             },
             onCardTap: () {
               HomeVM homeVM = context.read<HomeVM>();
-              homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: wallpaperModel.imageKey);
+              homeVM.getHdImageUrlForFeedAndNavigate(
+                context: context,
+                thumbnailKey: wallpaperModel.imageKey,
+                thumbnailUrl: wallpaperModel.imageUrl,
+              );
               // Navigator.pushNamed(context, NamedRoute.setWallpaperView, arguments: {'categoryModel': category});
             },
             // child: Positioned(

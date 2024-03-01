@@ -54,7 +54,12 @@ class _ColorViewState extends State<ColorView> {
               ColorAppBar(title: widget.arguments['colorModel']['label']),
               SizedBox(height: 2.h),
               Consumer(builder: (BuildContext context, HomeVM homeVM, Widget? child) {
-                return ColorGridComponent(wallpaperList: homeVM.wallpapersListByCategory);
+                return ColorGridComponent(
+                    wallpaperList: homeVM.wallpapersListByCategory,
+                    onLoadFailed: (index) {
+                      homeVM.removeWallpaperByIndex(index);
+                      setState(() {});
+                    });
               })
             ],
           ),

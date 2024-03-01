@@ -110,14 +110,15 @@ class _MainViewState extends State<MainView> {
                       ],
                     )),
                 Expanded(
-                    flex: 9,
-                    child: ValueListenableBuilder(
-                      valueListenable: _tabIndex,
-                      builder: (context, currentIndex, _) {
-                        ///select the page here....
-                        return currentIndex == 0 ? const HomeView() : const CategoryView();
-                      },
-                    )),
+                  flex: 9,
+                  child: ValueListenableBuilder(
+                    valueListenable: _tabIndex,
+                    builder: (context, currentIndex, _) {
+                      ///select the page here....
+                      return currentIndex == 0 ? const HomeView() : const CategoryView();
+                    },
+                  ),
+                ),
               ],
             ),
           );

@@ -1,4 +1,3 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
@@ -62,7 +61,12 @@ class RecommendedSection extends StatelessWidget {
                 index: index,
                 onCardTap: () {
                   HomeVM homeVM = context.read<HomeVM>();
-                  homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey);
+                  homeVM.getHdImageUrlForFeedAndNavigate(
+                    context: context,
+                    thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey,
+                    thumbnailUrl: homeVM.recommendedWallpapersList[index].imageUrl,
+
+                  );
                 },
                 borderColor: Colors.transparent,
                 imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,

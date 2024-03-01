@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'dart:ui';
 
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
@@ -27,9 +29,11 @@ class SetWallpaperView extends StatefulWidget {
 
 class _SetWallpaperViewState extends State<SetWallpaperView> {
   late WallpaperModel wallpaperModel;
+  late HomeVM homeVM;
 
   @override
   void initState() {
+    homeVM = context.read<HomeVM>();
     wallpaperModel = widget.arguments['wallpaperModel'];
     getWallpaperStatus();
     super.initState();
@@ -39,7 +43,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
 
   getWallpaperStatus() {
     scheduleMicrotask(() async {
-      isFavorite = await context.read<HomeVM>().checkIfFavoriteWallpaper(imageUrl: wallpaperModel.imageUrl);
+      isFavorite = await homeVM.checkIfFavoriteWallpaper(imageUrl: wallpaperModel.imageUrl);
       setState(() {});
     });
   }
@@ -57,59 +61,113 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: BackgroundContainer(
-            verticalPadding: 2.h,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 2.h),
-                const BackButtonComponent(),
-                SizedBox(
-                  height: 3.h,
-                ),
-                Expanded(
-                    flex: 5,
-                    child: SizedBox(
-                      width: 100.w,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
-                        child: CachedNetworkImage(
-                          imageUrl: wallpaperModel.imageUrl,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Center(
-                            child: SizedBox(
-                              height: 3.h,
-                              width: 6.w,
-                              child: const CircularProgressIndicator(
-                                color: AppColors.kWhiteColor,
-                                strokeWidth: 1,
-                              ),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
-                        ),
-                      ),
-                    )),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Expanded(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                    AppString.wallpaperActionData.length,
-                    (index) => ActionItems(
-                      label: AppString.wallpaperActionData[index]['label'],
-                      iconPath: getIconForFavorite(index),
-                      onTap: () => onActionTap(index: index, wallpaperModel: wallpaperModel, isFavorite: isFavorite),
-                    ),
+    return PopScope(
+      onPopInvoked: (bool value) {
+        homeVM.updateCurrentImageHdUrl("");
+      },
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: BackgroundContainer(
+              verticalPadding: 2.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 2.h),
+                  BackButtonComponent(
+                    onPressed: () {
+                      homeVM.updateCurrentImageHdUrl("");
+                      Navigator.pop(context);
+                    },
                   ),
-                )),
-              ],
+                  SizedBox(height: 3.h),
+                  Expanded(
+                      flex: 5,
+                      child: SizedBox(
+                        width: 100.w,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(AppConstants.sliderCardRadius),
+                          child: Consumer<HomeVM>(
+                            builder: (BuildContext context, HomeVM homeVM, Widget? child) {
+                              if (homeVM.currentImageHdUrl == "") {
+                                return ImageFiltered(
+                                  imageFilter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                                  child: CachedNetworkImage(
+                                    imageUrl: wallpaperModel.thumbnailUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => Center(
+                                      child: SizedBox(
+                                        height: 3.h,
+                                        width: 6.w,
+                                        child: const CircularProgressIndicator(color: AppColors.kWhiteColor, strokeWidth: 1),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return CachedNetworkImage(
+                                imageUrl: homeVM.currentImageHdUrl,
+                                fit: BoxFit.cover,
+                                memCacheWidth: (250 * MediaQuery.of(context).devicePixelRatio).round(),
+                                // placeholder: (context, url) => Center(
+                                //   child: SizedBox(
+                                //     height: 3.h,
+                                //     width: 6.w,
+                                //     child: const CircularProgressIndicator(color: AppColors.kWhiteColor, strokeWidth: 1),
+                                //   ),
+                                // ),
+                                progressIndicatorBuilder: (context, url, downloadProgress) {
+                                  log("I am here with ${downloadProgress.progress}");
+                                  return Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Positioned.fill(
+                                        child: ImageFiltered(
+                                          imageFilter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                                          child: CachedNetworkImage(
+                                            imageUrl: wallpaperModel.thumbnailUrl,
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) => Center(
+                                              child: SizedBox(
+                                                height: 3.h,
+                                                width: 6.w,
+                                                child: const CircularProgressIndicator(color: AppColors.kWhiteColor, strokeWidth: 1),
+                                              ),
+                                            ),
+                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                          ),
+                                        ),
+                                      ),
+                                      Align(
+                                          child: CircularProgressIndicator(
+                                              color: AppColors.kWhiteColor, value: downloadProgress.progress, strokeWidth: 1)),
+                                    ],
+                                  );
+                                },
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
+                              );
+                            },
+                          ),
+                        ),
+                      )),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Expanded(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      AppString.wallpaperActionData.length,
+                      (index) => ActionItems(
+                        label: AppString.wallpaperActionData[index]['label'],
+                        iconPath: getIconForFavorite(index),
+                        onTap: () => onActionTap(index: index, wallpaperModel: wallpaperModel, isFavorite: isFavorite),
+                      ),
+                    ),
+                  )),
+                ],
+              ),
             ),
           ),
         ),

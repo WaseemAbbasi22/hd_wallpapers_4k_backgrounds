@@ -1,16 +1,15 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class ColorGridComponent extends StatelessWidget {
   final List<WallpaperModel> wallpaperList;
+  final Function(int)? onLoadFailed;
 
-  const ColorGridComponent({required this.wallpaperList, super.key});
+  const ColorGridComponent({required this.wallpaperList, this.onLoadFailed, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +34,18 @@ class ColorGridComponent extends StatelessWidget {
               index: index,
               borderColor: Colors.transparent,
               imageUrl: wallpaperModel.imageUrl,
+              onLoadFailed: (index) {
+                if (onLoadFailed != null) {
+                  onLoadFailed!(index);
+                }
+              },
               onCardTap: () {
                 HomeVM homeVM = context.read<HomeVM>();
-                homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: wallpaperModel.imageKey);
+                homeVM.getHdImageUrlForFeedAndNavigate(
+                  context: context,
+                  thumbnailKey: wallpaperModel.imageKey,
+                  thumbnailUrl: wallpaperModel.imageUrl,
+                );
               },
               // child: Positioned(
               //   top: 8,

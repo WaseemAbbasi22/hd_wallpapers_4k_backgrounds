@@ -1,4 +1,3 @@
-import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/models/wallpaper_model.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
@@ -67,7 +66,11 @@ class _ImageSliderState extends State<ImageSlider> {
               onCardTap: () {
                 ///Go to detail page.....
                 HomeVM homeVM = context.read<HomeVM>();
-                homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: item.imageKey);
+                homeVM.getHdImageUrlForFeedAndNavigate(
+                  context: context,
+                  thumbnailKey: item.imageKey,
+                  thumbnailUrl: item.imageUrl,
+                );
               }))
           .toList(),
     );

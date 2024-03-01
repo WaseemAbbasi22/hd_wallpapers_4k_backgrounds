@@ -43,6 +43,11 @@ class HomeVM extends ChangeNotifier {
     return itemsList.items;
   }
 
+  void removeWallpaperByIndex(int index) {
+    wallpapersListByCategory.removeAt(index);
+    notifyListeners();
+  }
+
   String getCategoryNameFromKey(String key) {
     String name = key;
 
@@ -173,8 +178,23 @@ class HomeVM extends ChangeNotifier {
     }
   }
 
-  Future<void> getHdImageUrlForFeedAndNavigate({required String thumbnailKey, required BuildContext context}) async {
-    UserIntimationComponents.getLoader(context);
+  String currentImageHdUrl = "";
+
+  updateCurrentImageHdUrl(var value) {
+    currentImageHdUrl = value;
+    notifyListeners();
+  }
+
+  Future<void> getHdImageUrlForFeedAndNavigate({
+    required String thumbnailKey,
+    required String thumbnailUrl,
+    required BuildContext context,
+  }) async {
+    Navigator.pushNamed(
+      context,
+      NamedRoute.setWallpaperView,
+      arguments: {'wallpaperModel': WallpaperModel(imageUrl: "", thumbnailUrl: thumbnailUrl)},
+    );
     log('This is key I got: $thumbnailKey');
     var keyParts = thumbnailKey.split('/');
     if (keyParts.isNotEmpty) {
@@ -188,19 +208,13 @@ class HomeVM extends ChangeNotifier {
         log('This is key I mainImageKey: $mainImageKey');
 
         StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(
-            key: mainImageKey,
-            options: const StorageGetUrlOptions(
-              accessLevel: StorageAccessLevel.guest,
-            ));
-        final StorageGetUrlResult imageUrl = await urlOperation.result;
-
-        await Future.delayed(const Duration(seconds: 1)).whenComplete(
-          () => Navigator.pushReplacementNamed(
-            context,
-            NamedRoute.setWallpaperView,
-            arguments: {'wallpaperModel': WallpaperModel(imageUrl: imageUrl.url.toString())},
+          key: mainImageKey,
+          options: const StorageGetUrlOptions(
+            accessLevel: StorageAccessLevel.guest,
           ),
         );
+        final StorageGetUrlResult imageUrl = await urlOperation.result;
+        updateCurrentImageHdUrl(imageUrl.url.toString());
       } catch (e) {
         log('Error: $e');
         Navigator.pop(context);

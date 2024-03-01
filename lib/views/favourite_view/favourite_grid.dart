@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
@@ -46,11 +44,15 @@ class FavouriteGridComponent extends StatelessWidget {
               borderColor: Colors.transparent,
               imageUrl: wallpaperModel.imageUrl,
               onCardTap: () {
+                context.read<HomeVM>().updateCurrentImageHdUrl(wallpaperModel.imageUrl);
                 Navigator.pushNamed(
                   context,
                   NamedRoute.setWallpaperView,
                   arguments: {
-                    'wallpaperModel': WallpaperModel(imageUrl: wallpaperModel.imageUrl.toString()),
+                    'wallpaperModel': WallpaperModel(
+                      imageUrl: wallpaperModel.imageUrl.toString(),
+                      thumbnailUrl: wallpaperModel.thumbnailUrl,
+                    ),
                     'isFromFavOrDownload': true,
                   },
                 );
