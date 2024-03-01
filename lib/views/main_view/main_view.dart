@@ -101,12 +101,14 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                Expanded(flex: 1, child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    toggleTabs(),
-                  ],
-                )),
+                Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        toggleTabs(),
+                      ],
+                    )),
                 Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
@@ -132,7 +134,7 @@ class _MainViewState extends State<MainView> {
                 padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
                 child: FlutterToggleTab(
                   // width in percent
-                  width: 23.2.w,
+                  width: 21.2.w,
                   borderRadius: 30,
                   height: 7.h,
                   selectedIndex: currentIndex,

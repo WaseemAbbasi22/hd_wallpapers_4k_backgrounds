@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -70,6 +72,7 @@ class WallPaperCard extends StatelessWidget {
                           ),
                       errorWidget: (context, url, error) {
                         if (onLoadFailed != null) {
+                          log("OnLoadFailedCalled!!");
                           onLoadFailed!();
                         }
                         return Center(

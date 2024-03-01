@@ -176,7 +176,7 @@ class DrawerWidgetItems extends StatelessWidget {
 
         break;
       case 5:
-        // RATE THIS APP
+        GeneralUtilities.launchURL(AppString.playStoreLink);
         break;
       case 6:
         await GeneralUtilities.shareMyApp();

@@ -3,11 +3,11 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class UserIntimationComponents {
-  static void showToast(dynamic value) {
+  static void showToast(dynamic value, {int? forSeconds}) {
     EasyLoading.showToast(
       value,
       toastPosition: EasyLoadingToastPosition.bottom,
-      duration: const Duration(seconds: 1),
+      duration: Duration(seconds: forSeconds ?? 1),
     );
   }
 

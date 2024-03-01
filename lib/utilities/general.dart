@@ -87,6 +87,11 @@ class GeneralUtilities {
     // static const int LOCK_SCREEN = 2;
     // static const int BOTH_SCREENS = 3;
 
+    UserIntimationComponents.showToast(
+      "Setting wallpaper..",
+      forSeconds: 3,
+    );
+
     String result = "";
     try {
       result = await AsyncWallpaper.setWallpaper(

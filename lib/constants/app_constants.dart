@@ -18,8 +18,8 @@ class AppConstants {
   static const String popularWallpapersKey = 'popular_categories/';
   static const String recommendedThumbnailsKey = 'recommended-thumbnails/';
   static const String recommendedWallpapersKey = 'recommended_categories/';
-  static const String colorsWallpapersKey = 'colors_categories/';
-  static const String colorsThumbnailsKey = 'colors-thumbnails/';
+  static const String colorsWallpapersKey = 'color_categories/';
+  static const String colorsThumbnailsKey = 'color-thumbnails/';
   static const String wallpaperCovers = 'wallpaper_covers/';
   static const String wallpaperCoversExtension = '.png';
   static const String cacheSplitter = '/_mySplitter%_/';

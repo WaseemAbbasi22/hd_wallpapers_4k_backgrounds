@@ -185,6 +185,7 @@ class HomeVM extends ChangeNotifier {
         var subCategory = temp[1];
         var thumbnailNameNew = thumbnailName.replaceAll("${temp[0]}-${temp[1]}-", "");
         var mainImageKey = '$mainCategory/$subCategory/$thumbnailNameNew';
+        log('This is key I mainImageKey: $mainImageKey');
 
         StorageGetUrlOperation<StorageGetUrlRequest, StorageGetUrlResult> urlOperation = Amplify.Storage.getUrl(
             key: mainImageKey,

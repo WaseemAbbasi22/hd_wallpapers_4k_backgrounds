@@ -37,7 +37,6 @@ class ColorSection extends StatelessWidget {
                   radius: 35.0,
                   label: colorModel['label'],
                   gradientColors: colorModel['colors'],
-                  // Add your desired gradient colors
                   onTap: () {
                     Navigator.pushNamed(
                       context,
