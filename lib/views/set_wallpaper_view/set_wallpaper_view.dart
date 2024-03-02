@@ -153,9 +153,7 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
+                  SizedBox(height: 2.h),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
