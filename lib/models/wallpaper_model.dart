@@ -1,6 +1,6 @@
 class WallpaperModel {
   final String imageKey;
-  final String imageUrl;
+  String imageUrl;
   final String thumbnailUrl;
   final String imageSize;
 

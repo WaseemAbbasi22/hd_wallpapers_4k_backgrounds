@@ -35,7 +35,6 @@ class FavouriteGridComponent extends StatelessWidget {
           itemCount: wallpapers.length,
           itemBuilder: (BuildContext context, int index) {
             WallpaperModel wallpaperModel = WallpaperModel(imageUrl: wallpapers[index]);
-
             if (wallpapers.isEmpty) {
               return Text("There are no wallpapers in this category", style: AppStyle.normalTextStyle);
             }
