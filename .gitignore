@@ -66,4 +66,4 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 
-wallpapers_app_latest_keystore
+android/app/wallpapers_app_latest_keystore

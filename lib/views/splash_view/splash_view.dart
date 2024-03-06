@@ -9,9 +9,11 @@ import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/utilities/connectivity.dart';
 import 'package:awesome_wallpapers/utilities/general.dart';
+import 'package:awesome_wallpapers/utilities/in_app_update.dart';
 import 'package:awesome_wallpapers/views/common_components/background_container_component.dart';
 import 'package:awesome_wallpapers/views/common_components/button_component.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
+    InAppUpdateUtil.performImmediateUpdate();
     ConnectivityUtil.subscribeToConnectivityChange(onNoInternetFound: () => onNoInternetFound());
     onLoaded();
     super.initState();
@@ -86,6 +89,7 @@ class _SplashViewState extends State<SplashView> {
                   onTap: () async {
                     var status = await ConnectivityUtil.checkInternetConnectivity(onNoInternetFound: () => onNoInternetFound());
                     if (status) {
+                      // FirebaseCrashlytics.instance.crash();
                       if (homeVM.feedThumbnailList.isEmpty) {
                         onLoaded();
                       }
