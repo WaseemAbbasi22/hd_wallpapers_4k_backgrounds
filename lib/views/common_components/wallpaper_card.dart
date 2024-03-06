@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
 class WallPaperCard extends StatelessWidget {
@@ -15,9 +16,9 @@ class WallPaperCard extends StatelessWidget {
   final Color? borderColor;
   final bool? hasTopRadiusOnly;
   final double? borderWidth;
-  final bool? isFromNetwork;
-  final bool? isSvgNetwork;
-  final Function()? onLoadFailed;
+  final bool isFromNetwork;
+  final bool isWallpaperCover;
+  final Function(int)? onLoadFailed;
 
   const WallPaperCard(
       {required this.index,
@@ -30,14 +31,14 @@ class WallPaperCard extends StatelessWidget {
       this.hasTopRadiusOnly = false,
       this.width,
       this.isFromNetwork = true,
-      this.isSvgNetwork = false,
+      this.isWallpaperCover = false,
       this.onLoadFailed,
       super.key});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      key: ValueKey(index),
+      key: UniqueKey(),
       children: [
         GestureDetector(
           onTap: onCardTap,
@@ -45,19 +46,22 @@ class WallPaperCard extends StatelessWidget {
             width: width ?? 60.w,
             height: height ?? 100.h,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: borderColor ?? AppColors.kGreyColor,
-                width: borderWidth ?? 2.0,
-              ),
+              border: isWallpaperCover
+                  ? null
+                  : Border.all(
+                      color: (borderColor ?? AppColors.kGreyColor),
+                      width: borderWidth ?? 2.0,
+                    ),
               borderRadius: hasTopRadiusOnly! ? BorderRadius.zero : BorderRadius.circular(AppConstants.sliderCardRadius),
             ),
             child: ClipRRect(
               borderRadius: hasTopRadiusOnly! ? BorderRadius.zero : BorderRadius.circular(AppConstants.sliderCardRadius),
-              child: (isSvgNetwork ?? false)
-                  ? SvgPicture.network(
-                      imageUrl ?? '',
+              child: (isFromNetwork)
+                  ? CachedNetworkImage(
+                      imageUrl: imageUrl ?? '',
                       fit: BoxFit.cover,
-                      placeholderBuilder: (context) => Center(
+                      memCacheWidth: (250 * MediaQuery.of(context).devicePixelRatio).round(),
+                      placeholder: (context, url) => Center(
                         child: SizedBox(
                           height: 3.h,
                           width: 6.w,
@@ -67,40 +71,27 @@ class WallPaperCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      errorWidget: (context, url, error) {
+                        if (onLoadFailed != null) {
+                          log("OnLoadFailedCalled!!");
+                          onLoadFailed!(index);
+                        }
+                        return Center(
+                          child: SizedBox(
+                            height: 3.h,
+                            width: 6.w,
+                            child: const CircularProgressIndicator(
+                              color: AppColors.kWhiteColor,
+                              strokeWidth: 1,
+                            ),
+                          ),
+                        );
+                      },
                     )
-                  : (isFromNetwork ?? true)
-                      ? CachedNetworkImage(
-                          imageUrl: imageUrl ?? '',
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Center(
-                                child: SizedBox(
-                                  height: 3.h,
-                                  width: 6.w,
-                                  child: const CircularProgressIndicator(
-                                    color: AppColors.kWhiteColor,
-                                    strokeWidth: 1,
-                                  ),
-                                ),
-                              ),
-                          errorWidget: (context, url, error) {
-                            if (onLoadFailed != null) {
-                              onLoadFailed!();
-                            }
-                            return Center(
-                              child: SizedBox(
-                                height: 3.h,
-                                width: 6.w,
-                                child: const CircularProgressIndicator(
-                                  color: AppColors.kWhiteColor,
-                                  strokeWidth: 1,
-                                ),
-                              ),
-                            );
-                          })
-                      : Image.asset(
-                          imageUrl ?? '',
-                          fit: BoxFit.cover,
-                        ),
+                  : Image.asset(
+                      imageUrl ?? '',
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
         ),

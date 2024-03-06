@@ -1,6 +1,9 @@
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
+import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:sizer/sizer.dart';
 
 class SearchTextField extends StatelessWidget {
   final Function(dynamic value) onChange;
@@ -40,9 +43,10 @@ class SearchTextField extends StatelessWidget {
               ? suffixChild ??
                   GestureDetector(
                     onTap: onSearch,
-                    child: Icon(
-                      Icons.search,
-                      color: context.theme.appColors.tertiaryContainer,
+                    child: SvgPicture.asset(
+                      AppAssets.searchIcon,
+                      height: 3.h,
+                      color: context.theme.appColors.tertiary,
                     ),
                   )
               : null,

@@ -35,7 +35,6 @@ class FavouriteGridComponent extends StatelessWidget {
           itemCount: wallpapers.length,
           itemBuilder: (BuildContext context, int index) {
             WallpaperModel wallpaperModel = WallpaperModel(imageUrl: wallpapers[index]);
-
             if (wallpapers.isEmpty) {
               return Text("There are no wallpapers in this category", style: AppStyle.normalTextStyle);
             }
@@ -44,11 +43,15 @@ class FavouriteGridComponent extends StatelessWidget {
               borderColor: Colors.transparent,
               imageUrl: wallpaperModel.imageUrl,
               onCardTap: () {
+                context.read<HomeVM>().updateCurrentImageHdUrl(wallpaperModel.imageUrl);
                 Navigator.pushNamed(
                   context,
                   NamedRoute.setWallpaperView,
                   arguments: {
-                    'wallpaperModel': WallpaperModel(imageUrl: wallpaperModel.imageUrl.toString()),
+                    'wallpaperModel': WallpaperModel(
+                      imageUrl: wallpaperModel.imageUrl.toString(),
+                      thumbnailUrl: wallpaperModel.thumbnailUrl,
+                    ),
                     'isFromFavOrDownload': true,
                   },
                 );

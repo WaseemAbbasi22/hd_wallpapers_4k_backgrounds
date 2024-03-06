@@ -101,16 +101,24 @@ class _MainViewState extends State<MainView> {
                 SizedBox(
                   height: 1.h,
                 ),
-                Expanded(flex: 1, child: toggleTabs()),
                 Expanded(
-                    flex: 9,
-                    child: ValueListenableBuilder(
-                      valueListenable: _tabIndex,
-                      builder: (context, currentIndex, _) {
-                        ///select the page here....
-                        return currentIndex == 0 ? const HomeView() : const CategoryView();
-                      },
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        toggleTabs(),
+                      ],
                     )),
+                Expanded(
+                  flex: 9,
+                  child: ValueListenableBuilder(
+                    valueListenable: _tabIndex,
+                    builder: (context, currentIndex, _) {
+                      ///select the page here....
+                      return currentIndex == 0 ? const HomeView() : const CategoryView();
+                    },
+                  ),
+                ),
               ],
             ),
           );
@@ -121,14 +129,15 @@ class _MainViewState extends State<MainView> {
         valueListenable: _tabIndex,
         builder: (context, currentIndex, _) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
                 child: FlutterToggleTab(
                   // width in percent
-                  width: 23.2.w,
+                  width: 21.2.w,
                   borderRadius: 30,
-                  height: 8.h,
+                  height: 7.h,
                   selectedIndex: currentIndex,
                   selectedBackgroundColors: [
                     context.theme.appColors.primaryContainer,

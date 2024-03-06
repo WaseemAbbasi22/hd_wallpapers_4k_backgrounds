@@ -23,7 +23,7 @@ class ColorSection extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(left: AppConstants.kHorizontalPadding),
-          height: 17.h,
+          height: 18.h,
           child: ListView.builder(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
@@ -37,7 +37,6 @@ class ColorSection extends StatelessWidget {
                   radius: 35.0,
                   label: colorModel['label'],
                   gradientColors: colorModel['colors'],
-                  // Add your desired gradient colors
                   onTap: () {
                     Navigator.pushNamed(
                       context,

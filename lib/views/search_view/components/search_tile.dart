@@ -26,7 +26,7 @@ class SearchTile extends StatelessWidget {
               decoration: isFromNetwork
                   ? BoxDecoration(
                       image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitWidth,
                         image: NetworkImage(category.imageUrl),
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(AppConstants.sliderCardRadius)),

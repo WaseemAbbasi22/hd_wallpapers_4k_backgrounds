@@ -24,9 +24,7 @@ class ColorAppBar extends StatelessWidget {
             SizedBox(
               width: 2.w,
             ),
-            BackButtonComponent(
-              radius: 2.5.h,
-            ),
+            const BackButtonComponent(),
             SizedBox(width: 5.w,),
             Text(title, style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline)),
           ],

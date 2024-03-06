@@ -61,7 +61,12 @@ class RecommendedSection extends StatelessWidget {
                 index: index,
                 onCardTap: () {
                   HomeVM homeVM = context.read<HomeVM>();
-                  homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey);
+                  homeVM.getHdImageUrlForFeedAndNavigate(
+                    context: context,
+                    thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey,
+                    thumbnailUrl: homeVM.recommendedWallpapersList[index].imageUrl,
+
+                  );
                 },
                 borderColor: Colors.transparent,
                 imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,

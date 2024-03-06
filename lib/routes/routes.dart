@@ -1,9 +1,10 @@
-import 'package:awesome_wallpapers/views/category_detail_view/category_detial_view.dart';
+import 'package:awesome_wallpapers/views/category_detail_view/category_detail_view.dart';
 import 'package:awesome_wallpapers/views/category_view/category_view.dart';
 import 'package:awesome_wallpapers/views/color_view/color_view.dart';
 import 'package:awesome_wallpapers/views/favourite_view/favourite_view.dart';
 import 'package:awesome_wallpapers/views/home_view/home_view.dart';
 import 'package:awesome_wallpapers/views/main_view/main_view.dart';
+import 'package:awesome_wallpapers/views/no_internet_view/no_internet_connection_view.dart';
 import 'package:awesome_wallpapers/views/search_view/search_view.dart';
 import 'package:awesome_wallpapers/views/set_wallpaper_view/set_wallpaper_view.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
@@ -61,6 +62,11 @@ class AppRoutes {
           builder: (context) => SetWallpaperView(arguments: settings.arguments as Map),
           settings: settings,
         );
+      case NamedRoute.noInternetConnection:
+        return MaterialPageRoute<void>(
+          builder: (context) => const NoInternetConnection(),
+          settings: settings,
+        );
       default:
         return MaterialPageRoute<void>(
           builder: (_) => _UndefinedView(name: settings.name),
@@ -96,4 +102,5 @@ class NamedRoute {
   static const String favouriteView = '/favouriteView';
   static const String searchView = '/searchView';
   static const String setWallpaperView = '/setWallpaperView';
+  static const String noInternetConnection = '/noInternetConnection';
 }

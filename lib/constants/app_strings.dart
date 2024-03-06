@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppString {
   static String appDescription = 'Free Unlimited High Quality Wallpapers And Backgrounds';
-  static String appName = 'HD Wallpaper - 4K Background';
+  static String appName = 'Wallpaper App';
   static String myFavourite = 'My Favourites';
   static String myDownloads = 'My Downloads';
   static String wallOfDay = 'Wall Of The Day 🔥';
@@ -21,25 +21,16 @@ class AppString {
   static String searchResults = "Search Results";
   static String popularCategories = 'Popular Categories';
   static String searchInCategories = 'Search in 100+ trending categories';
+  static String noWallpapersInCategory = 'There are no wallpapers in this category';
+  static String noInternetConnection = 'No Internet Connection';
+  static String internetRestored = 'Your internet was restored';
+  static String noInternetConnectionTryAgain = 'Something went wrong. Please check your internet connection and try again.';
   static List<String> tabsTextList = ["Home", "Categories"];
 
   static const privacyPolicyLink = "https://sites.google.com/view/wizdom-apps-privacy-policy/home";
   static const packageName = "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper";
   static const playStoreLink = "https://play.google.com/store/apps/details?id=$packageName";
 
-  static List<String> sliderImageUrl = [
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5'
-  ];
-  static List<String> popularCatogoriesImageUrl = [
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/da/da73d887948ecff2fd64684e49bf0c08.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/62/624e27fde335d49e2dd3c6b75c6027a3.jpeg?h=1200&r=0.5',
-    'https://w.forfun.com/fetch/10/10c06d36f8a6ad541539e236fd4f182a.jpeg?h=1200&r=0.5',
-  ];
   static List<IconData> tabsIconList = [
     Icons.home_filled,
     Icons.category,
@@ -60,30 +51,27 @@ class AppString {
     {
       'label': 'Green',
       'colors': [const Color(0xFFA8E063), const Color(0xFF56AB2F)],
-    },{
+    },
+    {
       'label': 'Orange',
       'colors': [const Color(0xFFFFBE0B), const Color(0xFFF42B03)],
-    },{
+    },
+    {
       'label': 'Purple',
       'colors': [const Color(0xFF6633B6), const Color(0xFF310E68)],
-    },{
+    },
+    {
       'label': 'Blue',
       'colors': [const Color(0xFF20A4F3), const Color(0xFF335A79)],
-    },{
+    },
+    {
       'label': 'Teal',
       'colors': [const Color(0xFF34A798), const Color(0xFF036A6A)],
-    },{
+    },
+    {
       'label': 'DarkGrey',
       'colors': [const Color(0xFF9A9A9A), const Color(0xFF454545)],
     },
-    // {
-    //   'label': 'Orange',
-    //   'colors': [Colors.orangeAccent, Colors.orange],
-    // },
-    // {
-    //   'label': 'Blue',
-    //   'colors': [Colors.lightBlueAccent, Colors.blue],
-    // },
   ];
 
   static List<Map<String, dynamic>> wallpaperActionData = [
@@ -95,7 +83,7 @@ class AppString {
   static List<Map<String, dynamic>> shareBottomSheetActionData = [
     {'icon': AppAssets.whatsappIcon, 'label': 'WhatsApp'},
     {'icon': AppAssets.facebookIcon, 'label': 'Facebook'},
-    {'icon': AppAssets.instagramIcon, 'label': 'Instagram'},
+    {'icon': AppAssets.InstagramIcon, 'label': 'Instagram'},
     {'icon': AppAssets.snapchatIcon, 'label': 'Snapchat'},
   ];
   static List<Map<String, dynamic>> setBottomSheetActionData = [
@@ -108,7 +96,7 @@ class AppString {
     {'icon': AppAssets.categoryIcon, 'label': 'Categories'},
     {'icon': AppAssets.favouriteIcon, 'label': 'Favorite'},
     {'icon': AppAssets.downloadIcon, 'label': 'Downloads'},
-    {'icon': AppAssets.homeIcon2, 'label': 'Light Mode'},
+    {'icon': AppAssets.homeIcon2, 'label': 'Light'},
     {'icon': AppAssets.rateAppIcon, 'label': 'Rate App'},
     {'icon': AppAssets.shareIcon, 'label': 'Share App'},
   ];

@@ -10,9 +10,10 @@ import 'package:sizer/sizer.dart';
 
 class SliverHeader extends StatelessWidget {
   final CategoryModel category;
+  final String coverImageUrl;
   final double scrollPosition;
 
-  const SliverHeader({required this.category, required this.scrollPosition, super.key});
+  const SliverHeader({required this.category, required this.scrollPosition, this.coverImageUrl = "", super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class SliverHeader extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon:  Icon(
+                icon: Icon(
                   Icons.arrow_back,
                   color: context.theme.appColors.outline,
                 ),
@@ -39,14 +40,13 @@ class SliverHeader extends StatelessWidget {
         centerTitle: true,
         title: scrollPosition >= 28.h
             ? Text(
-                category.name.toUpperCase(),
-                style: AppStyle.headingTextStyle
-                    .copyWith(color:context.theme.appColors.tertiary),
+                category.name.toUpperCase() ?? '',
+                style: AppStyle.headingTextStyle.copyWith(color: context.theme.appColors.tertiary),
               )
             : null,
         background: WallPaperCard(
             index: 0,
-            imageUrl: category.imageUrl,
+            imageUrl: coverImageUrl != "" ? coverImageUrl : category.imageUrl,
             hasTopRadiusOnly: true,
             width: 100.w,
             borderWidth: 0,
@@ -56,9 +56,9 @@ class SliverHeader extends StatelessWidget {
               left: 0,
               bottom: 0,
               child: Text(
-                category.name.toUpperCase(),
+                category.name.toUpperCase() ?? '',
                 style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor, fontSize: 22.sp),
-              ).toBackDropTextContainer(),
+              ).toBackDropTextContainer(hideRadius: true),
             )),
       ),
     );

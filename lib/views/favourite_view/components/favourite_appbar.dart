@@ -3,6 +3,7 @@ import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
+import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/common_components/back_button_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,10 @@ class FavouriteAppBar extends StatelessWidget {
             SizedBox(
               width: 5.w,
             ),
-            Text(isForDownloads ? AppString.myDownloads : AppString.myFavourite, style: AppStyle.normalTextStyle),
+            Text(isForDownloads ? AppString.myDownloads : AppString.myFavourite,
+                style: AppStyle.normalTextStyle.copyWith(
+                  color: context.theme.appColors.outline,
+                )),
           ],
         ),
         Padding(

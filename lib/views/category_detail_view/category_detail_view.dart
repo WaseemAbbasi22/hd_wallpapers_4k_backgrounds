@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
@@ -29,13 +30,17 @@ class _HomeViewState extends State<CategoryDetailView> {
     return (widget.arguments["mainCategory"]) + (categoryModel.name) + ('/');
   }
 
+  String coverImageUrl = "";
+
+  late CategoryModel categoryModel;
+
   @override
   void initState() {
     scrollController.addListener(() {
       updatePositionOnScroll(scrollController.offset);
     });
-
-    CategoryModel categoryModel = widget.arguments["categoryModel"];
+    categoryModel = widget.arguments["categoryModel"];
+    coverImageUrl = widget.arguments["coverImageUrl"] ?? "";
     if (categoryModel.name == AppString.wallOfDay) {
       scheduleMicrotask(() {
         context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey, isSeeAll: true);
@@ -68,23 +73,22 @@ class _HomeViewState extends State<CategoryDetailView> {
   @override
   Widget build(BuildContext context) {
     HomeVM homeVM = context.watch<HomeVM>();
-    CategoryModel category = widget.arguments['categoryModel'];
-    if (homeVM.wallpapersListByCategory.isNotEmpty && category.name != AppString.wallOfDay && category.name != AppString.recommended) {
-      category.imageUrl = homeVM.wallpapersListByCategory.last.imageUrl;
-    }
+    // CategoryModel category = widget.arguments['categoryModel'];
+    // if (homeVM.wallpapersListByCategory.isNotEmpty && category.name != AppString.wallOfDay && category.name != AppString.recommended) {
+    //   category.imageUrl = homeVM.wallpapersListByCategory.last.imageUrl;
+    // }
     return Scaffold(
       backgroundColor: context.theme.appColors.primary,
-      body: CustomScrollView(
-        controller: scrollController,
-          slivers: [
+      body: CustomScrollView(controller: scrollController, slivers: [
         SliverHeader(
-          category: category,
+          category: categoryModel,
           scrollPosition: scrollPosition,
+          coverImageUrl: coverImageUrl,
         ),
         DetailSliverGrid(
-          wallpaperList: (category.name == AppString.wallOfDay)
+          wallpaperList: (categoryModel.name == AppString.wallOfDay)
               ? homeVM.feedThumbnailList
-              : (category.name == AppString.recommended)
+              : (categoryModel.name == AppString.recommended)
                   ? homeVM.recommendedWallpapersList
                   : homeVM.wallpapersListByCategory,
         ),

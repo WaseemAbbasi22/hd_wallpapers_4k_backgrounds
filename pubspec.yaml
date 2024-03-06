@@ -29,9 +29,9 @@ dependencies:
   amplify_flutter: ^1.6.1
   amplify_auth_cognito: ^1.6.1
   amplify_storage_s3: ^1.6.1
-  firebase_auth:
-  firebase_core:
-  firebase_crashlytics:
+  #  firebase_auth:
+  #  firebase_core:
+  #  firebase_crashlytics:
   get_it: ^7.6.7
   animated_list_item: ^1.0.0
 
@@ -39,12 +39,10 @@ dependencies:
   shared_preferences: ^2.2.2
   logger: ^1.1.0
   dartz: ^0.10.1
-
-
-
+  lottie: ^2.6.0
   connectivity_plus: ^5.0.2
   share_plus: ^7.2.1
-  url_launcher: 6.0.20
+  url_launcher:
   flutter_easyloading: ^3.0.5
   equatable: ^2.0.5
   change_app_package_name: ^1.1.0
@@ -52,6 +50,7 @@ dependencies:
   http: ^1.1.0
   flutter_file_dialog: ^3.0.2
   async_wallpaper: ^2.0.3
+  device_preview: ^1.1.0
 
 
 
@@ -69,8 +68,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/categories_popular/
-    - assets/categories_recommended/
+    - assets/animations/
 
 
 
@@ -96,3 +94,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+#  flutter build apk --target-platform android-arm,android-arm64,android-x64
+
+#  flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+

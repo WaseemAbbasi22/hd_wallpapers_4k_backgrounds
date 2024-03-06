@@ -77,10 +77,7 @@ class WallpaperControlsBottomSheet {
             )).whenComplete(() async {});
   }
 
-  static Future setWallpaperBottomSheet(
-    BuildContext context, {
-    required WallpaperModel wallpaperModel,
-  }) {
+  static Future setWallpaperBottomSheet(BuildContext context, {required WallpaperModel wallpaperModel}) {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
         backgroundColor: Colors.transparent,

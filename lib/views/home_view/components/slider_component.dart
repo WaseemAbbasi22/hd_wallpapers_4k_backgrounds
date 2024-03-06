@@ -66,7 +66,11 @@ class _ImageSliderState extends State<ImageSlider> {
               onCardTap: () {
                 ///Go to detail page.....
                 HomeVM homeVM = context.read<HomeVM>();
-                homeVM.getHdImageUrlForFeedAndNavigate(context: context, thumbnailKey: item.imageKey);
+                homeVM.getHdImageUrlForFeedAndNavigate(
+                  context: context,
+                  thumbnailKey: item.imageKey,
+                  thumbnailUrl: item.imageUrl,
+                );
               }))
           .toList(),
     );

@@ -10,12 +10,23 @@ import 'app_typography.dart';
 ///
 /// You can also register it in `get_it` or any other package you use.
 class AppTheme with ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.dark;
 
   ThemeMode get themeMode => _themeMode;
 
   set themeMode(ThemeMode themeMode) {
     _themeMode = themeMode;
+    notifyListeners();
+  }
+
+
+  bool _isLightMode = false;
+
+
+  bool get isLightMode => _isLightMode;
+
+  set isLightMode(bool value) {
+    _isLightMode = value;
     notifyListeners();
   }
 

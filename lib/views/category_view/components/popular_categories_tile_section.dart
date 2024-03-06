@@ -2,6 +2,7 @@ import 'package:animated_list_item/animated_list_item.dart';
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/app_style/app_styles.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
+import 'package:awesome_wallpapers/extensions/extensions.dart';
 import 'package:awesome_wallpapers/models/category_model.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
 import 'package:awesome_wallpapers/views/common_components/wallpaper_card.dart';
@@ -31,6 +32,11 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
     _animationController.forward();
   }
 
+@override
+  void dispose() {
+  _animationController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     HomeVM homeVM = context.read<HomeVM>();
@@ -39,12 +45,13 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: AppConstants.kHorizontalPadding),
         child: ListView.builder(
-          itemCount: homeVM.randomPopularList.length,
+          itemCount: homeVM.randomPopularListTiles.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            CategoryModel category = homeVM.randomPopularList[index];
+            CategoryModel category = homeVM.randomPopularListTiles[index];
+
             return AnimatedListItem(
-              length: homeVM.randomPopularList.length,
+              length: homeVM.randomPopularListTiles.length,
               aniController: _animationController,
               animationType: AnimationType.zoom,
               index: index,
@@ -55,7 +62,7 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
                   imageUrl: category.imageUrl,
                   width: 100.w,
                   height: 10.h,
-                  isFromNetwork: false,
+                  isWallpaperCover: true,
                   onCardTap: () {
                     Navigator.pushNamed(
                       context,
@@ -73,7 +80,7 @@ class _PopularCategoriesTileSectionState extends State<PopularCategoriesTileSect
                         category.name.toUpperCase(),
                         style: AppStyle.headingTextStyle.copyWith(color: AppColors.kWhiteColor),
                       ),
-                    ),
+                    ).toBackDropTextContainer(),
                   ),
                 ),
               ),

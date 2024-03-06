@@ -86,7 +86,7 @@ class _SearchViewState extends State<SearchView> {
                       return Padding(
                         padding: EdgeInsets.only(bottom: 1.5.h),
                         child: SearchTile(
-                          isFromNetwork: false,
+                          isFromNetwork: true,
                           category: category,
                           onTileTap: () {
                             Navigator.pushNamed(
