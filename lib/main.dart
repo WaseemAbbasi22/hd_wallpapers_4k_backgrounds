@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_wallpapers/constants/app_strings.dart';
 import 'package:awesome_wallpapers/dependency_injection/dependency_injection.dart';
 import 'package:awesome_wallpapers/routes/routes.dart';
@@ -5,6 +7,8 @@ import 'package:awesome_wallpapers/services/config_service.dart';
 import 'package:awesome_wallpapers/theme/app_theme.dart';
 import 'package:awesome_wallpapers/views/home_view/home_vm.dart';
 import 'package:awesome_wallpapers/views/splash_view/splash_view.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +18,18 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyC8N5UJAFsfE9AZAkaKSxiR7GlVNpvHP2s",
+        appId: "1:70765643948:android:28f1a1ce2ee08a338e7709",
+        messagingSenderId: "70765643948",
+        projectId: "wallpapers4klatest",
+      ),
+    );
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack, fatal: true));
   setupLocator();
   await Future.delayed(const Duration(seconds: 1)).whenComplete(() async => await ConfigService.configureAmplify());
   runApp(MultiProvider(providers: [
