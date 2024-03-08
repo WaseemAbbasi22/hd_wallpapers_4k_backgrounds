@@ -30,7 +30,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     InAppUpdateUtil.performImmediateUpdate();
-    ConnectivityUtil.subscribeToConnectivityChange(onNoInternetFound: () => onNoInternetFound());
+    ConnectivityUtil.subscribeToConnectivityChange(
+        onNoInternetFound: () => onNoInternetFound());
     onLoaded();
     super.initState();
   }
@@ -39,11 +40,14 @@ class _SplashViewState extends State<SplashView> {
     scheduleMicrotask(() {
       context.read<HomeVM>().getCategoriesList();
       context.read<HomeVM>().getFeedWallpapers(AppConstants.feedThumbnailsKey);
-      context.read<HomeVM>().getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
+      context
+          .read<HomeVM>()
+          .getRecommendedWallpapersList(AppConstants.recommendedThumbnailsKey);
     });
   }
 
-  void onNoInternetFound() => navigatorKey.currentState!.pushNamed(NamedRoute.noInternetConnection);
+  void onNoInternetFound() =>
+      navigatorKey.currentState!.pushNamed(NamedRoute.noInternetConnection);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,8 @@ class _SplashViewState extends State<SplashView> {
           children: [
             Text(
               AppString.appName,
-              style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
+              style: AppStyle.appBarTitleTextStyle
+                  .copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(height: 4.h),
             Expanded(
@@ -70,41 +75,56 @@ class _SplashViewState extends State<SplashView> {
             SizedBox(height: 4.h),
             Text(
               AppString.appName,
-              style: AppStyle.appBarTitleTextStyle.copyWith(color: context.theme.appColors.outline),
+              style: AppStyle.appBarTitleTextStyle
+                  .copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(height: 1.h),
             Text(
               AppString.appDescription,
-              style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline),
+              style: AppStyle.normalTextStyle
+                  .copyWith(color: context.theme.appColors.outline),
             ),
             SizedBox(height: 3.h),
-            Consumer(builder: (BuildContext context, HomeVM homeVM, Widget? child) {
-              if (homeVM.isFeedLoading) {
-                return Center(
-                  child: CircularProgressIndicator(color: context.theme.appColors.outline),
-                );
-              }
+            Consumer(
+                builder: (BuildContext context, HomeVM homeVM, Widget? child) {
+              // if (homeVM.isFeedLoading) {
+              //   return Center(
+              //     child: CircularProgressIndicator(
+              //         color: context.theme.appColors.outline),
+              //   );
+              // }
               return Center(
                 child: CustomButton(
-                  onTap: () async {
-                    var status = await ConnectivityUtil.checkInternetConnectivity(onNoInternetFound: () => onNoInternetFound());
-                    if (status) {
-                      // FirebaseCrashlytics.instance.crash();
-                      if (homeVM.feedThumbnailList.isEmpty) {
-                        onLoaded();
-                      }
-                      Navigator.pushReplacementNamed(context, NamedRoute.mainView, arguments: {'tabIndex': 0});
-                    }
-                  },
-                  label: AppString.letsStart,
+                  onTap: homeVM.isFeedLoading
+                      ? () {}
+                      : () async {
+                          var status =
+                              await ConnectivityUtil.checkInternetConnectivity(
+                                  onNoInternetFound: () => onNoInternetFound());
+                          if (status) {
+                            // FirebaseCrashlytics.instance.crash();
+                            if (homeVM.feedThumbnailList.isEmpty) {
+                              onLoaded();
+                            }
+                            Navigator.pushReplacementNamed(
+                                context, NamedRoute.mainView,
+                                arguments: {'tabIndex': 0});
+                          }
+                        },
+                  label: homeVM.isFeedLoading ? '' : AppString.letsStart,
                   hasIcon: true,
                   height: 7.h,
                   width: 80.w,
-                  iconWidget: Icon(
-                    Icons.arrow_forward,
-                    color: AppColors.kWhiteColor,
-                    size: 4.h,
-                  ),
+                  iconWidget: homeVM.isFeedLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                              color: context.theme.appColors.outline),
+                        )
+                      : Icon(
+                          Icons.arrow_forward,
+                          color: AppColors.kWhiteColor,
+                          size: 4.h,
+                        ),
                 ),
               );
             }),
@@ -116,18 +136,28 @@ class _SplashViewState extends State<SplashView> {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: AppString.privacyPolicyText1,
-                    style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline),
+                    style: AppStyle.normalTextStyle
+                        .copyWith(color: context.theme.appColors.outline),
                     /*defining default style is optional */
                     children: <TextSpan>[
                       TextSpan(
                           text: AppString.privacyPolicyText2,
-                          recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),
-                          style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
-                      TextSpan(text: ' and ', style: AppStyle.normalTextStyle.copyWith(color: context.theme.appColors.outline)),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => GeneralUtilities.launchURL(
+                                AppString.privacyPolicyLink),
+                          style: AppStyle.normalTextStyle
+                              .copyWith(color: AppColors.kPrimaryLightColor)),
+                      TextSpan(
+                          text: ' and ',
+                          style: AppStyle.normalTextStyle.copyWith(
+                              color: context.theme.appColors.outline)),
                       TextSpan(
                           text: AppString.privacyPolicyText3,
-                          recognizer: TapGestureRecognizer()..onTap = () => GeneralUtilities.launchURL(AppString.privacyPolicyLink),
-                          style: AppStyle.normalTextStyle.copyWith(color: AppColors.kPrimaryLightColor)),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => GeneralUtilities.launchURL(
+                                AppString.privacyPolicyLink),
+                          style: AppStyle.normalTextStyle
+                              .copyWith(color: AppColors.kPrimaryLightColor)),
                     ],
                   ),
                 ),

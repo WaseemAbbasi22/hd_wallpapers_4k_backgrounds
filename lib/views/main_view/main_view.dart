@@ -205,7 +205,7 @@ class _MainViewState extends State<MainView> {
                 AppAssets.searchIcon,
                 height: 3.h,
                 colorFilter:
-                const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                 ColorFilter.mode(context.theme.appColors.tertiary, BlendMode.srcIn),
               ),
             ),
           ),

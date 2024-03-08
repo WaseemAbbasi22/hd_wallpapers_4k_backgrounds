@@ -113,6 +113,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      sha256: "22600aa1e926be775fa5fe7e6894e7fb3df9efda8891c73f70fb3262399a432d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.10"
   args:
     dependency: transitive
     description:
@@ -209,14 +217,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.1"
-  change_app_package_name:
-    dependency: "direct main"
-    description:
-      name: change_app_package_name
-      sha256: f9ebaf68a4b5a68c581492579bb68273c523ef325fbf9ce2f1b57fb136ad023b
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -369,30 +369,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  firebase_auth:
-    dependency: "direct main"
-    description:
-      name: firebase_auth
-      sha256: "279b2773ff61afd9763202cb5582e2b995ee57419d826b9af6517302a59b672f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.16.0"
-  firebase_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_auth_platform_interface
-      sha256: "3c9cfaccb7549492edf5b0c67c6dd1c6727c7830891aa6727f2fb225f0226626"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.9"
-  firebase_auth_web:
-    dependency: transitive
-    description:
-      name: firebase_auth_web
-      sha256: c7b1379ccef7abf4b6816eede67a868c44142198e42350f51c01d8fc03f95a7d
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.8.13"
   firebase_core:
     dependency: "direct main"
     description:
@@ -576,6 +552,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  in_app_update:
+    dependency: "direct main"
+    description:
+      name: in_app_update
+      sha256: b6ccb757281a96a4b18536f68fe2567aeca865134218719364212da8fe94615c
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   intl:
     dependency: transitive
     description:
@@ -624,6 +608,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  lottie:
+    dependency: "direct main"
+    description:
+      name: lottie
+      sha256: b8bdd54b488c54068c57d41ae85d02808da09e2bee8b8dd1f59f441e7efa60cd
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.0"
   matcher:
     dependency: transitive
     description:
@@ -800,6 +792,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      sha256: "43ac87de6e10afabc85c445745a7b799e04de84cebaa4fd7bf55a5e1e9604d29"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.4"
   provider:
     dependency: "direct main"
     description:
@@ -1029,14 +1029,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
-  transformable_list_view:
-    dependency: "direct main"
-    description:
-      name: transformable_list_view
-      sha256: f3e4a1a8d79de4c98f9870dea65b2aaba7bc2952dc091e7f09ade704153d9aa0
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   tuple:
     dependency: transitive
     description:
@@ -1206,5 +1198,5 @@ packages:
     source: hosted
     version: "6.3.0"
 sdks:
-  dart: ">=3.0.3 <4.0.0"
+  dart: ">=3.0.0 <4.0.0"
   flutter: ">=3.10.0"

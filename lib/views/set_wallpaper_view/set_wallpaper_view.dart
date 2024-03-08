@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:awesome_wallpapers/app_style/app_colors.dart';
 import 'package:awesome_wallpapers/constants/app_constants.dart';
 import 'package:awesome_wallpapers/constants/app_strings.dart';
@@ -60,9 +59,10 @@ class _SetWallpaperViewState extends State<SetWallpaperView> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      onPopInvoked: (bool value) {
+    return WillPopScope(
+      onWillPop: () async {
         homeVM.updateCurrentImageHdUrl("");
+        return true;
       },
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

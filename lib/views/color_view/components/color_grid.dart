@@ -36,7 +36,10 @@ class ColorGridComponent extends StatelessWidget {
               imageUrl: wallpaperModel.imageUrl,
               onLoadFailed: (index) {
                 if (onLoadFailed != null) {
-                  onLoadFailed!(index);
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    onLoadFailed!(index);
+
+                  });
                 }
               },
               onCardTap: () {
