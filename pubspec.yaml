@@ -49,8 +49,8 @@ dependencies:
   flutter_file_dialog: ^3.0.2
   async_wallpaper: ^2.0.3
   in_app_update: ^4.2.2
-  firebase_crashlytics:
-  firebase_core:
+  firebase_crashlytics: ^3.4.13
+  firebase_core: ^2.26.0
 
 
 
