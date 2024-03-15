@@ -39,10 +39,16 @@ class SliverHeader extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: scrollPosition >= 28.h
-            ? Text(
-                category.name.toUpperCase() ?? '',
-                style: AppStyle.headingTextStyle.copyWith(color: context.theme.appColors.tertiary),
-              )
+            ? Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(right: 18.w),
+              height: 3.h,
+              child: Text(
+                  category.name.toUpperCase() ?? '',
+                  textAlign: TextAlign.center,
+                  style: AppStyle.headingTextStyle.copyWith(color: context.theme.appColors.tertiary),
+                ),
+            )
             : null,
         background: WallPaperCard(
             index: 0,

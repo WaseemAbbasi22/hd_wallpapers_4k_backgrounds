@@ -57,38 +57,40 @@ class RecommendedSection extends StatelessWidget {
                 childAspectRatio: 3 / 5,
               ),
               itemCount: homeVM.recommendedWallpapersList.length,
-              itemBuilder: (BuildContext context, int index) => WallPaperCard(
-                index: index,
-                onCardTap: () {
-                  HomeVM homeVM = context.read<HomeVM>();
-                  homeVM.getHdImageUrlForFeedAndNavigate(
-                    context: context,
-                    thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey,
-                    thumbnailUrl: homeVM.recommendedWallpapersList[index].imageUrl,
+              itemBuilder: (BuildContext context, int index) {
+                return  WallPaperCard(
+                  index: index,
+                  onCardTap: () {
+                    HomeVM homeVM = context.read<HomeVM>();
+                    homeVM.getHdImageUrlForFeedAndNavigate(
+                      context: context,
+                      thumbnailKey: homeVM.recommendedWallpapersList[index].imageKey,
+                      thumbnailUrl: homeVM.recommendedWallpapersList[index].imageUrl,
 
-                  );
-                },
-                borderColor: Colors.transparent,
-                imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,
-                // child: Positioned(
-                //   top: 8,
-                //   right: 8,
-                //   child: GestureDetector(
-                //     onTap: () {},
-                //     child: CircleAvatar(
-                //       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
-                //       radius: 2.h,
-                //       child: Center(
-                //         child: Icon(
-                //           Icons.favorite_border,
-                //           size: 2.3.h,
-                //           color: AppColors.kWhiteColor,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ),
+                    );
+                  },
+                  borderColor: Colors.transparent,
+                  imageUrl: homeVM.recommendedWallpapersList[index].imageUrl,
+                  // child: Positioned(
+                  //   top: 8,
+                  //   right: 8,
+                  //   child: GestureDetector(
+                  //     onTap: () {},
+                  //     child: CircleAvatar(
+                  //       backgroundColor: AppColors.kBlackColor.withOpacity(0.5),
+                  //       radius: 2.h,
+                  //       child: Center(
+                  //         child: Icon(
+                  //           Icons.favorite_border,
+                  //           size: 2.3.h,
+                  //           color: AppColors.kWhiteColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                );
+              },
             ),
           ),
         ),

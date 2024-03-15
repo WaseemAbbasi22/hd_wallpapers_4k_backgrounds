@@ -20,7 +20,9 @@ class DetailSliverGrid extends StatelessWidget {
             borderColor: Colors.transparent,
             imageUrl: wallpaperModel.imageUrl,
             onLoadFailed: (index) {
-              wallpaperList.removeAt(index);
+              if(index!=-1){
+                wallpaperList.removeAt(index);
+              }
             },
             onCardTap: () {
               HomeVM homeVM = context.read<HomeVM>();
