@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "224031515732",
+    "project_id": "completebackupapp",
+    "storage_bucket": "completebackupapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224031515732:android:29bad194c1dc5e8da279c1",
+        "android_client_info": {
+          "package_name": "com.contacts.quick.backup.cloud.storage.restore.file"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224031515732-k7av6p91ljujah8almvklq0k31p757iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.contacts.quick.backup.cloud.storage.restore.file",
+            "certificate_hash": "c4760d096c05bb08e4bbd1d22dba1a62a97c281d"
+          }
+        },
+        {
+          "client_id": "224031515732-jo33e734c0vjc05lcl291m2mlrhpk05h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5lNqr5zL7ngDf8IJoSjJ0Jm98PkDfQqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224031515732-jo33e734c0vjc05lcl291m2mlrhpk05h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224031515732:android:832b3d659dfca248a279c1",
+        "android_client_info": {
+          "package_name": "com.hdwallpaperapp.livewallpapers.hdbackground.animewallpaper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224031515732-jo33e734c0vjc05lcl291m2mlrhpk05h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5lNqr5zL7ngDf8IJoSjJ0Jm98PkDfQqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224031515732-jo33e734c0vjc05lcl291m2mlrhpk05h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
